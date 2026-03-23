@@ -5,14 +5,12 @@
 
   const SRS_KEY = 'genki_conjugation_srs';
   const STATS_KEY = 'genki_conjugation_stats';
-  let useServer = true;
-
-  function loadSRSLocal() {
+  function loadSRS() {
     try { return JSON.parse(localStorage.getItem(SRS_KEY)) || {}; }
     catch { return {}; }
   }
 
-  function loadStatsLocal() {
+  function loadStats() {
     const defaults = { totalReviews: 0, totalCorrect: 0, streak: 0, lastStudyDate: null, todayReviews: 0, todayCorrect: 0 };
     try {
       const saved = { ...defaults, ...JSON.parse(localStorage.getItem(STATS_KEY)) };
@@ -30,63 +28,15 @@
     return stats;
   }
 
-  async function loadSRS() {
-    if (useServer) {
-      try {
-        const res = await fetch('/api/srs');
-        if (res.ok) {
-          const data = await res.json();
-          localStorage.setItem(SRS_KEY, JSON.stringify(data));
-          return data;
-        }
-      } catch { useServer = false; }
-    }
-    return loadSRSLocal();
-  }
-
   function saveSRS(data) {
     localStorage.setItem(SRS_KEY, JSON.stringify(data));
-    if (useServer) {
-      fetch('/api/srs', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      }).catch(() => { useServer = false; });
-    }
-  }
-
-  async function loadStats() {
-    const defaults = { totalReviews: 0, totalCorrect: 0, streak: 0, lastStudyDate: null, todayReviews: 0, todayCorrect: 0 };
-    if (useServer) {
-      try {
-        const res = await fetch('/api/stats');
-        if (res.ok) {
-          const data = await res.json();
-          const merged = resetDailyIfNeeded({ ...defaults, ...data });
-          localStorage.setItem(STATS_KEY, JSON.stringify(merged));
-          return merged;
-        }
-      } catch { useServer = false; }
-    }
-    return loadStatsLocal();
   }
 
   function saveStats(data) {
     localStorage.setItem(STATS_KEY, JSON.stringify(data));
-    if (useServer) {
-      fetch('/api/stats', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      }).catch(() => { useServer = false; });
-    }
   }
 
   function deleteSRSCard(cardId) {
-    if (useServer) {
-      fetch(`/api/srs/${encodeURIComponent(cardId)}`, { method: 'DELETE' })
-        .catch(() => { useServer = false; });
-    }
   }
 
   function cardId(verb, form) {
@@ -139,7 +89,7 @@
   const SETTINGS_KEY = 'genki_settings';
 
   function loadSettings() {
-    const defaults = { typingMode: false, hideForm: false, showContext: false };
+    const defaults = { typingMode: false, hideForm: true, showContext: true, englishToJapanese: true };
     try { return { ...defaults, ...JSON.parse(localStorage.getItem(SETTINGS_KEY)) }; }
     catch { return defaults; }
   }
@@ -149,8 +99,8 @@
   }
 
   let settings = loadSettings();
-  let srsData = loadSRSLocal();
-  let statsData = loadStatsLocal();
+  let srsData = loadSRS();
+  let statsData = loadStats();
   let currentChapter = null;
   let studyMode = 'verbs';
   let sessionCards = [];
@@ -487,7 +437,7 @@
       'adj-te':         `${verb}, and...`,
       'adj-adverb':     `${verb}-ly / in a ${verb} way`,
     };
-    return `e.g. "${templates[form] || verb}"`;
+    return templates[form] || verb;
   }
 
   function showCard() {
@@ -525,17 +475,36 @@
       badge.style.borderColor = fi.color;
     }
 
-    $('#card-kanji').textContent = verb.kanji;
-    $('#card-reading').textContent = verb.reading;
-    $('#card-meaning').textContent = verb.meaning;
-    $('#card-prompt').textContent = `→ ${fi.hint}`;
-
+    const kanjiEl = $('#card-kanji');
+    const readingEl = $('#card-reading');
+    const meaningEl = $('#card-meaning');
     const ctxEl = $('#card-context');
-    if (settings.showContext) {
+
+    if (settings.englishToJapanese) {
+      kanjiEl.classList.add('hidden');
+      readingEl.classList.add('hidden');
+      meaningEl.classList.add('hidden');
+      $('#card-prompt').textContent = '';
+
       ctxEl.textContent = getContextExample(verb.meaning, form);
       ctxEl.classList.remove('hidden');
+      ctxEl.classList.add('context-prominent');
     } else {
-      ctxEl.classList.add('hidden');
+      kanjiEl.classList.remove('hidden');
+      readingEl.classList.remove('hidden');
+      meaningEl.classList.remove('hidden');
+      kanjiEl.textContent = verb.kanji;
+      readingEl.textContent = verb.reading;
+      meaningEl.textContent = verb.meaning;
+      $('#card-prompt').textContent = `→ ${fi.hint}`;
+
+      ctxEl.classList.remove('context-prominent');
+      if (settings.showContext) {
+        ctxEl.textContent = getContextExample(verb.meaning, form);
+        ctxEl.classList.remove('hidden');
+      } else {
+        ctxEl.classList.add('hidden');
+      }
     }
 
     $('#hint-area').classList.add('hidden');
@@ -896,6 +865,40 @@
     return '';
   }
 
+  function getExampleSentence(verb, form, conjugated) {
+    const v = verb.meaning.replace(/^to /, '');
+
+    const verbTemplates = {
+      'masu':             { ja: `私は毎日${conjugated}。`, en: `I ${v} every day.` },
+      'masu-neg':         { ja: `私はあまり${conjugated}。`, en: `I don't ${v} much.` },
+      'masu-past':        { ja: `昨日${conjugated}。`, en: `Yesterday, I did ${v}.` },
+      'masu-past-neg':    { ja: `昨日は${conjugated}。`, en: `I didn't ${v} yesterday.` },
+      'te':               { ja: `${conjugated}ください。`, en: `Please ${v}.` },
+      'nai':              { ja: `今日は${conjugated}。`, en: `I don't ${v} today.` },
+      'dict':             { ja: `${conjugated}のが好きです。`, en: `I like to ${v}.` },
+      'ta':               { ja: `もう${conjugated}。`, en: `Already did ${v}.` },
+      'nakatta':          { ja: `まだ${conjugated}。`, en: `Still didn't ${v}.` },
+      'tai':              { ja: `${conjugated}です。`, en: `I want to ${v}.` },
+      'potential':        { ja: `私は${conjugated}。`, en: `I can ${v}.` },
+      'volitional':       { ja: `一緒に${conjugated}。`, en: `Let's ${v} together.` },
+      'passive':          { ja: `友達に${conjugated}。`, en: `Was ${v} by a friend.` },
+      'causative':        { ja: `先生が${conjugated}。`, en: `The teacher made someone ${v}.` },
+      'ba':               { ja: `もっと${conjugated}よかったのに。`, en: `If only I did ${v} more.` },
+      'causative-passive': { ja: `先生に${conjugated}。`, en: `Was made to ${v} by the teacher.` },
+    };
+
+    const adjTemplates = {
+      'adj-present':      { ja: `この部屋は${conjugated}。`, en: `This room is ${v}.` },
+      'adj-neg':          { ja: `この部屋は${conjugated}。`, en: `This room is not ${v}.` },
+      'adj-past':         { ja: `昨日は${conjugated}。`, en: `Yesterday was ${v}.` },
+      'adj-past-neg':     { ja: `あまり${conjugated}。`, en: `It wasn't very ${v}.` },
+      'adj-te':           { ja: `${conjugated}、楽しかった。`, en: `It was ${v}, and it was fun.` },
+      'adj-adverb':       { ja: `${conjugated}なりました。`, en: `It became ${v}.` },
+    };
+
+    return verbTemplates[form] || adjTemplates[form] || null;
+  }
+
   function buildExplanation(rule, steps) {
     return `<div class="ex-rule">${rule}</div><div class="ex-steps">${steps}</div>`;
   }
@@ -944,6 +947,16 @@
       ? getAdjExplanation(currentCard.verb, currentCard.form, correct)
       : getExplanation(currentCard.verb, currentCard.form, correct);
     $('#card-explanation').innerHTML = explanation;
+
+    const exSentence = getExampleSentence(currentCard.verb, currentCard.form, correct);
+    const exEl = $('#card-example-sentence');
+    if (exSentence) {
+      exEl.innerHTML = `<div class="example-label">Example</div>`
+        + `<div class="example-jp">${exSentence.ja}</div>`
+        + `<div class="example-en">${exSentence.en}</div>`;
+    } else {
+      exEl.innerHTML = '';
+    }
   }
 
   function normalize(str) {
@@ -1117,15 +1130,11 @@
 
   // ─── Event Binding ─────────────────────────────────────────────────────────────
 
-  async function init() {
+  function init() {
     initTheme();
 
-    try {
-      srsData = await loadSRS();
-      statsData = await loadStats();
-    } catch {
-      useServer = false;
-    }
+    srsData = loadSRS();
+    statsData = loadStats();
 
     renderChapters();
     renderAdjChapters();
@@ -1174,6 +1183,7 @@
         $('#setting-typing-mode').checked = settings.typingMode;
         $('#setting-hide-form').checked = settings.hideForm;
         $('#setting-show-context').checked = settings.showContext;
+        $('#setting-english-to-japanese').checked = settings.englishToJapanese;
       }
     });
 
@@ -1190,6 +1200,11 @@
 
     $('#setting-show-context').addEventListener('change', (e) => {
       settings.showContext = e.target.checked;
+      saveSettings(settings);
+    });
+
+    $('#setting-english-to-japanese').addEventListener('change', (e) => {
+      settings.englishToJapanese = e.target.checked;
       saveSettings(settings);
     });
 
@@ -1232,10 +1247,7 @@
         localStorage.removeItem(SRS_KEY);
         localStorage.removeItem(STATS_KEY);
         srsData = {};
-        statsData = loadStatsLocal();
-        if (useServer) {
-          fetch('/api/reset', { method: 'POST' }).catch(() => { useServer = false; });
-        }
+        statsData = loadStats();
         renderChapters();
         renderAdjChapters();
       }

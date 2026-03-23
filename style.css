@@ -430,11 +430,21 @@ body {
 }
 
 .card-context {
-  font-size: 0.85rem;
+  font-size: 1.15rem;
   color: var(--text-muted);
   font-style: italic;
   text-align: center;
   margin-top: -4px;
+}
+
+.card-context.context-prominent {
+  font-size: 1.5rem;
+  color: var(--text);
+  font-style: normal;
+  font-weight: 600;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  line-height: 1.4;
 }
 
 /* Reveal area (default mode) */
@@ -652,6 +662,42 @@ body {
 .card-explanation .ex-hl {
   color: var(--accent);
   font-weight: 700;
+}
+
+/* Example sentence */
+.card-example-sentence {
+  width: 100%;
+  max-width: 360px;
+  margin-top: 14px;
+  padding: 12px 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  animation: slideUp 0.3s ease;
+}
+
+.card-example-sentence .example-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.card-example-sentence .example-jp {
+  font-family: var(--font-jp);
+  font-size: 1.15rem;
+  color: var(--text);
+  margin-bottom: 4px;
+  line-height: 1.5;
+}
+
+.card-example-sentence .example-en {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  font-style: italic;
+  line-height: 1.4;
 }
 
 /* Grade buttons */
