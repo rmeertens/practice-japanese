@@ -565,6 +565,8 @@
     const fi = Conjugator.getFormInfo(form);
     let steps = [];
 
+    steps.push(`The word is <strong>${verb.kanji}</strong> (${verb.reading}) — ${verb.meaning}`);
+
     const hintIsAdj = studyMode === 'adjectives' || (studyMode === 'custom' && isAdjCard(currentCard));
     if (hintIsAdj) {
       const typeLabel = verb.type === 'i-adj' ? 'い-adjective' : 'な-adjective';
