@@ -33,6 +33,7 @@
       <div class="mode-tabs">
         <button class="mode-tab active" data-mode="verbs">Verbs</button>
         <button class="mode-tab" data-mode="adjectives">Adjectives</button>
+        <button class="mode-tab" data-mode="custom">Build Your Own</button>
       </div>
       <div id="verb-chapters">
         <h2 class="section-title">Genki I</h2>
@@ -45,6 +46,22 @@
         <div class="chapter-grid" id="adj-chapters-genki1"></div>
         <h2 class="section-title">Genki II</h2>
         <div class="chapter-grid" id="adj-chapters-genki2"></div>
+      </div>
+      <div id="custom-builder" class="hidden">
+        <div class="custom-header">
+          <h2 class="section-title">Select Forms</h2>
+          <button id="btn-toggle-forms" class="btn-toggle-all">Select All</button>
+        </div>
+        <div class="custom-section" id="custom-forms"></div>
+        <div class="custom-header">
+          <h2 class="section-title">Select Verbs</h2>
+          <button id="btn-toggle-verbs" class="btn-toggle-all">Deselect All</button>
+        </div>
+        <div class="custom-section custom-verbs-grid" id="custom-verbs"></div>
+        <div class="custom-start-section">
+          <span id="custom-count" class="custom-count">0 cards</span>
+          <button id="btn-start-custom" class="btn-primary btn-start-custom">Start Session</button>
+        </div>
       </div>
       <div class="reset-section">
         <button id="btn-reset" class="btn-danger">Reset All Progress</button>

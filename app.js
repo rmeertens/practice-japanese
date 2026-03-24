@@ -175,7 +175,7 @@
       title.textContent = 'Genki Conjugation Cards';
     } else if (name === 'study') {
       backBtn.classList.remove('hidden');
-      title.textContent = CHAPTER_INFO[currentChapter]?.title || 'Study';
+      title.textContent = studyMode === 'custom' ? 'Custom Session' : (CHAPTER_INFO[currentChapter]?.title || 'Study');
     } else if (name === 'reference') {
       backBtn.classList.remove('hidden');
       title.textContent = 'Conjugation Reference';
@@ -458,9 +458,11 @@
     $('#card-front').classList.remove('hidden');
     $('#card-back').classList.add('hidden');
 
+    const NEGATIVE_FORMS = new Set(['masu-neg', 'masu-past-neg', 'nai', 'nakatta', 'adj-neg', 'adj-past-neg']);
     const card = $('#card');
     card.style.setProperty('--form-color', fi.color);
     card.style.borderLeftColor = fi.color;
+    card.classList.toggle('negative-form', NEGATIVE_FORMS.has(form));
 
     const badge = $('#card-form-badge');
     if (settings.hideForm) {
@@ -527,9 +529,13 @@
     updateUndoButton();
   }
 
+  function isAdjCard(card) {
+    return card.verb.type === 'i-adj' || card.verb.type === 'na-adj';
+  }
+
   function getCorrectAnswer(card) {
     const { verb, form } = card;
-    if (studyMode === 'adjectives') {
+    if (studyMode === 'adjectives' || (studyMode === 'custom' && isAdjCard(card))) {
       return Conjugator.conjugateAdjective(verb, form);
     }
     return Conjugator.conjugate(verb, form);
@@ -559,7 +565,8 @@
     const fi = Conjugator.getFormInfo(form);
     let steps = [];
 
-    if (studyMode === 'adjectives') {
+    const hintIsAdj = studyMode === 'adjectives' || (studyMode === 'custom' && isAdjCard(currentCard));
+    if (hintIsAdj) {
       const typeLabel = verb.type === 'i-adj' ? 'い-adjective' : 'な-adjective';
       steps.push(`This is a <strong>${typeLabel}</strong>`);
 
@@ -943,7 +950,8 @@
     conjugated.style.color = fi.color;
     $('#correct-answer').textContent = correct;
 
-    const explanation = studyMode === 'adjectives'
+    const isAdj = studyMode === 'adjectives' || (studyMode === 'custom' && isAdjCard(currentCard));
+    const explanation = isAdj
       ? getAdjExplanation(currentCard.verb, currentCard.form, correct)
       : getExplanation(currentCard.verb, currentCard.form, correct);
     $('#card-explanation').innerHTML = explanation;
@@ -1097,6 +1105,203 @@
     `;
   }
 
+  // ─── Build Your Own ──────────────────────────────────────────────────────────
+
+  let customFormsSelected = new Set();
+  let customVerbsSelected = new Set();
+  let customPanelRendered = false;
+
+  function wordKey(w) {
+    return w.wordType === 'adj' ? `adj:${w.reading}` : (w.disambig ? `${w.reading}_${w.disambig}` : w.reading);
+  }
+
+  function syncToggleBtn(btn, selectedCount, totalCount) {
+    btn.textContent = selectedCount >= totalCount ? 'Deselect All' : 'Select All';
+  }
+
+  function renderCustomPanel() {
+    if (customPanelRendered) return;
+    customPanelRendered = true;
+
+    const formsContainer = $('#custom-forms');
+    const verbsContainer = $('#custom-verbs');
+
+    const allForms = [...Conjugator.ALL_FORMS, ...Conjugator.ADJ_ALL_FORMS];
+    const formInfoMap = { ...Conjugator.FORM_INFO, ...Conjugator.ADJ_FORM_INFO };
+
+    formsContainer.innerHTML = allForms.map(f => {
+      const fi = formInfoMap[f];
+      return `<label class="custom-check-item form-check-item">
+        <input type="checkbox" data-form="${f}" class="custom-form-cb">
+        <span class="form-pill" style="background:${fi.color}22;color:${fi.color}">${fi.symbol}</span>
+        <span class="custom-check-label">${fi.name}</span>
+      </label>`;
+    }).join('');
+
+    const allWords = [
+      ...GENKI_VERBS.map(v => ({ ...v, wordType: 'verb' })),
+      ...GENKI_ADJECTIVES.map(a => ({ ...a, wordType: 'adj' })),
+    ];
+    const chapters = [...new Set(allWords.map(w => w.chapter))].sort((a, b) => a - b);
+
+    let verbsHTML = '';
+    chapters.forEach(ch => {
+      const words = allWords.filter(w => w.chapter === ch);
+      verbsHTML += `<div class="custom-chapter-group" data-chapter="${ch}">
+        <div class="custom-chapter-header">
+          <span>Ch ${ch}</span>
+          <button class="btn-toggle-chapter btn-toggle-all" data-chapter="${ch}">Deselect All</button>
+        </div>
+        ${words.map(w => {
+          const key = wordKey(w);
+          return `<label class="custom-check-item verb-check-item">
+            <input type="checkbox" checked data-verb-key="${key}" data-chapter="${ch}" class="custom-verb-cb">
+            <span class="custom-check-kanji">${w.kanji}</span>
+            <span class="custom-check-sub">${w.meaning}</span>
+          </label>`;
+        }).join('')}
+      </div>`;
+    });
+    verbsContainer.innerHTML = verbsHTML;
+
+    customFormsSelected.clear();
+    customVerbsSelected.clear();
+    verbsContainer.querySelectorAll('.custom-verb-cb').forEach(cb => {
+      customVerbsSelected.add(cb.dataset.verbKey);
+    });
+
+    // Form checkbox change
+    formsContainer.addEventListener('change', (e) => {
+      if (!e.target.classList.contains('custom-form-cb')) return;
+      const form = e.target.dataset.form;
+      if (e.target.checked) customFormsSelected.add(form);
+      else customFormsSelected.delete(form);
+      syncToggleBtn($('#btn-toggle-forms'), customFormsSelected.size, allForms.length);
+      updateCustomCount();
+    });
+
+    // Verb checkbox change
+    verbsContainer.addEventListener('change', (e) => {
+      if (!e.target.classList.contains('custom-verb-cb')) return;
+      const key = e.target.dataset.verbKey;
+      const ch = e.target.dataset.chapter;
+      if (e.target.checked) customVerbsSelected.add(key);
+      else customVerbsSelected.delete(key);
+      const chCbs = verbsContainer.querySelectorAll(`.custom-verb-cb[data-chapter="${ch}"]`);
+      const chSelected = [...chCbs].filter(cb => cb.checked).length;
+      syncToggleBtn(verbsContainer.querySelector(`.btn-toggle-chapter[data-chapter="${ch}"]`), chSelected, chCbs.length);
+      syncToggleBtn($('#btn-toggle-verbs'), customVerbsSelected.size, verbsContainer.querySelectorAll('.custom-verb-cb').length);
+      updateCustomCount();
+    });
+
+    // Toggle all forms
+    $('#btn-toggle-forms').addEventListener('click', (e) => {
+      e.preventDefault();
+      const allOn = customFormsSelected.size >= allForms.length;
+      formsContainer.querySelectorAll('.custom-form-cb').forEach(cb => {
+        cb.checked = !allOn;
+        if (!allOn) customFormsSelected.add(cb.dataset.form);
+      });
+      if (allOn) customFormsSelected.clear();
+      syncToggleBtn($('#btn-toggle-forms'), customFormsSelected.size, allForms.length);
+      updateCustomCount();
+    });
+
+    // Toggle all verbs
+    $('#btn-toggle-verbs').addEventListener('click', (e) => {
+      e.preventDefault();
+      const totalCbs = verbsContainer.querySelectorAll('.custom-verb-cb');
+      const allOn = customVerbsSelected.size >= totalCbs.length;
+      totalCbs.forEach(cb => {
+        cb.checked = !allOn;
+        if (!allOn) customVerbsSelected.add(cb.dataset.verbKey);
+      });
+      if (allOn) customVerbsSelected.clear();
+      syncToggleBtn($('#btn-toggle-verbs'), customVerbsSelected.size, totalCbs.length);
+      verbsContainer.querySelectorAll('.btn-toggle-chapter').forEach(btn => {
+        const ch = btn.dataset.chapter;
+        const chCbs = verbsContainer.querySelectorAll(`.custom-verb-cb[data-chapter="${ch}"]`);
+        const chSelected = [...chCbs].filter(cb => cb.checked).length;
+        syncToggleBtn(btn, chSelected, chCbs.length);
+      });
+      updateCustomCount();
+    });
+
+    // Per-chapter toggle
+    verbsContainer.addEventListener('click', (e) => {
+      const btn = e.target.closest('.btn-toggle-chapter');
+      if (!btn) return;
+      e.preventDefault();
+      const ch = btn.dataset.chapter;
+      const chCbs = verbsContainer.querySelectorAll(`.custom-verb-cb[data-chapter="${ch}"]`);
+      const chSelected = [...chCbs].filter(cb => cb.checked).length;
+      const allOn = chSelected >= chCbs.length;
+      chCbs.forEach(cb => {
+        cb.checked = !allOn;
+        if (!allOn) customVerbsSelected.add(cb.dataset.verbKey);
+        else customVerbsSelected.delete(cb.dataset.verbKey);
+      });
+      syncToggleBtn(btn, allOn ? 0 : chCbs.length, chCbs.length);
+      syncToggleBtn($('#btn-toggle-verbs'), customVerbsSelected.size, verbsContainer.querySelectorAll('.custom-verb-cb').length);
+      updateCustomCount();
+    });
+
+    // Start button
+    $('#btn-start-custom').addEventListener('click', startCustomStudy);
+
+    updateCustomCount();
+  }
+
+  function updateCustomCount() {
+    const count = customFormsSelected.size * customVerbsSelected.size;
+    $('#custom-count').textContent = `${count} card${count !== 1 ? 's' : ''}`;
+    $('#btn-start-custom').disabled = count === 0;
+  }
+
+  function startCustomStudy() {
+    if (customFormsSelected.size === 0 || customVerbsSelected.size === 0) return;
+
+    studyMode = 'custom';
+    currentChapter = null;
+
+    const allWords = [
+      ...GENKI_VERBS.map(v => ({ ...v, wordType: 'verb' })),
+      ...GENKI_ADJECTIVES.map(a => ({ ...a, wordType: 'adj' })),
+    ];
+
+    const verbForms = [...customFormsSelected].filter(f => Conjugator.FORM_INFO[f]);
+    const adjForms = [...customFormsSelected].filter(f => Conjugator.ADJ_FORM_INFO[f]);
+
+    sessionCards = [];
+    allWords.forEach(w => {
+      const key = w.wordType === 'adj' ? `adj:${w.reading}` : (w.disambig ? `${w.reading}_${w.disambig}` : w.reading);
+      if (!customVerbsSelected.has(key)) return;
+
+      const forms = w.wordType === 'adj' ? adjForms : verbForms;
+      forms.forEach(f => {
+        const id = w.wordType === 'adj' ? adjCardId(w, f) : cardId(w, f);
+        sessionCards.push({ verb: w, form: f, id });
+      });
+    });
+
+    if (sessionCards.length === 0) return;
+
+    sessionCards = prioritizeDifficult(sessionCards);
+    if (sessionCards.length > 30) {
+      sessionCards = sessionCards.slice(0, 30);
+    }
+
+    sessionIndex = 0;
+    sessionCorrect = 0;
+    sessionTotal = sessionCards.length;
+    undoStack = [];
+
+    showScreen('study');
+    $('#session-complete').classList.add('hidden');
+    $('#card').classList.remove('hidden');
+    showCard();
+  }
+
   // ─── Utilities ─────────────────────────────────────────────────────────────────
 
   function shuffle(arr) {
@@ -1140,7 +1345,7 @@
     renderAdjChapters();
     renderReference('u');
 
-    // Mode tabs (Verbs / Adjectives)
+    // Mode tabs (Verbs / Adjectives / Build Your Own)
     document.querySelectorAll('.mode-tab').forEach(tab => {
       tab.addEventListener('click', () => {
         document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
@@ -1148,6 +1353,8 @@
         const mode = tab.dataset.mode;
         $('#verb-chapters').classList.toggle('hidden', mode !== 'verbs');
         $('#adj-chapters').classList.toggle('hidden', mode !== 'adjectives');
+        $('#custom-builder').classList.toggle('hidden', mode !== 'custom');
+        if (mode === 'custom') renderCustomPanel();
       });
     });
 
