@@ -440,6 +440,10 @@
     return templates[form] || verb;
   }
 
+  function highlightKeywords(text) {
+    return text.replace(/\b(don't|didn't|not|wasn't|weren't)\b/gi, '<span class="neg-highlight">$1</span>');
+  }
+
   function showCard() {
     if (sessionIndex >= sessionCards.length) {
       finishSession();
@@ -488,7 +492,7 @@
       meaningEl.classList.add('hidden');
       $('#card-prompt').textContent = '';
 
-      ctxEl.textContent = getContextExample(verb.meaning, form);
+      ctxEl.innerHTML = highlightKeywords(getContextExample(verb.meaning, form));
       ctxEl.classList.remove('hidden');
       ctxEl.classList.add('context-prominent');
     } else {
@@ -502,7 +506,7 @@
 
       ctxEl.classList.remove('context-prominent');
       if (settings.showContext) {
-        ctxEl.textContent = getContextExample(verb.meaning, form);
+        ctxEl.innerHTML = highlightKeywords(getContextExample(verb.meaning, form));
         ctxEl.classList.remove('hidden');
       } else {
         ctxEl.classList.add('hidden');
@@ -970,7 +974,7 @@
     if (exSentence) {
       exEl.innerHTML = `<div class="example-label">Example</div>`
         + `<div class="example-jp">${exSentence.ja}</div>`
-        + `<div class="example-en">${exSentence.en}</div>`;
+        + `<div class="example-en">${highlightKeywords(exSentence.en)}</div>`;
     } else {
       exEl.innerHTML = '';
     }

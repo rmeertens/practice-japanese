@@ -442,6 +442,11 @@ body {
   margin-top: -4px;
 }
 
+.neg-highlight {
+  color: #e74c3c;
+  font-weight: 700;
+}
+
 .card-context.context-prominent {
   font-size: 1.5rem;
   color: var(--text);
