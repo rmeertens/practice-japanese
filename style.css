@@ -426,6 +426,14 @@ body {
   line-height: 1.3;
 }
 
+.conjugation-stem {
+  opacity: 0.62;
+}
+
+.conjugation-ending {
+  opacity: 1;
+}
+
 .card-prompt {
   font-size: 1rem;
   font-weight: 600;

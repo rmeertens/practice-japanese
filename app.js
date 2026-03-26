@@ -515,7 +515,6 @@
 
     $('#hint-area').classList.add('hidden');
     $('#hint-area').innerHTML = '';
-    $('#btn-hint').disabled = false;
 
     if (settings.typingMode) {
       $('#reveal-area').classList.add('hidden');
@@ -565,7 +564,6 @@
     const hintEl = $('#hint-area');
     if (!hintEl.classList.contains('hidden')) {
       hintEl.classList.add('hidden');
-      $('#btn-hint').disabled = false;
       $('#key-capture').focus();
       return;
     }
@@ -634,7 +632,6 @@
 
     hintEl.innerHTML = `<div class="hint-label">Hint</div>` + steps.map(s => `<div class="hint-step">→ ${s}</div>`).join('');
     hintEl.classList.remove('hidden');
-    $('#btn-hint').disabled = true;
     $('#key-capture').focus();
   }
 
@@ -921,6 +918,89 @@
     return `<div class="ex-rule">${rule}</div><div class="ex-steps">${steps}</div>`;
   }
 
+  function getStemForDisplay(card) {
+    const { verb, form } = card;
+    const isAdj = studyMode === 'adjectives' || (studyMode === 'custom' && isAdjCard(card));
+
+    if (isAdj) {
+      if (verb.type === 'i-adj') {
+        if (form === 'adj-present') return null;
+        if (verb.reading === 'いい') return 'よ';
+        if (verb.reading === 'かっこいい') return 'かっこよ';
+        return verb.reading.slice(0, -1);
+      }
+      if (verb.type === 'na-adj') {
+        return verb.reading;
+      }
+      return null;
+    }
+
+    if (verb.type === 'ru') {
+      if (form === 'dict') return null;
+      return verb.reading.slice(0, -1);
+    }
+
+    if (verb.type === 'u') {
+      if (form === 'dict') return null;
+      const ending = verb.reading.slice(-1);
+      const base = verb.reading.slice(0, -1);
+      if (['masu', 'masu-neg', 'masu-past', 'masu-past-neg', 'tai'].includes(form)) return base + I_ROW[ending];
+      if (['nai', 'nakatta', 'passive', 'causative', 'causative-passive'].includes(form)) return base + A_ROW[ending];
+      if (['potential', 'ba'].includes(form)) return base + E_ROW[ending];
+      if (form === 'volitional') return base + O_ROW[ending];
+      if (form === 'te' || form === 'ta') {
+        if (verb.reading.endsWith('いく') || verb.reading.endsWith('ゆく')) return verb.reading.slice(0, -2) + 'い';
+        const rule = U_TE_RULES[ending];
+        if (!rule) return null;
+        const suffix = form === 'te' ? rule.te : rule.ta;
+        return base + suffix.slice(0, -1);
+      }
+      return null;
+    }
+
+    if (verb.type === 'irregular') {
+      const reading = verb.reading;
+      const isSuru = reading === 'する' || reading.endsWith('する');
+      const isKuru = reading === 'くる' || reading.endsWith('くる') || reading === 'きる';
+
+      if (form === 'dict') return null;
+
+      if (isSuru) {
+        const prefix = reading.slice(0, -2);
+        const stems = {
+          'masu': 'し', 'masu-neg': 'し', 'masu-past': 'し', 'masu-past-neg': 'し',
+          'te': 'し', 'ta': 'し', 'nai': 'し', 'nakatta': 'し', 'tai': 'し',
+          'potential': 'でき', 'volitional': 'し', 'passive': 'さ', 'causative': 'さ',
+          'causative-passive': 'さ', 'ba': 'す',
+        };
+        return prefix + (stems[form] || 'し');
+      }
+
+      if (isKuru) {
+        const prefix = reading.slice(0, -2);
+        const stems = {
+          'masu': 'き', 'masu-neg': 'き', 'masu-past': 'き', 'masu-past-neg': 'き',
+          'te': 'き', 'ta': 'き', 'tai': 'き', 'nai': 'こ', 'nakatta': 'こ',
+          'potential': 'こられ', 'volitional': 'こ', 'passive': 'こられ',
+          'causative': 'こさせ', 'causative-passive': 'こさせられ', 'ba': 'く',
+        };
+        return prefix + (stems[form] || 'き');
+      }
+    }
+
+    return null;
+  }
+
+  function formatConjugatedWithStem(card, correct) {
+    const stem = getStemForDisplay(card);
+    if (!stem || !correct.startsWith(stem) || stem.length >= correct.length) {
+      return correct;
+    }
+
+    const ending = correct.slice(stem.length);
+    return `<span class="conjugation-stem">${stem}</span><span class="conjugation-ending">${ending}</span>`;
+  }
+
   function revealAnswer(userAnswer, correct) {
     answered = true;
 
@@ -959,7 +1039,7 @@
     $('#card-reading-back').textContent = currentCard.verb.reading;
     $('#card-meaning-back').textContent = currentCard.verb.meaning;
     const conjugated = $('#card-conjugated');
-    conjugated.textContent = correct;
+    conjugated.innerHTML = formatConjugatedWithStem(currentCard, correct);
     conjugated.style.color = fi.color;
     $('#correct-answer').textContent = correct;
 
