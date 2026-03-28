@@ -19,9 +19,9 @@ const GENKI_VERBS = [
   // Chapter 4
   { kanji: '会う', reading: 'あう', meaning: 'to meet', type: 'u', chapter: 4 },
   { kanji: 'ある', reading: 'ある', meaning: 'to exist (inanimate)', type: 'u', chapter: 4 },
-  { kanji: '買う', reading: 'かう', meaning: 'to buy', type: 'u', chapter: 4 },
+  { kanji: '買う', reading: 'かう', meaning: 'to buy', type: 'u', chapter: 4, disambig: 'buy' },
   { kanji: '書く', reading: 'かく', meaning: 'to write', type: 'u', chapter: 4 },
-  { kanji: '撮る', reading: 'とる', meaning: 'to take (a photo)', type: 'u', chapter: 4 },
+  { kanji: '撮る', reading: 'とる', meaning: 'to take (a photo)', type: 'u', chapter: 4, disambig: 'photo' },
   { kanji: '待つ', reading: 'まつ', meaning: 'to wait', type: 'u', chapter: 4 },
   { kanji: '分かる', reading: 'わかる', meaning: 'to understand', type: 'u', chapter: 4 },
   { kanji: 'いる', reading: 'いる', meaning: 'to exist (animate)', type: 'ru', chapter: 4 },
@@ -65,7 +65,7 @@ const GENKI_VERBS = [
   { kanji: 'はく', reading: 'はく', meaning: 'to put on (below waist)', type: 'u', chapter: 7 },
   { kanji: '太る', reading: 'ふとる', meaning: 'to gain weight', type: 'u', chapter: 7 },
   { kanji: 'かける', reading: 'かける', meaning: 'to put on (glasses)', type: 'ru', chapter: 7 },
-  { kanji: '着る', reading: 'きる', meaning: 'to put on (above waist)', type: 'ru', chapter: 7 },
+  { kanji: '着る', reading: 'きる', meaning: 'to put on (above waist)', type: 'ru', chapter: 7, disambig: 'wear' },
   { kanji: '勤める', reading: 'つとめる', meaning: 'to work for', type: 'ru', chapter: 7 },
   { kanji: '痩せる', reading: 'やせる', meaning: 'to lose weight', type: 'ru', chapter: 7 },
   { kanji: '結婚する', reading: 'けっこんする', meaning: 'to get married', type: 'irregular', chapter: 7 },
@@ -77,7 +77,7 @@ const GENKI_VERBS = [
   { kanji: '要る', reading: 'いる', meaning: 'to need', type: 'u', chapter: 8, disambig: 'need' },
   { kanji: '遅くなる', reading: 'おそくなる', meaning: 'to become late', type: 'u', chapter: 8 },
   { kanji: '思う', reading: 'おもう', meaning: 'to think', type: 'u', chapter: 8 },
-  { kanji: '切る', reading: 'きる', meaning: 'to cut', type: 'u', chapter: 8 },
+  { kanji: '切る', reading: 'きる', meaning: 'to cut', type: 'u', chapter: 8, disambig: 'cut' },
   { kanji: '作る', reading: 'つくる', meaning: 'to make', type: 'u', chapter: 8 },
   { kanji: '持っていく', reading: 'もっていく', meaning: 'to take (a thing)', type: 'u', chapter: 8 },
   { kanji: '始める', reading: 'はじめる', meaning: 'to begin', type: 'ru', chapter: 8 },
@@ -106,11 +106,11 @@ const GENKI_VERBS = [
   { kanji: '練習する', reading: 'れんしゅうする', meaning: 'to practice', type: 'irregular', chapter: 10 },
 
   // Chapter 11
-  { kanji: '取る', reading: 'とる', meaning: 'to take (a class)', type: 'u', chapter: 11 },
+  { kanji: '取る', reading: 'とる', meaning: 'to take (a class)', type: 'u', chapter: 11, disambig: 'class' },
   { kanji: '習う', reading: 'ならう', meaning: 'to learn', type: 'u', chapter: 11 },
   { kanji: '登る', reading: 'のぼる', meaning: 'to climb', type: 'u', chapter: 11 },
   { kanji: '働く', reading: 'はたらく', meaning: 'to work', type: 'u', chapter: 11 },
-  { kanji: '飼う', reading: 'かう', meaning: 'to own (a pet)', type: 'u', chapter: 11 },
+  { kanji: '飼う', reading: 'かう', meaning: 'to own (a pet)', type: 'u', chapter: 11, disambig: 'pet' },
   { kanji: 'サボる', reading: 'さぼる', meaning: 'to skip (class)', type: 'u', chapter: 11 },
   { kanji: '疲れる', reading: 'つかれる', meaning: 'to get tired', type: 'ru', chapter: 11 },
   { kanji: 'やめる', reading: 'やめる', meaning: 'to quit', type: 'ru', chapter: 11 },
@@ -335,7 +335,7 @@ const GENKI_ADJECTIVES = [
   { kanji: '好き', reading: 'すき', meaning: 'liked / favorite', type: 'na-adj', chapter: 5 },
   { kanji: '嫌い', reading: 'きらい', meaning: 'disliked', type: 'na-adj', chapter: 5 },
   { kanji: '暇', reading: 'ひま', meaning: 'free (not busy)', type: 'na-adj', chapter: 5 },
-  { kanji: 'ハンサム', reading: 'はんさむ', meaning: 'handsome', type: 'na-adj', chapter: 5 },
+  { kanji: 'かっこいい', reading: 'かっこいい', meaning: 'handsome / cool', type: 'i-adj', chapter: 5 },
 
   // Chapter 7
   { kanji: '長い', reading: 'ながい', meaning: 'long', type: 'i-adj', chapter: 7 },
