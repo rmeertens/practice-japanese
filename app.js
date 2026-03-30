@@ -111,7 +111,7 @@
   let answered = false;
   let undoStack = [];
   let saveTimeout = null;
-  let previousScreen = null;
+
 
   // ─── DOM refs ──────────────────────────────────────────────────────────────────
 
@@ -122,7 +122,6 @@
     chapters: $('#screen-chapters'),
     study: $('#screen-study'),
     reference: $('#screen-reference'),
-    settings: $('#screen-settings'),
   };
 
   // ─── Theme ─────────────────────────────────────────────────────────────────────
@@ -180,9 +179,6 @@
     } else if (name === 'reference') {
       backBtn.classList.remove('hidden');
       title.textContent = 'Conjugation Reference';
-    } else if (name === 'settings') {
-      backBtn.classList.remove('hidden');
-      title.textContent = 'Settings';
     }
   }
 
@@ -2053,7 +2049,7 @@
 
     const originalContent = isEnToJa ? sentence.en : jaDisplay;
     const exEl = $('#card-example-sentence');
-    exEl.innerHTML = `<div class="translate-original-label">Original:</div><div class="translate-original">${originalContent}</div>`;
+    exEl.innerHTML = `<div class="translate-original-label">Translation</div><div class="translate-original">${originalContent}</div>`;
   }
 
   // ─── Utilities ─────────────────────────────────────────────────────────────────
@@ -2119,21 +2115,9 @@
 
     // Back button
     $('#btn-back').addEventListener('click', () => {
-      if (screens.settings.classList.contains('active') && previousScreen) {
-        const target = previousScreen;
-        showScreen(target);
-        if (target === 'chapters') {
-          renderChapters();
-          renderAdjChapters();
-        } else if (target === 'study' && currentCard) {
-          showCard();
-        }
-        previousScreen = null;
-      } else {
-        showScreen('chapters');
-        renderChapters();
-        renderAdjChapters();
-      }
+      showScreen('chapters');
+      renderChapters();
+      renderAdjChapters();
     });
 
     // Reference button
@@ -2148,30 +2132,23 @@
     });
 
     // Settings button
-    $('#btn-settings').addEventListener('click', () => {
-      if (screens.settings.classList.contains('active')) {
-        const target = previousScreen || 'chapters';
-        showScreen(target);
-        if (target === 'chapters') {
-          renderChapters();
-          renderAdjChapters();
-        } else if (target === 'study' && currentCard) {
-          showCard();
-        }
-        previousScreen = null;
-      } else {
-        previousScreen = screens.study.classList.contains('active') ? 'study'
-          : screens.reference.classList.contains('active') ? 'reference'
-          : 'chapters';
-        showScreen('settings');
-        $('#setting-typing-mode').checked = settings.typingMode;
-        $('#setting-hide-form').checked = settings.hideForm;
-        $('#setting-show-context').checked = settings.showContext;
-        $('#setting-english-to-japanese').checked = settings.englishToJapanese;
-        $('#setting-show-example-front').checked = settings.showExampleFront;
-        $('#setting-show-furigana').checked = settings.showFurigana;
-      }
-    });
+    function openSettings() {
+      $('#setting-typing-mode').checked = settings.typingMode;
+      $('#setting-hide-form').checked = settings.hideForm;
+      $('#setting-show-context').checked = settings.showContext;
+      $('#setting-english-to-japanese').checked = settings.englishToJapanese;
+      $('#setting-show-example-front').checked = settings.showExampleFront;
+      $('#setting-show-furigana').checked = settings.showFurigana;
+      $('#settings-overlay').classList.remove('hidden');
+    }
+
+    function closeSettings() {
+      $('#settings-overlay').classList.add('hidden');
+    }
+
+    $('#btn-settings').addEventListener('click', openSettings);
+    $('#btn-close-settings').addEventListener('click', closeSettings);
+    $('.settings-overlay-backdrop').addEventListener('click', closeSettings);
 
     // Settings toggles
     $('#setting-typing-mode').addEventListener('change', (e) => {
@@ -2254,7 +2231,12 @@
 
     // Keyboard shortcuts
     document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !$('#settings-overlay').classList.contains('hidden')) {
+        closeSettings();
+        return;
+      }
       if (!screens.study.classList.contains('active')) return;
+      if (!$('#settings-overlay').classList.contains('hidden')) return;
 
       if ((e.ctrlKey || e.metaKey) && e.key === 'z') {
         e.preventDefault();

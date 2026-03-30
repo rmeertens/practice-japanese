@@ -157,54 +157,60 @@
       </div>
     </main>
 
-    <!-- Screen: Settings -->
-    <main id="screen-settings" class="screen">
-      <h2 class="section-title">Settings</h2>
-      <div class="settings-panel">
-        <label class="setting-row">
-          <div class="setting-info">
-            <span class="setting-label">Type answers in hiragana</span>
-            <span class="setting-desc">When enabled, you type the conjugation before revealing the answer</span>
-          </div>
-          <input type="checkbox" id="setting-typing-mode" class="setting-toggle">
-        </label>
-        <label class="setting-row">
-          <div class="setting-info">
-            <span class="setting-label">Hide form name (harder mode)</span>
-            <span class="setting-desc">Only shows the English hint (e.g. "Polite past") — you must recall the form yourself</span>
-          </div>
-          <input type="checkbox" id="setting-hide-form" class="setting-toggle">
-        </label>
-        <label class="setting-row">
-          <div class="setting-info">
-            <span class="setting-label">Show context example</span>
-            <span class="setting-desc">Shows an English example below the hint, e.g. "I did eat (polite, past)"</span>
-          </div>
-          <input type="checkbox" id="setting-show-context" class="setting-toggle">
-        </label>
-        <label class="setting-row">
-          <div class="setting-info">
-            <span class="setting-label">English → Japanese mode</span>
-            <span class="setting-desc">See an English sentence (e.g. "I did take (a thing) (polite, past)") and produce the Japanese conjugation</span>
-          </div>
-          <input type="checkbox" id="setting-english-to-japanese" class="setting-toggle">
-        </label>
-        <label class="setting-row">
-          <div class="setting-info">
-            <span class="setting-label">Show example sentence on question</span>
-            <span class="setting-desc">Shows a Japanese example sentence (with the answer blanked out) before you reveal the answer</span>
-          </div>
-          <input type="checkbox" id="setting-show-example-front" class="setting-toggle">
-        </label>
-        <label class="setting-row">
-          <div class="setting-info">
-            <span class="setting-label">Show furigana</span>
-            <span class="setting-desc">Shows readings (hiragana) above kanji in Japanese sentences</span>
-          </div>
-          <input type="checkbox" id="setting-show-furigana" class="setting-toggle">
-        </label>
+    <!-- Settings Overlay -->
+    <div id="settings-overlay" class="settings-overlay hidden">
+      <div class="settings-overlay-backdrop"></div>
+      <div class="settings-overlay-content">
+        <div class="settings-overlay-header">
+          <h2 class="settings-overlay-title">Settings</h2>
+          <button id="btn-close-settings" class="settings-overlay-close" aria-label="Close settings">✕</button>
+        </div>
+        <div class="settings-panel">
+          <label class="setting-row">
+            <div class="setting-info">
+              <span class="setting-label">Type answers in hiragana</span>
+              <span class="setting-desc">When enabled, you type the conjugation before revealing the answer</span>
+            </div>
+            <input type="checkbox" id="setting-typing-mode" class="setting-toggle">
+          </label>
+          <label class="setting-row">
+            <div class="setting-info">
+              <span class="setting-label">Hide form name (harder mode)</span>
+              <span class="setting-desc">Only shows the English hint (e.g. "Polite past") — you must recall the form yourself</span>
+            </div>
+            <input type="checkbox" id="setting-hide-form" class="setting-toggle">
+          </label>
+          <label class="setting-row">
+            <div class="setting-info">
+              <span class="setting-label">Show context example</span>
+              <span class="setting-desc">Shows an English example below the hint, e.g. "I did eat (polite, past)"</span>
+            </div>
+            <input type="checkbox" id="setting-show-context" class="setting-toggle">
+          </label>
+          <label class="setting-row">
+            <div class="setting-info">
+              <span class="setting-label">English → Japanese mode</span>
+              <span class="setting-desc">See an English sentence (e.g. "I did take (a thing) (polite, past)") and produce the Japanese conjugation</span>
+            </div>
+            <input type="checkbox" id="setting-english-to-japanese" class="setting-toggle">
+          </label>
+          <label class="setting-row">
+            <div class="setting-info">
+              <span class="setting-label">Show example sentence on question</span>
+              <span class="setting-desc">Shows a Japanese example sentence (with the answer blanked out) before you reveal the answer</span>
+            </div>
+            <input type="checkbox" id="setting-show-example-front" class="setting-toggle">
+          </label>
+          <label class="setting-row">
+            <div class="setting-info">
+              <span class="setting-label">Show furigana</span>
+              <span class="setting-desc">Shows readings (hiragana) above kanji in Japanese sentences</span>
+            </div>
+            <input type="checkbox" id="setting-show-furigana" class="setting-toggle">
+          </label>
+        </div>
       </div>
-    </main>
+    </div>
 
     <!-- Screen: Conjugation Reference -->
     <main id="screen-reference" class="screen">
