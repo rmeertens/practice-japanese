@@ -3,8 +3,8 @@
 
   // ─── SRS Engine ────────────────────────────────────────────────────────────────
 
-  const SRS_KEY = 'genki_conjugation_srs';
-  const STATS_KEY = 'genki_conjugation_stats';
+  const SRS_KEY = 'tokidoki_srs';
+  const STATS_KEY = 'tokidoki_stats';
   function loadSRS() {
     try { return JSON.parse(localStorage.getItem(SRS_KEY)) || {}; }
     catch { return {}; }
@@ -86,7 +86,7 @@
 
   // ─── State ─────────────────────────────────────────────────────────────────────
 
-  const SETTINGS_KEY = 'genki_settings';
+  const SETTINGS_KEY = 'tokidoki_settings';
 
   function loadSettings() {
     const defaults = { typingMode: false, hideForm: true, showContext: true, englishToJapanese: true, showExampleFront: false, showFurigana: true };
@@ -127,7 +127,7 @@
   // ─── Theme ─────────────────────────────────────────────────────────────────────
 
   function initTheme() {
-    const saved = localStorage.getItem('genki_theme') || 'dark';
+    const saved = localStorage.getItem('tokidoki_theme') || 'dark';
     document.documentElement.setAttribute('data-theme', saved);
   }
 
@@ -135,7 +135,7 @@
     const current = document.documentElement.getAttribute('data-theme');
     const next = current === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('genki_theme', next);
+    localStorage.setItem('tokidoki_theme', next);
   }
 
   // ─── Streak ────────────────────────────────────────────────────────────────────
@@ -1517,7 +1517,8 @@
       const chCbs = verbsContainer.querySelectorAll(`.custom-verb-cb[data-chapter="${ch}"]`);
       const chSelected = [...chCbs].filter(cb => cb.checked).length;
       syncToggleBtn(verbsContainer.querySelector(`.btn-toggle-chapter[data-chapter="${ch}"]`), chSelected, chCbs.length);
-      syncToggleBtn($('#btn-toggle-verbs'), customVerbsSelected.size, verbsContainer.querySelectorAll('.custom-verb-cb').length);
+      const allVerbCbs = verbsContainer.querySelectorAll('.custom-verb-cb');
+      syncToggleBtn($('#btn-toggle-verbs'), [...allVerbCbs].filter(cb => cb.checked).length, allVerbCbs.length);
       updateCustomCount();
     });
 
@@ -1538,13 +1539,13 @@
     $('#btn-toggle-verbs').addEventListener('click', (e) => {
       e.preventDefault();
       const totalCbs = verbsContainer.querySelectorAll('.custom-verb-cb');
-      const allOn = customVerbsSelected.size >= totalCbs.length;
+      const allOn = [...totalCbs].every(cb => cb.checked);
       totalCbs.forEach(cb => {
         cb.checked = !allOn;
         if (!allOn) customVerbsSelected.add(cb.dataset.verbKey);
+        else customVerbsSelected.delete(cb.dataset.verbKey);
       });
-      if (allOn) customVerbsSelected.clear();
-      syncToggleBtn($('#btn-toggle-verbs'), customVerbsSelected.size, totalCbs.length);
+      syncToggleBtn($('#btn-toggle-verbs'), [...totalCbs].filter(cb => cb.checked).length, totalCbs.length);
       verbsContainer.querySelectorAll('.btn-toggle-chapter').forEach(btn => {
         const ch = btn.dataset.chapter;
         const chCbs = verbsContainer.querySelectorAll(`.custom-verb-cb[data-chapter="${ch}"]`);
@@ -1569,7 +1570,8 @@
         else customVerbsSelected.delete(cb.dataset.verbKey);
       });
       syncToggleBtn(btn, allOn ? 0 : chCbs.length, chCbs.length);
-      syncToggleBtn($('#btn-toggle-verbs'), customVerbsSelected.size, verbsContainer.querySelectorAll('.custom-verb-cb').length);
+      const allVerbCbs2 = verbsContainer.querySelectorAll('.custom-verb-cb');
+      syncToggleBtn($('#btn-toggle-verbs'), [...allVerbCbs2].filter(cb => cb.checked).length, allVerbCbs2.length);
       updateCustomCount();
     });
 
