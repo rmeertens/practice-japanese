@@ -711,7 +711,12 @@ body {
   font-size: 1.15rem;
   color: var(--text);
   margin-bottom: 4px;
-  line-height: 1.5;
+  line-height: 2;
+}
+
+.card-example-sentence .example-jp rt {
+  font-size: 0.55em;
+  color: var(--text-dim);
 }
 
 .card-example-sentence .example-en {
@@ -746,7 +751,12 @@ body {
   font-size: 1.15rem;
   color: var(--text);
   margin-bottom: 4px;
-  line-height: 1.5;
+  line-height: 2;
+}
+
+.card-example-sentence-front .example-jp rt {
+  font-size: 0.55em;
+  color: var(--text-dim);
 }
 
 .card-example-sentence-front .example-en {
@@ -1066,6 +1076,49 @@ body {
 .btn-start-custom:disabled {
   opacity: 0.4;
   cursor: default;
+}
+
+/* Translate Sentences */
+.translate-intro {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.translate-source-ja {
+  font-family: var(--font-jp);
+  font-size: 1.6rem;
+  line-height: 2;
+}
+
+.translate-source-ja rt {
+  font-size: 0.55em;
+  color: var(--text-dim);
+}
+
+.translate-source-en {
+  font-size: 1.3rem;
+  line-height: 1.6;
+}
+
+.translate-original-label {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.translate-original {
+  font-size: 1.1rem;
+  line-height: 2;
+  color: var(--text);
+}
+
+.translate-original rt {
+  font-size: 0.55em;
+  color: var(--text-dim);
 }
 
 /* Reset section */

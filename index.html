@@ -34,6 +34,7 @@
         <button class="mode-tab active" data-mode="verbs">Verbs</button>
         <button class="mode-tab" data-mode="adjectives">Adjectives</button>
         <button class="mode-tab" data-mode="custom">Build Your Own</button>
+        <button class="mode-tab" data-mode="translate">Translate</button>
       </div>
       <div id="verb-chapters">
         <h2 class="section-title">Genki I</h2>
@@ -62,6 +63,13 @@
           <span id="custom-count" class="custom-count">0 cards</span>
           <button id="btn-start-custom" class="btn-primary btn-start-custom">Start Session</button>
         </div>
+      </div>
+      <div id="translate-panel" class="hidden">
+        <p class="translate-intro">Translate full sentences using the verbs and grammar you've learned. Pick a chapter to start.</p>
+        <h2 class="section-title">Genki I</h2>
+        <div class="chapter-grid" id="translate-chapters-genki1"></div>
+        <h2 class="section-title">Genki II</h2>
+        <div class="chapter-grid" id="translate-chapters-genki2"></div>
       </div>
       <div class="reset-section">
         <button id="btn-reset" class="btn-danger">Reset All Progress</button>
@@ -187,6 +195,13 @@
             <span class="setting-desc">Shows a Japanese example sentence (with the answer blanked out) before you reveal the answer</span>
           </div>
           <input type="checkbox" id="setting-show-example-front" class="setting-toggle">
+        </label>
+        <label class="setting-row">
+          <div class="setting-info">
+            <span class="setting-label">Show furigana</span>
+            <span class="setting-desc">Shows readings (hiragana) above kanji in Japanese sentences</span>
+          </div>
+          <input type="checkbox" id="setting-show-furigana" class="setting-toggle">
         </label>
       </div>
     </main>
