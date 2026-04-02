@@ -173,7 +173,7 @@ const Conjugator = (() => {
       explanation: 'The plain negative (ない form) is the casual negative. For u-verbs, change the final う-row kana to the あ-row and add ない. For ru-verbs, drop る and add ない. Exception: う → わない. Example: 書く → 書かない, 食べる → 食べない.' },
     'dict':        { name: 'Dictionary', nameJp: '辞書形', hint: 'Plain present/future', symbol: '辞書', color: '#9C27B0', chapter: 8,
       explanation: 'The dictionary form is the base form of the verb as it appears in the dictionary. It is used in casual speech for present/future tense, and in many grammar constructions like ことができる (can do) and つもり (intend to).' },
-    'ta':          { name: 'Plain past', nameJp: 'た形', hint: 'Plain past', symbol: 'た', color: '#E65100', chapter: 9,
+    'ta':          { name: 'Plain past', nameJp: 'た形', hint: 'Plain past', symbol: 'た', color: '#FDD835', chapter: 9,
       explanation: 'The plain past (た form) follows the same sound-change rules as the て form, but with た/だ instead of て/で. Example: 書く → 書いた, 飲む → 飲んだ, 食べる → 食べた.' },
     'nakatta':     { name: 'Plain past neg.', nameJp: 'なかった形', hint: 'Plain past negative', symbol: 'なかった', color: '#D32F2F', chapter: 9,
       explanation: 'The plain past negative changes ない to なかった. First make the ない form, then replace ない with なかった. Example: 書かない → 書かなかった, 食べない → 食べなかった.' },
