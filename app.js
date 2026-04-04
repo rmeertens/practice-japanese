@@ -1280,6 +1280,7 @@
     conjugated.innerHTML = formatConjugatedWithStem(currentCard, correct);
     conjugated.style.color = fi.color;
     $('#correct-answer').textContent = correct;
+    $('#card-hint-explanation').textContent = fi.hint;
 
     const isAdj = studyMode === 'adjectives' || (studyMode === 'custom' && isAdjCard(currentCard));
     const explanation = isAdj
@@ -1407,46 +1408,65 @@
   function renderReference(verbType) {
     const content = $('#ref-content');
 
-    let exampleVerb, label;
-    if (verbType === 'u') {
-      exampleVerb = { reading: 'かく', kanji: '書く', type: 'u', meaning: 'to write', chapter: 4 };
-      label = '書く (かく)';
-    } else if (verbType === 'ru') {
-      exampleVerb = { reading: 'たべる', kanji: '食べる', type: 'ru', meaning: 'to eat', chapter: 3 };
-      label = '食べる (たべる)';
-    } else {
-      exampleVerb = null;
-      label = 'する / 来る';
-    }
+    const ruVerb = { reading: 'たべる', kanji: '食べる', type: 'ru', meaning: 'to eat', chapter: 3 };
+    const uVerb = { reading: 'かく', kanji: '書く', type: 'u', meaning: 'to write', chapter: 4 };
+    const suru = { reading: 'する', type: 'irregular', chapter: 3 };
+    const kuru = { reading: 'くる', type: 'irregular', chapter: 3 };
+
+    const forms = verbType === 'adj'
+      ? Conjugator.ADJ_ALL_FORMS
+      : Conjugator.ALL_FORMS;
 
     let rows = '';
-    Conjugator.ALL_FORMS.forEach(form => {
+    forms.forEach(form => {
       const fi = Conjugator.getFormInfo(form);
-      let example;
-      if (verbType === 'irr') {
-        const suru = { reading: 'する', type: 'irregular', chapter: 3 };
-        const kuru = { reading: 'くる', type: 'irregular', chapter: 3 };
-        example = Conjugator.conjugate(suru, form) + ' / ' + Conjugator.conjugate(kuru, form);
-      } else {
-        example = Conjugator.conjugate(exampleVerb, form);
-      }
 
-      rows += `<tr class="ref-row" data-form="${form}">
-        <td><span class="form-pill" style="background:${fi.color}22;color:${fi.color}">${fi.symbol}</span></td>
-        <td style="font-family:var(--font);font-size:0.8rem">${fi.name}</td>
-        <td>${example}</td>
-        <td style="font-family:var(--font);font-size:0.75rem;color:var(--text-dim)">Ch ${fi.chapter}</td>
-      </tr>
-      <tr class="ref-explanation-row hidden" data-form-detail="${form}">
-        <td colspan="4">
-          <div class="ref-explanation">${fi.explanation || ''}</div>
-        </td>
-      </tr>`;
+      if (verbType === 'adj') {
+        const iAdj = { reading: 'たかい', kanji: '高い', type: 'i-adj', chapter: 5 };
+        const naAdj = { reading: 'しずか', kanji: '静か', type: 'na-adj', chapter: 5 };
+        const iExample = Conjugator.conjugateAdjective(iAdj, form);
+        const naExample = Conjugator.conjugateAdjective(naAdj, form);
+
+        rows += `<tr class="ref-row" data-form="${form}">
+          <td><span class="form-pill" style="background:${fi.color}22;color:${fi.color}">${fi.symbol}</span></td>
+          <td style="font-family:var(--font);font-size:0.8rem">${fi.name}</td>
+          <td>${iExample}</td>
+          <td>${naExample}</td>
+          <td style="font-family:var(--font);font-size:0.75rem;color:var(--text-dim)">Ch ${fi.chapter}</td>
+        </tr>
+        <tr class="ref-explanation-row hidden" data-form-detail="${form}">
+          <td colspan="5">
+            <div class="ref-explanation">${fi.explanation || ''}</div>
+          </td>
+        </tr>`;
+      } else {
+        const ruExample = Conjugator.conjugate(ruVerb, form);
+        const uExample = Conjugator.conjugate(uVerb, form);
+        const irrExample = Conjugator.conjugate(suru, form) + ' / ' + Conjugator.conjugate(kuru, form);
+
+        rows += `<tr class="ref-row" data-form="${form}">
+          <td><span class="form-pill" style="background:${fi.color}22;color:${fi.color}">${fi.symbol}</span></td>
+          <td style="font-family:var(--font);font-size:0.8rem">${fi.name}</td>
+          <td>${ruExample}</td>
+          <td>${uExample}</td>
+          <td>${irrExample}</td>
+          <td style="font-family:var(--font);font-size:0.75rem;color:var(--text-dim)">Ch ${fi.chapter}</td>
+        </tr>
+        <tr class="ref-explanation-row hidden" data-form-detail="${form}">
+          <td colspan="6">
+            <div class="ref-explanation">${fi.explanation || ''}</div>
+          </td>
+        </tr>`;
+      }
     });
+
+    const thead = verbType === 'adj'
+      ? '<tr><th></th><th>Form</th><th>い-adj (高い)</th><th>な-adj (静か)</th><th>Ch</th></tr>'
+      : '<tr><th></th><th>Form</th><th>Ru (食べる)</th><th>U (書く)</th><th>Irr (する/くる)</th><th>Ch</th></tr>';
 
     content.innerHTML = `
       <table class="ref-table">
-        <thead><tr><th></th><th>Form</th><th>Example: ${label}</th><th>Intro</th></tr></thead>
+        <thead>${thead}</thead>
         <tbody>${rows}</tbody>
       </table>
     `;
@@ -2129,7 +2149,7 @@
 
     renderChapters();
     renderAdjChapters();
-    renderReference('u');
+    renderReference('verb');
 
     // Mode tabs (Verbs / Adjectives / Build Your Own)
     document.querySelectorAll('.mode-tab').forEach(tab => {
