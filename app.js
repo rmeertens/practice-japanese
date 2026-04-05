@@ -1179,25 +1179,11 @@
       if (form === 'dict') return null;
 
       if (isSuru) {
-        const prefix = reading.slice(0, -2);
-        const stems = {
-          'masu': 'し', 'masu-neg': 'し', 'masu-past': 'し', 'masu-past-neg': 'し',
-          'te': 'し', 'ta': 'し', 'nai': 'し', 'nakatta': 'し', 'tai': 'し',
-          'potential': 'でき', 'volitional': 'し', 'passive': 'さ', 'causative': 'さ',
-          'causative-passive': 'さ', 'ba': 'す',
-        };
-        return prefix + (stems[form] || 'し');
+        return reading.slice(0, -2);
       }
 
       if (isKuru) {
-        const prefix = reading.slice(0, -2);
-        const stems = {
-          'masu': 'き', 'masu-neg': 'き', 'masu-past': 'き', 'masu-past-neg': 'き',
-          'te': 'き', 'ta': 'き', 'tai': 'き', 'nai': 'こ', 'nakatta': 'こ',
-          'potential': 'こられ', 'volitional': 'こ', 'passive': 'こられ',
-          'causative': 'こさせ', 'causative-passive': 'こさせられ', 'ba': 'く',
-        };
-        return prefix + (stems[form] || 'き');
+        return reading.slice(0, -2);
       }
     }
 
