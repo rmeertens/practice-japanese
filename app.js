@@ -1623,16 +1623,20 @@
       updateCustomCount();
     });
 
-    // Start button
+    // Start buttons
     $('#btn-start-custom').addEventListener('click', startCustomStudy);
+    $('#btn-start-custom-mid').addEventListener('click', startCustomStudy);
 
     updateCustomCount();
   }
 
   function updateCustomCount() {
     const count = customFormsSelected.size * customVerbsSelected.size;
-    $('#custom-count').textContent = `${count} card${count !== 1 ? 's' : ''}`;
+    const text = `${count} card${count !== 1 ? 's' : ''}`;
+    $('#custom-count').textContent = text;
+    $('#custom-count-mid').textContent = text;
     $('#btn-start-custom').disabled = count === 0;
+    $('#btn-start-custom-mid').disabled = count === 0;
   }
 
   function startCustomStudy() {
