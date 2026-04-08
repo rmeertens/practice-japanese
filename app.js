@@ -1395,6 +1395,43 @@
 
   // ─── Reference Screen ─────────────────────────────────────────────────────────
 
+  function buildVerbTypeHTML() {
+    const uRuVerbs = GENKI_VERBS.filter(v => v.type === 'u' && v.reading.endsWith('る'));
+    const exceptionItems = uRuVerbs.map(v =>
+      `<li><span class="ref-exc-kanji">${v.kanji}</span><span class="ref-exc-reading"> ${v.reading}</span> — ${v.meaning}</li>`
+    ).join('');
+
+    return `<div class="ref-verb-types">
+      <div class="ref-verb-type-grid">
+        <div class="ref-verb-type">
+          <div class="ref-verb-type-label" style="color:#2196F3">RU-verb <span class="ref-verb-type-jp">（る動詞）</span></div>
+          <p>Dictionary form ends in <strong>える</strong> or <strong>いる</strong> (an e- or i-sound before る).</p>
+          <p class="ref-verb-examples">食べ<strong>る</strong> · 見<strong>る</strong> · 起き<strong>る</strong> · 教え<strong>る</strong></p>
+          <p class="ref-verb-rule">→ Drop る, add the ending directly.</p>
+        </div>
+        <div class="ref-verb-type">
+          <div class="ref-verb-type-label" style="color:#4CAF50">U-verb <span class="ref-verb-type-jp">（う動詞）</span></div>
+          <p>Dictionary form ends in any other う-row kana: <strong>う く ぐ す つ ぬ ぶ む</strong> — or る after an a/u/o-sound.</p>
+          <p class="ref-verb-examples">書<strong>く</strong> · 飲<strong>む</strong> · 話<strong>す</strong> · 待<strong>つ</strong></p>
+          <p class="ref-verb-rule">→ Change the final kana to the correct row.</p>
+        </div>
+      </div>
+      <div class="ref-special-case">
+        <span class="ref-special-label">Special case</span>
+        行く (いく) has an irregular て-form: <span class="ref-special-jp">いって</span> (not いいて) and た-form: <span class="ref-special-jp">いった</span>
+      </div>
+      <div class="ref-exc-section">
+        <button class="ref-exc-header" id="ref-exc-toggle" aria-expanded="false">
+          <span>⚠ U-verbs ending in る — easily confused with RU-verbs</span>
+          <span class="ref-exc-meta">${uRuVerbs.length} verbs <span class="ref-exc-arrow">▶</span></span>
+        </button>
+        <div class="ref-exc-body hidden" id="ref-exc-body">
+          <ul class="ref-exc-list">${exceptionItems}</ul>
+        </div>
+      </div>
+    </div>`;
+  }
+
   function renderReference(verbType) {
     const content = $('#ref-content');
 
@@ -1454,12 +1491,27 @@
       ? '<tr><th></th><th>Form</th><th>い-adj (高い)</th><th>な-adj (静か)</th><th>Ch</th></tr>'
       : '<tr><th></th><th>Form</th><th>Ru (食べる)</th><th>U (書く)</th><th>Irr (する/くる)</th><th>Ch</th></tr>';
 
-    content.innerHTML = `
+    const verbTypeSection = verbType !== 'adj' ? buildVerbTypeHTML() : '';
+
+    content.innerHTML = `${verbTypeSection}
       <table class="ref-table">
         <thead>${thead}</thead>
         <tbody>${rows}</tbody>
       </table>
     `;
+
+    // Exception list toggle
+    const excToggle = content.querySelector('#ref-exc-toggle');
+    if (excToggle) {
+      excToggle.addEventListener('click', () => {
+        const body = content.querySelector('#ref-exc-body');
+        const arrow = excToggle.querySelector('.ref-exc-arrow');
+        const open = !body.classList.contains('hidden');
+        body.classList.toggle('hidden', open);
+        arrow.textContent = open ? '▶' : '▼';
+        excToggle.setAttribute('aria-expanded', String(!open));
+      });
+    }
 
     content.querySelectorAll('.ref-row').forEach(row => {
       row.addEventListener('click', () => {
