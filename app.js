@@ -1402,32 +1402,19 @@
     ).join('');
 
     return `<div class="ref-verb-types">
-      <div class="ref-verb-type-grid">
-        <div class="ref-verb-type">
-          <div class="ref-verb-type-label" style="color:#2196F3">RU-verb <span class="ref-verb-type-jp">（る動詞）</span></div>
-          <p>Dictionary form ends in <strong>える</strong> or <strong>いる</strong> (an e- or i-sound before る).</p>
-          <p class="ref-verb-examples">食べ<strong>る</strong> · 見<strong>る</strong> · 起き<strong>る</strong> · 教え<strong>る</strong></p>
-          <p class="ref-verb-rule">→ Drop る, add the ending directly.</p>
+      <button class="ref-exc-header" id="ref-exc-toggle" aria-expanded="false">
+        <span>Verb types &amp; exceptions</span>
+        <span class="ref-exc-arrow">▶</span>
+      </button>
+      <div class="ref-exc-body hidden" id="ref-exc-body">
+        <div class="ref-verb-rule-box">
+          <strong>How to recognize a RU-verb:</strong> the kana directly before る is an
+          <strong>e-sound</strong> (え段: べ、け、せ…) or <strong>i-sound</strong> (い段: み、き、し…).
+          <span class="ref-verb-examples">食べ<strong>る</strong> · 見<strong>る</strong> · 起き<strong>る</strong> · 教え<strong>る</strong></span>
+          Everything else — including る after an a/u/o-sound — is a U-verb.
         </div>
-        <div class="ref-verb-type">
-          <div class="ref-verb-type-label" style="color:#4CAF50">U-verb <span class="ref-verb-type-jp">（う動詞）</span></div>
-          <p>Dictionary form ends in any other う-row kana: <strong>う く ぐ す つ ぬ ぶ む</strong> — or る after an a/u/o-sound.</p>
-          <p class="ref-verb-examples">書<strong>く</strong> · 飲<strong>む</strong> · 話<strong>す</strong> · 待<strong>つ</strong></p>
-          <p class="ref-verb-rule">→ Change the final kana to the correct row.</p>
-        </div>
-      </div>
-      <div class="ref-special-case">
-        <span class="ref-special-label">Special case</span>
-        行く (いく) has an irregular て-form: <span class="ref-special-jp">いって</span> (not いいて) and た-form: <span class="ref-special-jp">いった</span>
-      </div>
-      <div class="ref-exc-section">
-        <button class="ref-exc-header" id="ref-exc-toggle" aria-expanded="false">
-          <span>⚠ U-verbs ending in る — easily confused with RU-verbs</span>
-          <span class="ref-exc-meta">${uRuVerbs.length} verbs <span class="ref-exc-arrow">▶</span></span>
-        </button>
-        <div class="ref-exc-body hidden" id="ref-exc-body">
-          <ul class="ref-exc-list">${exceptionItems}</ul>
-        </div>
+        <div class="ref-exc-label">Exceptions — end in る but are U-verbs (${uRuVerbs.length})</div>
+        <ul class="ref-exc-list">${exceptionItems}</ul>
       </div>
     </div>`;
   }
