@@ -1631,12 +1631,14 @@
   }
 
   function updateCustomCount() {
-    const count = customFormsSelected.size * customVerbsSelected.size;
-    const text = `${count} card${count !== 1 ? 's' : ''}`;
+    const total = customFormsSelected.size * customVerbsSelected.size;
+    const count = Math.min(total, 30);
+    const text = count === 0 ? '0 cards' : `${count} card${count !== 1 ? 's' : ''}`;
+    const disabled = count === 0;
     $('#custom-count').textContent = text;
     $('#custom-count-mid').textContent = text;
-    $('#btn-start-custom').disabled = count === 0;
-    $('#btn-start-custom-mid').disabled = count === 0;
+    $('#btn-start-custom').disabled = disabled;
+    $('#btn-start-custom-mid').disabled = disabled;
   }
 
   function startCustomStudy() {
