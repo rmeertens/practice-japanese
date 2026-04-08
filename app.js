@@ -2297,8 +2297,7 @@
 
       if (answered) {
         if (e.key === '1') { e.preventDefault(); gradeAndAdvance(1); return; }
-        if (e.key === '2' || e.key === ' ') { e.preventDefault(); gradeAndAdvance(3); return; }
-        if (e.key === '3') { e.preventDefault(); gradeAndAdvance(4); return; }
+        if (e.key === '2' || e.key === ' ') { e.preventDefault(); gradeAndAdvance(4); return; }
         if (e.key === 'z' || e.key === 'Z') { e.preventDefault(); undoLastGrade(); return; }
         return;
       }
@@ -2306,7 +2305,7 @@
       // Card front is showing
       if (e.key === 'h' || e.key === 'H') { e.preventDefault(); toggleHint(); return; }
       if (settings.typingMode) {
-        if (e.key === 'Enter') { e.preventDefault(); checkAnswer(); }
+        if (e.key === 'Enter' && !e.isComposing) { e.preventDefault(); checkAnswer(); }
       } else {
         if (e.key === ' ') { e.preventDefault(); showAnswer(); return; }
         if (e.key === 'z' || e.key === 'Z') { e.preventDefault(); undoLastGrade(); return; }
