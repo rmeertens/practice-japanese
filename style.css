@@ -961,6 +961,9 @@ body {
 .kana-canvas-wrap {
   position: relative;
   margin-top: 8px;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
 
 #kana-canvas {
@@ -973,6 +976,10 @@ body {
   border-radius: var(--radius);
   touch-action: none;
   cursor: crosshair;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .kana-clear-btn {
@@ -1690,6 +1697,19 @@ body {
   .ref-explanation .conj-table td { padding: 5px 6px; font-size: 0.78rem; }
   .ref-explanation .conj-table th { padding: 6px; font-size: 0.65rem; }
   .ref-exc-list { grid-template-columns: 1fr 1fr; }
+
+  .mode-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .mode-tabs::-webkit-scrollbar { display: none; }
+  .mode-tab {
+    flex: 0 0 auto;
+    padding: 10px 14px;
+    font-size: 0.82rem;
+    white-space: nowrap;
+  }
 }
 
 /* Animations */

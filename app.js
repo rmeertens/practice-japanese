@@ -2319,6 +2319,10 @@
     canvas.addEventListener('pointermove', move);
     window.addEventListener('pointerup', end);
     canvas.addEventListener('pointerleave', end);
+
+    // Prevent long-press context menu / image drag from hijacking the stroke on mobile
+    canvas.addEventListener('contextmenu', (e) => e.preventDefault());
+    canvas.addEventListener('dragstart', (e) => e.preventDefault());
   }
 
   function clearKanaCanvas() {
