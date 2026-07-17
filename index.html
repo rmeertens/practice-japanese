@@ -52,6 +52,7 @@
         <button class="mode-tab" data-mode="adjectives">Adjectives</button>
         <button class="mode-tab" data-mode="custom">Build Your Own</button>
         <button class="mode-tab" data-mode="translate">Sentences</button>
+        <button class="mode-tab" data-mode="kana">Kana</button>
       </div>
       <div id="verb-chapters">
         <p class="tab-intro">Practice conjugating verbs from each <strong>Genki</strong> chapter. Cards are spaced using SRS so you review what you need most.</p>
@@ -94,6 +95,20 @@
         <div class="chapter-grid" id="translate-chapters-genki1"></div>
         <h2 class="section-title">Genki II</h2>
         <div class="chapter-grid" id="translate-chapters-genki2"></div>
+      </div>
+      <div id="kana-panel" class="hidden">
+        <p class="tab-intro">Draw hiragana and katakana characters from a romaji prompt, then reveal the correct character to check your work.</p>
+        <div class="kana-settings-row">
+          <label class="kana-script-toggle"><input type="checkbox" id="kana-toggle-hiragana" checked> Hiragana</label>
+          <label class="kana-script-toggle"><input type="checkbox" id="kana-toggle-katakana" checked> Katakana</label>
+        </div>
+        <div class="kana-start-card">
+          <div class="kana-start-info">
+            <span class="stat-num" id="kana-due-count">0</span>
+            <span class="stat-label">characters due</span>
+          </div>
+          <button id="btn-start-kana" class="btn-primary btn-start-custom">Start Practice</button>
+        </div>
       </div>
       <div class="reset-section">
         <button id="btn-reset" class="btn-danger">Reset All Progress</button>
@@ -187,6 +202,52 @@
       </div>
     </main>
 
+    <!-- Screen: Kana Drawing Practice -->
+    <main id="screen-kana" class="screen">
+      <div class="study-toolbar">
+        <div class="study-progress">
+          <div class="study-progress-bar"><div id="kana-bar-fill" class="study-bar-fill"></div></div>
+          <span id="kana-progress-text" class="study-progress-text">0 / 0</span>
+        </div>
+      </div>
+
+      <div id="kana-card" class="card kana-card">
+        <div class="kana-prompt-label">Draw this sound</div>
+        <div class="kana-romaji" id="kana-romaji"></div>
+        <div class="kana-script-badge" id="kana-script-badge"></div>
+
+        <div class="kana-canvas-wrap">
+          <canvas id="kana-canvas" width="280" height="280"></canvas>
+          <button id="btn-kana-clear" class="kana-clear-btn" aria-label="Clear drawing" title="Clear">⟲</button>
+        </div>
+
+        <div class="reveal-area" id="kana-reveal-area">
+          <button id="btn-kana-reveal" class="btn-reveal">Show Answer</button>
+          <span class="reveal-hint">Space = show answer</span>
+        </div>
+
+        <div class="kana-answer-area hidden" id="kana-answer-area">
+          <div class="kana-answer-char" id="kana-answer-char"></div>
+          <div class="kana-answer-romaji" id="kana-answer-romaji"></div>
+          <div class="grade-buttons">
+            <button class="btn-grade btn-again" data-kana-grade="1"><span class="grade-key">1</span> Didn't know</button>
+            <button class="btn-grade btn-easy" data-kana-grade="4"><span class="grade-key">2</span> Got it</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="kana-session-complete" class="session-complete hidden">
+        <div class="complete-icon">🎉</div>
+        <h2>Session Complete!</h2>
+        <div class="session-stats">
+          <div class="stat"><span class="stat-num" id="kana-session-total">0</span><span class="stat-label">Cards</span></div>
+          <div class="stat"><span class="stat-num" id="kana-session-correct">0</span><span class="stat-label">Got It</span></div>
+          <div class="stat"><span class="stat-num" id="kana-session-accuracy">0%</span><span class="stat-label">Accuracy</span></div>
+        </div>
+        <button id="btn-kana-back-to-chapters" class="btn-primary">Back to Chapters</button>
+      </div>
+    </main>
+
     <!-- Settings Overlay -->
     <div id="settings-overlay" class="settings-overlay hidden">
       <div class="settings-overlay-backdrop"></div>
@@ -262,6 +323,7 @@
 
   <script src="conjugator.js"></script>
   <script src="verbs.js"></script>
+  <script src="kana.js"></script>
   <script src="app.js"></script>
 
   <!-- Static content for search engines -->
@@ -304,6 +366,13 @@
       Translate full Japanese sentences taken from Genki chapters 3–12. Toggle between
       Japanese-to-English and English-to-Japanese modes, with optional furigana readings
       above kanji.
+    </p>
+
+    <h3>Hiragana &amp; katakana drawing practice</h3>
+    <p>
+      Learn the kana with a hands-on drawing drill: see a romaji prompt, draw the matching
+      hiragana or katakana character by hand, then reveal the answer to check yourself.
+      Covers the full gojuon, dakuten/handakuten, and yōon combinations for both scripts.
     </p>
   </section>
 </body>

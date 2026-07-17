@@ -121,6 +121,7 @@
   const screens = {
     chapters: $('#screen-chapters'),
     study: $('#screen-study'),
+    kana: $('#screen-kana'),
   };
 
   // ─── Theme ─────────────────────────────────────────────────────────────────────
@@ -175,6 +176,9 @@
     } else if (name === 'study') {
       backBtn.classList.remove('hidden');
       title.textContent = studyMode === 'translate' ? 'Translate Sentences' : studyMode === 'custom' ? 'Custom Session' : (CHAPTER_INFO[currentChapter]?.title || 'Study');
+    } else if (name === 'kana') {
+      backBtn.classList.remove('hidden');
+      title.textContent = 'Kana Practice';
     }
   }
 
@@ -2154,6 +2158,175 @@
     exEl.innerHTML = `<div class="translate-original-label">Translation</div><div class="translate-original">${originalContent}</div>`;
   }
 
+  // ─── Kana Drawing Practice ─────────────────────────────────────────────────────
+
+  let kanaSessionCards = [];
+  let kanaIndex = 0;
+  let kanaTotal = 0;
+  let kanaCorrect = 0;
+  let currentKanaCard = null;
+  let kanaAnswered = false;
+  let kanaCtx = null;
+  let kanaDrawing = false;
+
+  function kanaCardId(script, kana) {
+    return `kana_${script}_${kana}`;
+  }
+
+  function getKanaPool() {
+    const pool = [];
+    if ($('#kana-toggle-hiragana').checked) {
+      KANA_DATA.hiragana.forEach(k => pool.push({
+        script: 'hiragana', label: 'Hiragana', kana: k.kana, romaji: k.romaji, id: kanaCardId('hiragana', k.kana),
+      }));
+    }
+    if ($('#kana-toggle-katakana').checked) {
+      KANA_DATA.katakana.forEach(k => pool.push({
+        script: 'katakana', label: 'Katakana', kana: k.kana, romaji: k.romaji, id: kanaCardId('katakana', k.kana),
+      }));
+    }
+    return pool;
+  }
+
+  function renderKanaPanel() {
+    const pool = getKanaPool();
+    const due = pool.filter(k => isDue(getCardState(srsData, k.id))).length;
+    $('#kana-due-count').textContent = due;
+  }
+
+  function startKanaStudy() {
+    const pool = getKanaPool();
+    if (pool.length === 0) return;
+
+    const due = pool.filter(k => isDue(getCardState(srsData, k.id)));
+    kanaSessionCards = prioritizeDifficult(due.length > 0 ? due : pool.slice());
+
+    if (kanaSessionCards.length > 20) {
+      kanaSessionCards = kanaSessionCards.slice(0, 20);
+    }
+
+    kanaIndex = 0;
+    kanaCorrect = 0;
+    kanaTotal = kanaSessionCards.length;
+
+    showScreen('kana');
+    $('#kana-session-complete').classList.add('hidden');
+    $('#kana-card').classList.remove('hidden');
+    showKanaCard();
+  }
+
+  function showKanaCard() {
+    if (kanaIndex >= kanaSessionCards.length) {
+      finishKanaSession();
+      return;
+    }
+
+    kanaAnswered = false;
+    currentKanaCard = kanaSessionCards[kanaIndex];
+
+    const pct = (kanaIndex / kanaTotal) * 100;
+    $('#kana-bar-fill').style.width = pct + '%';
+    $('#kana-progress-text').textContent = `${kanaIndex + 1} / ${kanaTotal}`;
+
+    $('#kana-romaji').textContent = currentKanaCard.romaji;
+    const badge = $('#kana-script-badge');
+    badge.textContent = currentKanaCard.label;
+    badge.classList.toggle('katakana', currentKanaCard.script === 'katakana');
+
+    $('#kana-reveal-area').classList.remove('hidden');
+    $('#kana-answer-area').classList.add('hidden');
+
+    clearKanaCanvas();
+  }
+
+  function revealKanaAnswer() {
+    if (kanaAnswered || !currentKanaCard) return;
+    kanaAnswered = true;
+
+    $('#kana-reveal-area').classList.add('hidden');
+    $('#kana-answer-area').classList.remove('hidden');
+    $('#kana-answer-char').textContent = currentKanaCard.kana;
+    $('#kana-answer-romaji').textContent = `${currentKanaCard.romaji} · ${currentKanaCard.label}`;
+  }
+
+  function gradeKanaAndAdvance(grade) {
+    if (!kanaAnswered || !currentKanaCard) return;
+
+    const id = currentKanaCard.id;
+    const state = getCardState(srsData, id);
+    srsData[id] = gradeCard(state, grade);
+    saveSRS(srsData);
+
+    updateStreak();
+    statsData.todayReviews = (statsData.todayReviews || 0) + 1;
+    if (grade >= 4) {
+      statsData.todayCorrect = (statsData.todayCorrect || 0) + 1;
+      kanaCorrect++;
+    }
+    saveStats(statsData);
+    flashSaveIndicator();
+
+    kanaIndex++;
+    showKanaCard();
+  }
+
+  function finishKanaSession() {
+    $('#kana-card').classList.add('hidden');
+    $('#kana-session-complete').classList.remove('hidden');
+    $('#kana-session-total').textContent = kanaTotal;
+    $('#kana-session-correct').textContent = kanaCorrect;
+    $('#kana-session-accuracy').textContent = (kanaTotal > 0 ? Math.round((kanaCorrect / kanaTotal) * 100) : 0) + '%';
+  }
+
+  function initKanaCanvas() {
+    const canvas = $('#kana-canvas');
+    if (!canvas) return;
+    kanaCtx = canvas.getContext('2d');
+
+    function pos(e) {
+      const rect = canvas.getBoundingClientRect();
+      return {
+        x: (e.clientX - rect.left) * (canvas.width / rect.width),
+        y: (e.clientY - rect.top) * (canvas.height / rect.height),
+      };
+    }
+
+    function start(e) {
+      e.preventDefault();
+      kanaDrawing = true;
+      const p = pos(e);
+      kanaCtx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--text').trim() || '#000';
+      kanaCtx.lineWidth = 10;
+      kanaCtx.lineCap = 'round';
+      kanaCtx.lineJoin = 'round';
+      kanaCtx.beginPath();
+      kanaCtx.moveTo(p.x, p.y);
+    }
+
+    function move(e) {
+      if (!kanaDrawing) return;
+      e.preventDefault();
+      const p = pos(e);
+      kanaCtx.lineTo(p.x, p.y);
+      kanaCtx.stroke();
+    }
+
+    function end() {
+      kanaDrawing = false;
+    }
+
+    canvas.addEventListener('pointerdown', start);
+    canvas.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', end);
+    canvas.addEventListener('pointerleave', end);
+  }
+
+  function clearKanaCanvas() {
+    const canvas = $('#kana-canvas');
+    if (!canvas || !kanaCtx) return;
+    kanaCtx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
   // ─── Utilities ─────────────────────────────────────────────────────────────────
 
   function shuffle(arr) {
@@ -2196,12 +2369,13 @@
     renderChapters();
     renderAdjChapters();
     renderReference('verb');
+    initKanaCanvas();
 
     // ─── Mode routing helpers ───────────────────────────────────────────────────
 
-    const MODE_TO_HASH = { verbs: 'verbs', adjectives: 'adjectives', custom: 'custom', translate: 'sentences' };
-    const HASH_TO_MODE = { verbs: 'verbs', adjectives: 'adjectives', custom: 'custom', sentences: 'translate' };
-    const MODE_TITLES  = { verbs: 'Verbs', adjectives: 'Adjectives', custom: 'Build Your Own', translate: 'Sentences' };
+    const MODE_TO_HASH = { verbs: 'verbs', adjectives: 'adjectives', custom: 'custom', translate: 'sentences', kana: 'kana' };
+    const HASH_TO_MODE = { verbs: 'verbs', adjectives: 'adjectives', custom: 'custom', sentences: 'translate', kana: 'kana' };
+    const MODE_TITLES  = { verbs: 'Verbs', adjectives: 'Adjectives', custom: 'Build Your Own', translate: 'Sentences', kana: 'Kana' };
 
     function switchMode(mode) {
       if (!MODE_TO_HASH[mode]) mode = 'verbs';
@@ -2214,9 +2388,11 @@
       $('#adj-chapters').classList.toggle('hidden', mode !== 'adjectives');
       $('#custom-builder').classList.toggle('hidden', mode !== 'custom');
       $('#translate-panel').classList.toggle('hidden', mode !== 'translate');
+      $('#kana-panel').classList.toggle('hidden', mode !== 'kana');
 
       if (mode === 'custom') renderCustomPanel();
       if (mode === 'translate') renderTranslateChapters();
+      if (mode === 'kana') renderKanaPanel();
 
       // Update URL hash without adding extra history entries when called from hashchange
       const hash = '#' + MODE_TO_HASH[mode];
@@ -2262,6 +2438,7 @@
       showScreen('chapters');
       renderChapters();
       renderAdjChapters();
+      renderKanaPanel();
     });
 
     // Reference overlay
@@ -2372,8 +2549,8 @@
     // Show answer (typing mode)
     $('#btn-show').addEventListener('click', showAnswer);
 
-    // Grade buttons
-    $$('.btn-grade').forEach(btn => {
+    // Grade buttons (study card only — kana grade buttons are bound separately below)
+    $$('#card .btn-grade').forEach(btn => {
       btn.addEventListener('click', () => {
         gradeAndAdvance(parseInt(btn.dataset.grade));
       });
@@ -2384,6 +2561,49 @@
       showScreen('chapters');
       renderChapters();
       renderAdjChapters();
+    });
+
+    // ─── Kana practice ───────────────────────────────────────────────────────────
+
+    function toggleKanaScript(e, otherCheckboxId) {
+      if (!e.target.checked && !$(otherCheckboxId).checked) {
+        e.target.checked = true;
+        return;
+      }
+      renderKanaPanel();
+    }
+
+    $('#kana-toggle-hiragana').addEventListener('change', (e) => toggleKanaScript(e, '#kana-toggle-katakana'));
+    $('#kana-toggle-katakana').addEventListener('change', (e) => toggleKanaScript(e, '#kana-toggle-hiragana'));
+
+    $('#btn-start-kana').addEventListener('click', startKanaStudy);
+    $('#btn-kana-clear').addEventListener('click', clearKanaCanvas);
+    $('#btn-kana-reveal').addEventListener('click', revealKanaAnswer);
+
+    $$('.btn-grade[data-kana-grade]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        gradeKanaAndAdvance(parseInt(btn.dataset.kanaGrade));
+      });
+    });
+
+    $('#btn-kana-back-to-chapters').addEventListener('click', () => {
+      showScreen('chapters');
+      renderChapters();
+      renderAdjChapters();
+      renderKanaPanel();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!screens.kana.classList.contains('active')) return;
+      if (!$('#settings-overlay').classList.contains('hidden')) return;
+      if (!$('#ref-overlay').classList.contains('hidden')) return;
+
+      if (kanaAnswered) {
+        if (e.key === '1') { e.preventDefault(); gradeKanaAndAdvance(1); return; }
+        if (e.key === '2' || e.key === ' ') { e.preventDefault(); gradeKanaAndAdvance(4); return; }
+        return;
+      }
+      if (e.key === ' ') { e.preventDefault(); revealKanaAnswer(); return; }
     });
 
     // Reference tabs

@@ -889,6 +889,132 @@ body {
   min-width: 80px;
 }
 
+/* Kana drawing practice */
+.kana-settings-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.kana-script-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.kana-start-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+}
+
+.kana-start-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.kana-card {
+  align-items: center;
+}
+
+.kana-prompt-label {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.kana-romaji {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.kana-script-badge {
+  display: inline-flex;
+  padding: 4px 12px;
+  border-radius: 24px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+.kana-script-badge.katakana {
+  background: rgba(52, 152, 219, 0.15);
+  color: #3498db;
+}
+
+.kana-canvas-wrap {
+  position: relative;
+  margin-top: 8px;
+}
+
+#kana-canvas {
+  display: block;
+  width: 280px;
+  height: 280px;
+  max-width: 100%;
+  background: var(--bg-input);
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.kana-clear-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-dim);
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+}
+
+.kana-clear-btn:hover { background: var(--bg-card-hover); color: var(--text); }
+
+.kana-answer-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-top: 12px;
+}
+
+.kana-answer-char {
+  font-family: var(--font-jp);
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.kana-answer-romaji {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+}
+
 /* Reference overlay */
 .ref-overlay {
   position: fixed;
