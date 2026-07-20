@@ -927,6 +927,9 @@ body {
 
 .kana-card {
   align-items: center;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .kana-prompt-label {
@@ -961,6 +964,7 @@ body {
 .kana-canvas-wrap {
   position: relative;
   margin-top: 8px;
+  touch-action: none;
   -webkit-user-select: none;
   user-select: none;
   -webkit-touch-callout: none;
