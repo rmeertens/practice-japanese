@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" id="viewport-meta" content="width=device-width, initial-scale=1.0">
+  <title>Hiragana &amp; Katakana Drawing Practice | Tokidoki</title>
+  <meta name="description" content="Learn hiragana and katakana by drawing them. See a romaji prompt, draw the character, then reveal the answer to check yourself. Free, no login required.">
+  <meta property="og:title" content="Hiragana &amp; Katakana Drawing Practice | Tokidoki">
+  <meta property="og:description" content="Draw hiragana and katakana characters from a romaji prompt, then reveal the answer to check your work. Covers the full kana syllabary.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tokidoki.meertens.dev/kana.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Hiragana &amp; Katakana Drawing Practice | Tokidoki">
+  <meta name="twitter:description" content="Draw hiragana and katakana characters from a romaji prompt, then reveal the answer to check your work.">
+  <link rel="canonical" href="https://tokidoki.meertens.dev/kana.html">
+  <link rel="stylesheet" href="style.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXWYNZC7YH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXWYNZC7YH');
+  </script>
+</head>
+<body data-mode="kana">
+  <div id="app">
+
+    <!-- Header -->
+    <header id="header">
+      <div class="header-left">
+        <button id="btn-back" class="icon-btn hidden" aria-label="Back">←</button>
+        <a href="index.html" class="header-title-link"><h1 id="header-title">Tokidoki</h1></a>
+      </div>
+      <div class="header-right">
+        <span id="streak-badge" class="streak-badge" title="Daily streak">🔥 <span id="streak-count">0</span></span>
+        <button id="btn-theme" class="icon-btn" aria-label="Toggle theme">◐</button>
+      </div>
+    </header>
+
+    <!-- Screen: Chapter Select -->
+    <main id="screen-chapters" class="screen active">
+      <nav class="mode-tabs">
+        <a class="mode-tab" href="verbs.html">Verbs</a>
+        <a class="mode-tab" href="adjectives.html">Adjectives</a>
+        <a class="mode-tab" href="custom.html">Build Your Own</a>
+        <a class="mode-tab" href="sentences.html">Sentences</a>
+        <a class="mode-tab active" href="kana.html">Kana</a>
+      </nav>
+      <div id="kana-panel">
+        <p class="tab-intro">Draw hiragana and katakana characters from a romaji prompt, then reveal the correct character to check your work.</p>
+        <div class="kana-settings-row">
+          <label class="kana-script-toggle"><input type="checkbox" id="kana-toggle-hiragana" checked> Hiragana</label>
+          <label class="kana-script-toggle"><input type="checkbox" id="kana-toggle-katakana" checked> Katakana</label>
+        </div>
+        <div class="kana-start-card">
+          <div class="kana-start-info">
+            <span class="stat-num" id="kana-due-count">0</span>
+            <span class="stat-label">characters due</span>
+          </div>
+          <button id="btn-start-kana" class="btn-primary btn-start-custom">Start Practice</button>
+        </div>
+      </div>
+      <div class="reset-section">
+        <button id="btn-reset" class="btn-danger">Reset All Progress</button>
+      </div>
+    </main>
+
+    <!-- Screen: Kana Drawing Practice -->
+    <main id="screen-kana" class="screen">
+      <div class="study-toolbar">
+        <div class="study-progress">
+          <div class="study-progress-bar"><div id="kana-bar-fill" class="study-bar-fill"></div></div>
+          <span id="kana-progress-text" class="study-progress-text">0 / 0</span>
+        </div>
+      </div>
+      <div id="save-indicator" class="save-indicator hidden">Saved</div>
+
+      <div id="kana-card" class="card kana-card">
+        <div class="kana-prompt-label">Draw this sound</div>
+        <div class="kana-romaji" id="kana-romaji"></div>
+        <div class="kana-script-badge" id="kana-script-badge"></div>
+
+        <div class="kana-canvas-wrap">
+          <canvas id="kana-canvas" width="280" height="280"></canvas>
+          <button id="btn-kana-clear" class="kana-clear-btn" aria-label="Clear drawing" title="Clear">⟲</button>
+        </div>
+
+        <div class="reveal-area" id="kana-reveal-area">
+          <button id="btn-kana-reveal" class="btn-reveal">Show Answer</button>
+          <span class="reveal-hint">Space = show answer</span>
+        </div>
+
+        <div class="kana-answer-area hidden" id="kana-answer-area">
+          <div class="kana-answer-char" id="kana-answer-char"></div>
+          <div class="kana-answer-romaji" id="kana-answer-romaji"></div>
+          <div class="grade-buttons">
+            <button class="btn-grade btn-again" data-kana-grade="1"><span class="grade-key">1</span> Didn't know</button>
+            <button class="btn-grade btn-easy" data-kana-grade="4"><span class="grade-key">2</span> Got it</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="kana-session-complete" class="session-complete hidden">
+        <div class="complete-icon">🎉</div>
+        <h2>Session Complete!</h2>
+        <div class="session-stats">
+          <div class="stat"><span class="stat-num" id="kana-session-total">0</span><span class="stat-label">Cards</span></div>
+          <div class="stat"><span class="stat-num" id="kana-session-correct">0</span><span class="stat-label">Got It</span></div>
+          <div class="stat"><span class="stat-num" id="kana-session-accuracy">0%</span><span class="stat-label">Accuracy</span></div>
+        </div>
+        <button id="btn-kana-back-to-chapters" class="btn-primary">Back to Chapters</button>
+      </div>
+    </main>
+
+  </div>
+
+  <script src="conjugator.js"></script>
+  <script src="verbs.js"></script>
+  <script src="kana.js"></script>
+  <script src="app.js"></script>
+
+  <!-- Static content for search engines -->
+  <section id="seo-content" aria-hidden="true">
+    <h2>Hiragana &amp; Katakana Drawing Practice</h2>
+    <p>
+      Learn the kana with a hands-on drawing drill: see a romaji prompt, draw the matching
+      hiragana or katakana character by hand, then reveal the answer to check yourself.
+      Covers the full gojuon, dakuten/handakuten, and yōon combinations for both scripts —
+      104 characters each. Progress is scheduled with spaced repetition so you review the
+      characters you find hardest.
+    </p>
+  </section>
+</body>
+</html>

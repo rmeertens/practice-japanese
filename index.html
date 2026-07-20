@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" id="viewport-meta" content="width=device-width, initial-scale=1.0">
   <title>Tokidoki – Japanese Conjugation Practice</title>
-  <meta name="description" content="Free Japanese verb and adjective conjugation drills for Genki I &amp; II. Practice masu-form, て-form, potential, passive, and more with spaced repetition. No login required.">
+  <meta name="description" content="Free Japanese practice: verb &amp; adjective conjugation drills, custom sessions, sentence translation, and hiragana/katakana drawing. Genki I &amp; II. No login required.">
   <meta property="og:title" content="Tokidoki – Japanese Conjugation Practice">
-  <meta property="og:description" content="Drill Japanese verb and adjective conjugations chapter by chapter using spaced repetition. Covers all Genki I &amp; II forms — free and no login required.">
+  <meta property="og:description" content="Free Japanese practice: verb &amp; adjective conjugation drills, custom sessions, sentence translation, and hiragana/katakana drawing. Genki I &amp; II. No login required.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tokidoki.meertens.dev/">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Tokidoki – Japanese Conjugation Practice">
-  <meta name="twitter:description" content="Free SRS flashcard drills for Genki verb and adjective conjugations. Practice masu, て-form, potential, passive, and more.">
+  <meta name="twitter:description" content="Free SRS drills for Genki verb & adjective conjugation, sentence translation, and hiragana/katakana drawing practice.">
   <link rel="canonical" href="https://tokidoki.meertens.dev/">
   <link rel="stylesheet" href="style.css">
   <!-- Google tag (gtag.js) -->
@@ -23,301 +23,57 @@
     gtag('config', 'G-XXWYNZC7YH');
   </script>
 </head>
-<body>
+<body data-mode="hub">
   <div id="app">
 
     <!-- Header -->
     <header id="header">
       <div class="header-left">
-        <button id="btn-back" class="icon-btn hidden" aria-label="Back">←</button>
-        <h1 id="header-title">Tokidoki</h1>
+        <a href="index.html" class="header-title-link"><h1 id="header-title">Tokidoki</h1></a>
       </div>
       <div class="header-right">
         <span id="streak-badge" class="streak-badge" title="Daily streak">🔥 <span id="streak-count">0</span></span>
         <button id="btn-theme" class="icon-btn" aria-label="Toggle theme">◐</button>
-        <button id="btn-ref" class="icon-btn" aria-label="Conjugation reference">?</button>
-        <button id="btn-settings" class="icon-btn" aria-label="Settings">⚙</button>
       </div>
     </header>
 
-    <!-- Screen: Chapter Select -->
+    <!-- Screen: Hub -->
     <main id="screen-chapters" class="screen active">
       <div class="stats-bar">
         <div class="stat"><span class="stat-num" id="today-reviewed">0</span><span class="stat-label">Today</span></div>
         <div class="stat"><span class="stat-num" id="today-accuracy">0%</span><span class="stat-label">Accuracy</span></div>
         <div class="stat"><span class="stat-num" id="cards-due">0</span><span class="stat-label">Due</span></div>
       </div>
-      <div class="mode-tabs">
-        <button class="mode-tab active" data-mode="verbs">Verbs</button>
-        <button class="mode-tab" data-mode="adjectives">Adjectives</button>
-        <button class="mode-tab" data-mode="custom">Build Your Own</button>
-        <button class="mode-tab" data-mode="translate">Sentences</button>
-        <button class="mode-tab" data-mode="kana">Kana</button>
-      </div>
-      <div id="verb-chapters">
-        <p class="tab-intro">Practice conjugating verbs from each <strong>Genki</strong> chapter. Cards are spaced using SRS so you review what you need most.</p>
-        <h2 class="section-title">Genki I</h2>
-        <div class="chapter-grid" id="chapters-genki1"></div>
-        <h2 class="section-title">Genki II</h2>
-        <div class="chapter-grid" id="chapters-genki2"></div>
-      </div>
-      <div id="adj-chapters" class="hidden">
-        <p class="tab-intro">Drill i-adjective and na-adjective conjugations — negative, past, and more — chapter by chapter.</p>
-        <h2 class="section-title">Genki I</h2>
-        <div class="chapter-grid" id="adj-chapters-genki1"></div>
-        <h2 class="section-title">Genki II</h2>
-        <div class="chapter-grid" id="adj-chapters-genki2"></div>
-      </div>
-      <div id="custom-builder" class="hidden">
-        <p class="tab-intro">Mix and match any verbs, adjectives, and conjugation forms into a custom practice session.</p>
-        <div class="custom-header">
-          <h2 class="section-title">Select Forms</h2>
-          <button id="btn-toggle-forms" class="btn-toggle-all">Select All</button>
-        </div>
-        <div class="custom-section" id="custom-forms"></div>
-        <div class="custom-start-section">
-          <span id="custom-count-mid" class="custom-count">0 cards</span>
-          <button id="btn-start-custom-mid" class="btn-primary btn-start-custom">Start Session</button>
-        </div>
-        <div class="custom-header">
-          <h2 class="section-title">Select Verbs</h2>
-          <button id="btn-toggle-verbs" class="btn-toggle-all">Deselect All</button>
-        </div>
-        <div class="custom-section custom-verbs-grid" id="custom-verbs"></div>
-        <div class="custom-start-section">
-          <span id="custom-count" class="custom-count">0 cards</span>
-          <button id="btn-start-custom" class="btn-primary btn-start-custom">Start Session</button>
-        </div>
-      </div>
-      <div id="translate-panel" class="hidden">
-        <p class="tab-intro">Translate full sentences using the verbs and grammar you've learned. Pick a chapter to start.</p>
-        <h2 class="section-title">Genki I</h2>
-        <div class="chapter-grid" id="translate-chapters-genki1"></div>
-        <h2 class="section-title">Genki II</h2>
-        <div class="chapter-grid" id="translate-chapters-genki2"></div>
-      </div>
-      <div id="kana-panel" class="hidden">
-        <p class="tab-intro">Draw hiragana and katakana characters from a romaji prompt, then reveal the correct character to check your work.</p>
-        <div class="kana-settings-row">
-          <label class="kana-script-toggle"><input type="checkbox" id="kana-toggle-hiragana" checked> Hiragana</label>
-          <label class="kana-script-toggle"><input type="checkbox" id="kana-toggle-katakana" checked> Katakana</label>
-        </div>
-        <div class="kana-start-card">
-          <div class="kana-start-info">
-            <span class="stat-num" id="kana-due-count">0</span>
-            <span class="stat-label">characters due</span>
-          </div>
-          <button id="btn-start-kana" class="btn-primary btn-start-custom">Start Practice</button>
-        </div>
+      <p class="tab-intro">Free, no-login Japanese practice with spaced repetition. Pick an exercise to get started.</p>
+      <div class="chapter-grid">
+        <a class="chapter-card" href="verbs.html">
+          <div class="chapter-card-title">Verbs</div>
+          <div class="chapter-card-sub">Conjugation drills · Genki I &amp; II</div>
+          <div class="chapter-card-due" id="hub-due-verbs"></div>
+        </a>
+        <a class="chapter-card" href="adjectives.html">
+          <div class="chapter-card-title">Adjectives</div>
+          <div class="chapter-card-sub">い &amp; な adjective conjugation drills</div>
+          <div class="chapter-card-due" id="hub-due-adjectives"></div>
+        </a>
+        <a class="chapter-card" href="custom.html">
+          <div class="chapter-card-title">Build Your Own</div>
+          <div class="chapter-card-sub">Mix any verbs, adjectives &amp; forms</div>
+        </a>
+        <a class="chapter-card" href="sentences.html">
+          <div class="chapter-card-title">Sentences</div>
+          <div class="chapter-card-sub">Translate full Japanese sentences</div>
+        </a>
+        <a class="chapter-card" href="kana.html">
+          <div class="chapter-card-title">Kana</div>
+          <div class="chapter-card-sub">Draw hiragana &amp; katakana</div>
+          <div class="chapter-card-due" id="hub-due-kana"></div>
+        </a>
       </div>
       <div class="reset-section">
         <button id="btn-reset" class="btn-danger">Reset All Progress</button>
       </div>
     </main>
-
-    <!-- Screen: Study Session -->
-    <main id="screen-study" class="screen">
-      <div class="study-toolbar">
-        <div class="study-progress">
-          <div class="study-progress-bar"><div id="study-bar-fill" class="study-bar-fill"></div></div>
-          <span id="study-progress-text" class="study-progress-text">0 / 0</span>
-        </div>
-        <button id="btn-undo" class="btn-undo hidden" aria-label="Undo last card" title="Undo (Z)">↩ Undo</button>
-      </div>
-      <div id="save-indicator" class="save-indicator hidden">Saved</div>
-
-      <input id="key-capture" class="key-capture" readonly aria-hidden="true" tabindex="-1">
-      <div id="card-container" class="card-container">
-        <div id="card" class="card">
-          <!-- Front -->
-          <div class="card-front" id="card-front">
-            <div class="form-badge" id="card-form-badge"></div>
-            <div class="card-kanji" id="card-kanji"></div>
-            <div class="card-reading" id="card-reading"></div>
-            <div class="card-meaning" id="card-meaning"></div>
-            <div class="card-prompt" id="card-prompt"></div>
-            <div class="card-context hidden" id="card-context"></div>
-            <div class="card-example-sentence-front hidden" id="card-example-sentence-front"></div>
-            <div class="hint-area hidden" id="hint-area"></div>
-            <div class="reveal-area" id="reveal-area">
-              <div class="reveal-buttons">
-                <button id="btn-hint" class="btn-hint">Hint <span class="grade-key">H</span></button>
-                <button id="btn-reveal" class="btn-reveal">Show Answer</button>
-              </div>
-              <span class="reveal-hint">Space = show answer</span>
-            </div>
-            <div class="typing-area hidden" id="typing-area">
-              <div class="answer-area">
-                <input type="text" id="answer-input" class="answer-input" placeholder="Type in hiragana..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" lang="ja">
-                <button id="btn-check" class="btn-primary">Check</button>
-              </div>
-              <div class="typing-buttons">
-                <button id="btn-hint-typing" class="btn-hint">Hint <span class="grade-key">H</span></button>
-                <button id="btn-show" class="btn-secondary">Show Answer</button>
-              </div>
-            </div>
-          </div>
-          <!-- Back -->
-          <div class="card-back hidden" id="card-back">
-            <div class="form-badge" id="card-form-badge-back"></div>
-            <div class="card-kanji" id="card-kanji-back"></div>
-            <div class="card-reading" id="card-reading-back"></div>
-            <div class="card-meaning" id="card-meaning-back"></div>
-            <div class="card-conjugated" id="card-conjugated"></div>
-            <div class="result-area">
-              <div id="result-icon" class="result-icon hidden"></div>
-              <div id="result-row-user" class="result-row hidden">
-                <span class="result-label">Your answer:</span>
-                <span id="user-answer" class="user-answer"></span>
-              </div>
-              <div class="result-row">
-                <span class="result-label">Correct:</span>
-                <span id="correct-answer" class="correct-answer"></span>
-              </div>
-              <div class="result-row">
-                <span class="result-label">Explanation:</span>
-                <span id="card-hint-explanation" class="correct-answer"></span>
-              </div>
-            </div>
-            <div class="card-explanation" id="card-explanation"></div>
-            <div class="hint-area-back" id="hint-area-back"></div>
-            <div class="card-example-sentence" id="card-example-sentence"></div>
-            <div class="grade-buttons">
-              <button class="btn-grade btn-again" data-grade="1"><span class="grade-key">1</span> Again</button>
-              <button class="btn-grade btn-easy" data-grade="4"><span class="grade-key">2</span> Easy</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="session-complete" class="session-complete hidden">
-        <div class="complete-icon">🎉</div>
-        <h2>Session Complete!</h2>
-        <div class="session-stats">
-          <div class="stat"><span class="stat-num" id="session-total">0</span><span class="stat-label">Cards</span></div>
-          <div class="stat"><span class="stat-num" id="session-correct">0</span><span class="stat-label">Correct</span></div>
-          <div class="stat"><span class="stat-num" id="session-accuracy">0%</span><span class="stat-label">Accuracy</span></div>
-        </div>
-        <button id="btn-back-to-chapters" class="btn-primary">Back to Chapters</button>
-      </div>
-    </main>
-
-    <!-- Screen: Kana Drawing Practice -->
-    <main id="screen-kana" class="screen">
-      <div class="study-toolbar">
-        <div class="study-progress">
-          <div class="study-progress-bar"><div id="kana-bar-fill" class="study-bar-fill"></div></div>
-          <span id="kana-progress-text" class="study-progress-text">0 / 0</span>
-        </div>
-      </div>
-
-      <div id="kana-card" class="card kana-card">
-        <div class="kana-prompt-label">Draw this sound</div>
-        <div class="kana-romaji" id="kana-romaji"></div>
-        <div class="kana-script-badge" id="kana-script-badge"></div>
-
-        <div class="kana-canvas-wrap">
-          <canvas id="kana-canvas" width="280" height="280"></canvas>
-          <button id="btn-kana-clear" class="kana-clear-btn" aria-label="Clear drawing" title="Clear">⟲</button>
-        </div>
-
-        <div class="reveal-area" id="kana-reveal-area">
-          <button id="btn-kana-reveal" class="btn-reveal">Show Answer</button>
-          <span class="reveal-hint">Space = show answer</span>
-        </div>
-
-        <div class="kana-answer-area hidden" id="kana-answer-area">
-          <div class="kana-answer-char" id="kana-answer-char"></div>
-          <div class="kana-answer-romaji" id="kana-answer-romaji"></div>
-          <div class="grade-buttons">
-            <button class="btn-grade btn-again" data-kana-grade="1"><span class="grade-key">1</span> Didn't know</button>
-            <button class="btn-grade btn-easy" data-kana-grade="4"><span class="grade-key">2</span> Got it</button>
-          </div>
-        </div>
-      </div>
-
-      <div id="kana-session-complete" class="session-complete hidden">
-        <div class="complete-icon">🎉</div>
-        <h2>Session Complete!</h2>
-        <div class="session-stats">
-          <div class="stat"><span class="stat-num" id="kana-session-total">0</span><span class="stat-label">Cards</span></div>
-          <div class="stat"><span class="stat-num" id="kana-session-correct">0</span><span class="stat-label">Got It</span></div>
-          <div class="stat"><span class="stat-num" id="kana-session-accuracy">0%</span><span class="stat-label">Accuracy</span></div>
-        </div>
-        <button id="btn-kana-back-to-chapters" class="btn-primary">Back to Chapters</button>
-      </div>
-    </main>
-
-    <!-- Settings Overlay -->
-    <div id="settings-overlay" class="settings-overlay hidden">
-      <div class="settings-overlay-backdrop"></div>
-      <div class="settings-overlay-content">
-        <div class="settings-overlay-header">
-          <h2 class="settings-overlay-title">Settings</h2>
-          <button id="btn-close-settings" class="settings-overlay-close" aria-label="Close settings">✕</button>
-        </div>
-        <div class="settings-panel">
-          <label class="setting-row">
-            <div class="setting-info">
-              <span class="setting-label">Type answers in hiragana</span>
-              <span class="setting-desc">When enabled, you type the conjugation before revealing the answer</span>
-            </div>
-            <input type="checkbox" id="setting-typing-mode" class="setting-toggle">
-          </label>
-          <label class="setting-row">
-            <div class="setting-info">
-              <span class="setting-label">Hide form name (harder mode)</span>
-              <span class="setting-desc">Only shows the English hint (e.g. "Polite past") — you must recall the form yourself</span>
-            </div>
-            <input type="checkbox" id="setting-hide-form" class="setting-toggle">
-          </label>
-          <label class="setting-row">
-            <div class="setting-info">
-              <span class="setting-label">Show context example</span>
-              <span class="setting-desc">Shows an English example below the hint, e.g. "I did eat (polite, past)"</span>
-            </div>
-            <input type="checkbox" id="setting-show-context" class="setting-toggle">
-          </label>
-          <label class="setting-row">
-            <div class="setting-info">
-              <span class="setting-label">English → Japanese mode</span>
-              <span class="setting-desc">See an English sentence (e.g. "I did take (a thing) (polite, past)") and produce the Japanese conjugation</span>
-            </div>
-            <input type="checkbox" id="setting-english-to-japanese" class="setting-toggle">
-          </label>
-          <label class="setting-row">
-            <div class="setting-info">
-              <span class="setting-label">Show example sentence on question</span>
-              <span class="setting-desc">Shows a Japanese example sentence (with the answer blanked out) before you reveal the answer</span>
-            </div>
-            <input type="checkbox" id="setting-show-example-front" class="setting-toggle">
-          </label>
-          <label class="setting-row">
-            <div class="setting-info">
-              <span class="setting-label">Show furigana</span>
-              <span class="setting-desc">Shows readings (hiragana) above kanji in Japanese sentences</span>
-            </div>
-            <input type="checkbox" id="setting-show-furigana" class="setting-toggle">
-          </label>
-        </div>
-      </div>
-    </div>
-
-    <!-- Reference Overlay -->
-    <div id="ref-overlay" class="ref-overlay hidden" role="dialog" aria-modal="true" aria-label="Conjugation Reference">
-      <div id="ref-backdrop" class="ref-backdrop"></div>
-      <div class="ref-overlay-panel">
-        <div class="ref-overlay-header">
-          <h2 class="section-title" style="margin:0">Conjugation Reference</h2>
-          <button id="btn-ref-close" class="icon-btn" aria-label="Close">✕</button>
-        </div>
-        <div class="ref-tabs">
-          <button class="ref-tab active" data-tab="verb">Verbs</button>
-          <button class="ref-tab" data-tab="adj">Adjectives</button>
-        </div>
-        <div id="ref-content" class="ref-content"></div>
-      </div>
-    </div>
 
   </div>
 
@@ -328,47 +84,42 @@
 
   <!-- Static content for search engines -->
   <section id="seo-content" aria-hidden="true">
-    <h2>Japanese Conjugation Practice — Genki I &amp; II</h2>
+    <h2>Japanese Practice — Genki I &amp; II</h2>
     <p>
-      Tokidoki is a free, no-login flashcard app for practising Japanese verb and adjective
-      conjugations from the <strong>Genki</strong> textbook series. Cards are scheduled with
+      Tokidoki is a free, no-login collection of Japanese practice exercises built around
+      the <strong>Genki</strong> textbook series. Every exercise is scheduled with
       <strong>spaced repetition (SRS)</strong> so you review what you need most, not what
       you already know.
     </p>
 
-    <h3>Verb conjugation drills</h3>
+    <h3><a href="verbs.html">Verb conjugation drills</a></h3>
     <p>
-      Work through chapters 3–23 of Genki I and II. Each chapter introduces the conjugation
-      forms taught in that unit — starting with the <strong>masu-form</strong> and
-      <strong>masu-negative</strong>, then adding <strong>te-form</strong>,
-      <strong>ta-form</strong>, <strong>nai-form</strong>, <strong>dictionary form</strong>,
-      <strong>tai-form</strong>, <strong>potential</strong>, <strong>volitional</strong>,
-      <strong>passive</strong>, <strong>causative</strong>, <strong>ba-conditional</strong>,
-      and <strong>causative-passive</strong>. Both godan (u-verb) and ichidan (ru-verb)
-      conjugation patterns are covered, along with the irregular verbs する and くる.
+      Work through chapters 3–23 of Genki I and II, covering masu-form, て-form, ta-form,
+      nai-form, tai-form, potential, volitional, passive, causative, ba-conditional,
+      causative-passive, and more — for both godan (u-verb) and ichidan (ru-verb) patterns,
+      plus the irregular verbs する and くる.
     </p>
 
-    <h3>Adjective conjugation drills</h3>
+    <h3><a href="adjectives.html">Adjective conjugation drills</a></h3>
     <p>
-      Practise <strong>i-adjective</strong> and <strong>na-adjective</strong> conjugations
-      including present, negative, past, past-negative, te-form, and adverb forms.
-      Chapters span the adjective grammar introduced across both Genki volumes.
+      Practise い-adjective and な-adjective conjugations including present, negative, past,
+      past-negative, te-form, and adverb forms, chapter by chapter.
     </p>
 
-    <h3>Build Your Own session</h3>
+    <h3><a href="custom.html">Build Your Own session</a></h3>
     <p>
       Mix and match any combination of verbs, adjectives, and conjugation forms into a
       custom practice session. Useful for targeting weak spots or reviewing before a test.
     </p>
 
-    <h3>Sentence translation practice</h3>
+    <h3><a href="sentences.html">Sentence translation practice</a></h3>
     <p>
       Translate full Japanese sentences taken from Genki chapters 3–12. Toggle between
       Japanese-to-English and English-to-Japanese modes, with optional furigana readings
       above kanji.
     </p>
 
-    <h3>Hiragana &amp; katakana drawing practice</h3>
+    <h3><a href="kana.html">Hiragana &amp; katakana drawing practice</a></h3>
     <p>
       Learn the kana with a hands-on drawing drill: see a romaji prompt, draw the matching
       hiragana or katakana character by hand, then reveal the answer to check yourself.

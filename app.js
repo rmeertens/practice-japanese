@@ -167,7 +167,7 @@
   const VIEWPORT_NO_ZOOM = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
 
   function showScreen(name) {
-    Object.values(screens).forEach(s => s.classList.remove('active'));
+    Object.values(screens).filter(Boolean).forEach(s => s.classList.remove('active'));
     screens[name].classList.add('active');
 
     // Disable pinch/double-tap zoom only while the kana canvas is on screen —
@@ -247,7 +247,6 @@
     const todayAcc = statsData.todayReviews > 0 ? Math.round((statsData.todayCorrect / statsData.todayReviews) * 100) : 0;
     $('#today-accuracy').textContent = todayAcc + '%';
     $('#cards-due').textContent = totalDue;
-    $('#streak-count').textContent = statsData.streak;
   }
 
   function adjCardId(adj, form) {
@@ -261,6 +260,7 @@
     g2.innerHTML = '';
 
     const chapters = getAllAdjChapters();
+    let totalDue = 0;
 
     chapters.forEach(ch => {
       const info = ADJ_CHAPTER_INFO[ch];
@@ -281,6 +281,7 @@
         });
       });
 
+      totalDue += chapterDue;
       const pct = chapterCards > 0 ? Math.round((chapterReviewed / chapterCards) * 100) : 0;
 
       const formPills = (info.newForms || []).map(f => {
@@ -306,6 +307,71 @@
       if (info.book === 'Genki I') g1.appendChild(card);
       else g2.appendChild(card);
     });
+
+    const todayEl = $('#today-reviewed');
+    if (todayEl) {
+      todayEl.textContent = statsData.todayReviews || 0;
+      const todayAcc = statsData.todayReviews > 0 ? Math.round((statsData.todayCorrect / statsData.todayReviews) * 100) : 0;
+      $('#today-accuracy').textContent = todayAcc + '%';
+      $('#cards-due').textContent = totalDue;
+    }
+  }
+
+  // ─── Global stats (streak badge lives in the header on every page) ─────────────
+
+  function renderGlobalStats() {
+    const streakEl = $('#streak-count');
+    if (streakEl) streakEl.textContent = statsData.streak;
+  }
+
+  // ─── Hub (landing page linking out to each exercise page) ──────────────────────
+
+  function countDueVerbs() {
+    let due = 0;
+    getAllChapters().forEach(ch => {
+      const forms = Conjugator.getFormsForChapter(ch);
+      getVerbsByChapter(ch).forEach(v => {
+        forms.forEach(f => { if (isDue(getCardState(srsData, cardId(v, f)))) due++; });
+      });
+    });
+    return due;
+  }
+
+  function countDueAdjectives() {
+    let due = 0;
+    getAllAdjChapters().forEach(ch => {
+      const forms = Conjugator.getAdjFormsForChapter(ch);
+      getAdjectivesByChapter(ch).forEach(a => {
+        forms.forEach(f => { if (isDue(getCardState(srsData, adjCardId(a, f)))) due++; });
+      });
+    });
+    return due;
+  }
+
+  function countDueKana() {
+    let due = 0;
+    KANA_DATA.hiragana.forEach(k => { if (isDue(getCardState(srsData, kanaCardId('hiragana', k.kana)))) due++; });
+    KANA_DATA.katakana.forEach(k => { if (isDue(getCardState(srsData, kanaCardId('katakana', k.kana)))) due++; });
+    return due;
+  }
+
+  function renderHub() {
+    const verbDue = countDueVerbs();
+    const adjDue = countDueAdjectives();
+    const kanaDue = countDueKana();
+
+    const todayEl = $('#today-reviewed');
+    if (todayEl) {
+      todayEl.textContent = statsData.todayReviews || 0;
+      const todayAcc = statsData.todayReviews > 0 ? Math.round((statsData.todayCorrect / statsData.todayReviews) * 100) : 0;
+      $('#today-accuracy').textContent = todayAcc + '%';
+      $('#cards-due').textContent = verbDue + adjDue + kanaDue;
+    }
+
+    const setDue = (id, n) => { const el = $(id); if (el) el.textContent = n > 0 ? `${n} due` : ''; };
+    setDue('#hub-due-verbs', verbDue);
+    setDue('#hub-due-adjectives', adjDue);
+    setDue('#hub-due-kana', kanaDue);
   }
 
   // ─── Study Session ─────────────────────────────────────────────────────────────
@@ -398,6 +464,7 @@
 
   function flashSaveIndicator() {
     const el = $('#save-indicator');
+    if (!el) return;
     el.classList.remove('hidden');
     el.classList.add('show');
     clearTimeout(saveTimeout);
@@ -2372,85 +2439,55 @@
 
   // ─── Event Binding ─────────────────────────────────────────────────────────────
 
+  // Attaches a listener only if the element exists — pages only include the
+  // markup relevant to their own exercise, so most wiring below is optional
+  // per page rather than guarded with if-statements at every call site.
+  function on(selector, event, handler) {
+    const el = typeof selector === 'string' ? $(selector) : selector;
+    if (el) el.addEventListener(event, handler);
+  }
+
+  function overlayOpen(id) {
+    const el = document.getElementById(id);
+    return !!el && !el.classList.contains('hidden');
+  }
+
   function init() {
     initTheme();
 
     srsData = loadSRS();
     statsData = loadStats();
+    renderGlobalStats();
 
-    renderChapters();
-    renderAdjChapters();
-    renderReference('verb');
-    initKanaCanvas();
+    const mode = document.body.dataset.mode || 'hub';
 
-    // ─── Mode routing helpers ───────────────────────────────────────────────────
-
-    const MODE_TO_HASH = { verbs: 'verbs', adjectives: 'adjectives', custom: 'custom', translate: 'sentences', kana: 'kana' };
-    const HASH_TO_MODE = { verbs: 'verbs', adjectives: 'adjectives', custom: 'custom', sentences: 'translate', kana: 'kana' };
-    const MODE_TITLES  = { verbs: 'Verbs', adjectives: 'Adjectives', custom: 'Build Your Own', translate: 'Sentences', kana: 'Kana' };
-
-    function switchMode(mode) {
-      if (!MODE_TO_HASH[mode]) mode = 'verbs';
-
-      document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
-      const tab = document.querySelector(`.mode-tab[data-mode="${mode}"]`);
-      if (tab) tab.classList.add('active');
-
-      $('#verb-chapters').classList.toggle('hidden', mode !== 'verbs');
-      $('#adj-chapters').classList.toggle('hidden', mode !== 'adjectives');
-      $('#custom-builder').classList.toggle('hidden', mode !== 'custom');
-      $('#translate-panel').classList.toggle('hidden', mode !== 'translate');
-      $('#kana-panel').classList.toggle('hidden', mode !== 'kana');
-
-      if (mode === 'custom') renderCustomPanel();
-      if (mode === 'translate') renderTranslateChapters();
-      if (mode === 'kana') renderKanaPanel();
-
-      // Update URL hash without adding extra history entries when called from hashchange
-      const hash = '#' + MODE_TO_HASH[mode];
-      if (location.hash !== hash) history.pushState(null, '', hash);
-
-      // Update page title
-      document.title = 'Tokidoki – ' + (MODE_TITLES[mode] || 'Practice');
-
-      // Send GA virtual page view so each section is tracked separately
-      if (typeof gtag === 'function') {
-        gtag('event', 'page_view', {
-          page_title: document.title,
-          page_location: location.href,
-          page_path: '/' + hash,
-        });
-      }
-    }
-
-    // Mode tabs (Verbs / Adjectives / Build Your Own)
-    document.querySelectorAll('.mode-tab').forEach(tab => {
-      tab.addEventListener('click', () => switchMode(tab.dataset.mode));
-    });
-
-    // Respond to browser back/forward within the chapter screen
-    window.addEventListener('hashchange', () => {
-      if (screens.chapters.classList.contains('active')) {
-        const mode = HASH_TO_MODE[location.hash.replace('#', '')] || 'verbs';
-        switchMode(mode);
-      }
-    });
-
-    // Activate the mode indicated by the URL hash on first load
-    {
-      const initialMode = HASH_TO_MODE[location.hash.replace('#', '')] || 'verbs';
-      switchMode(initialMode);
+    if (mode === 'verbs') {
+      renderChapters();
+      renderReference('verb');
+    } else if (mode === 'adjectives') {
+      renderAdjChapters();
+      renderReference('adj');
+    } else if (mode === 'custom') {
+      renderCustomPanel();
+      renderReference('verb');
+    } else if (mode === 'translate') {
+      renderTranslateChapters();
+    } else if (mode === 'kana') {
+      initKanaCanvas();
+      renderKanaPanel();
+    } else {
+      renderHub();
     }
 
     // Theme toggle
-    $('#btn-theme').addEventListener('click', toggleTheme);
+    on('#btn-theme', 'click', toggleTheme);
 
     // Back button
-    $('#btn-back').addEventListener('click', () => {
+    on('#btn-back', 'click', () => {
       showScreen('chapters');
-      renderChapters();
-      renderAdjChapters();
-      renderKanaPanel();
+      if (mode === 'verbs') renderChapters();
+      else if (mode === 'adjectives') renderAdjChapters();
+      else if (mode === 'kana') renderKanaPanel();
     });
 
     // Reference overlay
@@ -2490,12 +2527,12 @@
       document.body.style.overflow = '';
     }
 
-    $('#btn-ref').addEventListener('click', openReference);
-    $('#btn-ref-close').addEventListener('click', closeReference);
-    $('#ref-backdrop').addEventListener('click', closeReference);
+    on('#btn-ref', 'click', openReference);
+    on('#btn-ref-close', 'click', closeReference);
+    on('#ref-backdrop', 'click', closeReference);
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !$('#ref-overlay').classList.contains('hidden')) {
+      if (e.key === 'Escape' && overlayOpen('ref-overlay')) {
         closeReference();
       }
     });
@@ -2515,51 +2552,51 @@
       $('#settings-overlay').classList.add('hidden');
     }
 
-    $('#btn-settings').addEventListener('click', openSettings);
-    $('#btn-close-settings').addEventListener('click', closeSettings);
-    $('.settings-overlay-backdrop').addEventListener('click', closeSettings);
+    on('#btn-settings', 'click', openSettings);
+    on('#btn-close-settings', 'click', closeSettings);
+    on('.settings-overlay-backdrop', 'click', closeSettings);
 
     // Settings toggles
-    $('#setting-typing-mode').addEventListener('change', (e) => {
+    on('#setting-typing-mode', 'change', (e) => {
       settings.typingMode = e.target.checked;
       saveSettings(settings);
     });
 
-    $('#setting-hide-form').addEventListener('change', (e) => {
+    on('#setting-hide-form', 'change', (e) => {
       settings.hideForm = e.target.checked;
       saveSettings(settings);
     });
 
-    $('#setting-show-context').addEventListener('change', (e) => {
+    on('#setting-show-context', 'change', (e) => {
       settings.showContext = e.target.checked;
       saveSettings(settings);
     });
 
-    $('#setting-english-to-japanese').addEventListener('change', (e) => {
+    on('#setting-english-to-japanese', 'change', (e) => {
       settings.englishToJapanese = e.target.checked;
       saveSettings(settings);
     });
 
-    $('#setting-show-example-front').addEventListener('change', (e) => {
+    on('#setting-show-example-front', 'change', (e) => {
       settings.showExampleFront = e.target.checked;
       saveSettings(settings);
     });
 
-    $('#setting-show-furigana').addEventListener('change', (e) => {
+    on('#setting-show-furigana', 'change', (e) => {
       settings.showFurigana = e.target.checked;
       saveSettings(settings);
     });
 
     // Reveal button (default mode)
-    $('#btn-reveal').addEventListener('click', showAnswer);
-    $('#btn-hint').addEventListener('click', toggleHint);
-    $('#btn-hint-typing').addEventListener('click', toggleHint);
+    on('#btn-reveal', 'click', showAnswer);
+    on('#btn-hint', 'click', toggleHint);
+    on('#btn-hint-typing', 'click', toggleHint);
 
     // Check answer (typing mode)
-    $('#btn-check').addEventListener('click', checkAnswer);
+    on('#btn-check', 'click', checkAnswer);
 
     // Show answer (typing mode)
-    $('#btn-show').addEventListener('click', showAnswer);
+    on('#btn-show', 'click', showAnswer);
 
     // Grade buttons (study card only — kana grade buttons are bound separately below)
     $$('#card .btn-grade').forEach(btn => {
@@ -2569,10 +2606,10 @@
     });
 
     // Back to chapters from session complete
-    $('#btn-back-to-chapters').addEventListener('click', () => {
+    on('#btn-back-to-chapters', 'click', () => {
       showScreen('chapters');
-      renderChapters();
-      renderAdjChapters();
+      if (mode === 'verbs') renderChapters();
+      else if (mode === 'adjectives') renderAdjChapters();
     });
 
     // ─── Kana practice ───────────────────────────────────────────────────────────
@@ -2585,12 +2622,12 @@
       renderKanaPanel();
     }
 
-    $('#kana-toggle-hiragana').addEventListener('change', (e) => toggleKanaScript(e, '#kana-toggle-katakana'));
-    $('#kana-toggle-katakana').addEventListener('change', (e) => toggleKanaScript(e, '#kana-toggle-hiragana'));
+    on('#kana-toggle-hiragana', 'change', (e) => toggleKanaScript(e, '#kana-toggle-katakana'));
+    on('#kana-toggle-katakana', 'change', (e) => toggleKanaScript(e, '#kana-toggle-hiragana'));
 
-    $('#btn-start-kana').addEventListener('click', startKanaStudy);
-    $('#btn-kana-clear').addEventListener('click', clearKanaCanvas);
-    $('#btn-kana-reveal').addEventListener('click', revealKanaAnswer);
+    on('#btn-start-kana', 'click', startKanaStudy);
+    on('#btn-kana-clear', 'click', clearKanaCanvas);
+    on('#btn-kana-reveal', 'click', revealKanaAnswer);
 
     $$('.btn-grade[data-kana-grade]').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -2598,17 +2635,15 @@
       });
     });
 
-    $('#btn-kana-back-to-chapters').addEventListener('click', () => {
+    on('#btn-kana-back-to-chapters', 'click', () => {
       showScreen('chapters');
-      renderChapters();
-      renderAdjChapters();
       renderKanaPanel();
     });
 
     document.addEventListener('keydown', (e) => {
-      if (!screens.kana.classList.contains('active')) return;
-      if (!$('#settings-overlay').classList.contains('hidden')) return;
-      if (!$('#ref-overlay').classList.contains('hidden')) return;
+      if (!(screens.kana && screens.kana.classList.contains('active'))) return;
+      if (overlayOpen('settings-overlay')) return;
+      if (overlayOpen('ref-overlay')) return;
 
       if (kanaAnswered) {
         if (e.key === '1') { e.preventDefault(); gradeKanaAndAdvance(1); return; }
@@ -2628,29 +2663,32 @@
     });
 
     // Reset progress
-    $('#btn-reset').addEventListener('click', () => {
+    on('#btn-reset', 'click', () => {
       if (confirm('Are you sure you want to reset ALL progress? This cannot be undone.')) {
         localStorage.removeItem(SRS_KEY);
         localStorage.removeItem(STATS_KEY);
         srsData = {};
         statsData = loadStats();
-        renderChapters();
-        renderAdjChapters();
+        renderGlobalStats();
+        if (mode === 'verbs') renderChapters();
+        else if (mode === 'adjectives') renderAdjChapters();
+        else if (mode === 'kana') renderKanaPanel();
+        else if (mode === 'hub') renderHub();
       }
     });
 
     // Undo button
-    $('#btn-undo').addEventListener('click', undoLastGrade);
+    on('#btn-undo', 'click', undoLastGrade);
 
     // Keyboard shortcuts
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !$('#settings-overlay').classList.contains('hidden')) {
+      if (e.key === 'Escape' && overlayOpen('settings-overlay')) {
         closeSettings();
         return;
       }
-      if (!$('#ref-overlay').classList.contains('hidden')) return;
-      if (!screens.study.classList.contains('active')) return;
-      if (!$('#settings-overlay').classList.contains('hidden')) return;
+      if (overlayOpen('ref-overlay')) return;
+      if (!(screens.study && screens.study.classList.contains('active'))) return;
+      if (overlayOpen('settings-overlay')) return;
 
       if ((e.ctrlKey || e.metaKey) && e.key === 'z') {
         e.preventDefault();
