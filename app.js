@@ -2439,6 +2439,111 @@
 
   // ─── Event Binding ─────────────────────────────────────────────────────────────
 
+  // ─── Shared chrome (header, settings/reference overlays) ───────────────────────
+  //
+  // Every page carries a one-line mount point instead of the full markup, so the
+  // header and overlays have a single source of truth here rather than being
+  // hand-copied into six HTML files. Runs before any other DOM lookups in init().
+
+  function renderSharedChrome() {
+    const headerMount = document.getElementById('header-mount');
+    if (headerMount) {
+      const showRef = headerMount.hasAttribute('data-ref');
+      const showSettings = headerMount.hasAttribute('data-settings');
+      headerMount.outerHTML = `
+        <header id="header">
+          <div class="header-left">
+            <button id="btn-back" class="icon-btn hidden" aria-label="Back">←</button>
+            <a href="index.html" class="header-title-link"><h1 id="header-title">Tokidoki</h1></a>
+          </div>
+          <div class="header-right">
+            <span id="streak-badge" class="streak-badge" title="Daily streak">🔥 <span id="streak-count">0</span></span>
+            <button id="btn-theme" class="icon-btn" aria-label="Toggle theme">◐</button>
+            ${showRef ? '<button id="btn-ref" class="icon-btn" aria-label="Conjugation reference">?</button>' : ''}
+            ${showSettings ? '<button id="btn-settings" class="icon-btn" aria-label="Settings">⚙</button>' : ''}
+          </div>
+        </header>`;
+    }
+
+    const settingsMount = document.getElementById('settings-mount');
+    if (settingsMount) {
+      settingsMount.outerHTML = `
+        <div id="settings-overlay" class="settings-overlay hidden">
+          <div class="settings-overlay-backdrop"></div>
+          <div class="settings-overlay-content">
+            <div class="settings-overlay-header">
+              <h2 class="settings-overlay-title">Settings</h2>
+              <button id="btn-close-settings" class="settings-overlay-close" aria-label="Close settings">✕</button>
+            </div>
+            <div class="settings-panel">
+              <label class="setting-row">
+                <div class="setting-info">
+                  <span class="setting-label">Type answers in hiragana</span>
+                  <span class="setting-desc">When enabled, you type the conjugation before revealing the answer</span>
+                </div>
+                <input type="checkbox" id="setting-typing-mode" class="setting-toggle">
+              </label>
+              <label class="setting-row">
+                <div class="setting-info">
+                  <span class="setting-label">Hide form name (harder mode)</span>
+                  <span class="setting-desc">Only shows the English hint (e.g. "Polite past") — you must recall the form yourself</span>
+                </div>
+                <input type="checkbox" id="setting-hide-form" class="setting-toggle">
+              </label>
+              <label class="setting-row">
+                <div class="setting-info">
+                  <span class="setting-label">Show context example</span>
+                  <span class="setting-desc">Shows an English example below the hint, e.g. "I did eat (polite, past)"</span>
+                </div>
+                <input type="checkbox" id="setting-show-context" class="setting-toggle">
+              </label>
+              <label class="setting-row">
+                <div class="setting-info">
+                  <span class="setting-label">English → Japanese mode</span>
+                  <span class="setting-desc">See an English sentence (e.g. "I did take (a thing) (polite, past)") and produce the Japanese conjugation</span>
+                </div>
+                <input type="checkbox" id="setting-english-to-japanese" class="setting-toggle">
+              </label>
+              <label class="setting-row">
+                <div class="setting-info">
+                  <span class="setting-label">Show example sentence on question</span>
+                  <span class="setting-desc">Shows a Japanese example sentence (with the answer blanked out) before you reveal the answer</span>
+                </div>
+                <input type="checkbox" id="setting-show-example-front" class="setting-toggle">
+              </label>
+              <label class="setting-row">
+                <div class="setting-info">
+                  <span class="setting-label">Show furigana</span>
+                  <span class="setting-desc">Shows readings (hiragana) above kanji in Japanese sentences</span>
+                </div>
+                <input type="checkbox" id="setting-show-furigana" class="setting-toggle">
+              </label>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    const refMount = document.getElementById('ref-mount');
+    if (refMount) {
+      const defaultTab = refMount.getAttribute('data-default-tab') || 'verb';
+      refMount.outerHTML = `
+        <div id="ref-overlay" class="ref-overlay hidden" role="dialog" aria-modal="true" aria-label="Conjugation Reference">
+          <div id="ref-backdrop" class="ref-backdrop"></div>
+          <div class="ref-overlay-panel">
+            <div class="ref-overlay-header">
+              <h2 class="section-title" style="margin:0">Conjugation Reference</h2>
+              <button id="btn-ref-close" class="icon-btn" aria-label="Close">✕</button>
+            </div>
+            <div class="ref-tabs">
+              <button class="ref-tab${defaultTab === 'verb' ? ' active' : ''}" data-tab="verb">Verbs</button>
+              <button class="ref-tab${defaultTab === 'adj' ? ' active' : ''}" data-tab="adj">Adjectives</button>
+            </div>
+            <div id="ref-content" class="ref-content"></div>
+          </div>
+        </div>`;
+    }
+  }
+
   // Attaches a listener only if the element exists — pages only include the
   // markup relevant to their own exercise, so most wiring below is optional
   // per page rather than guarded with if-statements at every call site.
@@ -2453,6 +2558,7 @@
   }
 
   function init() {
+    renderSharedChrome();
     initTheme();
 
     srsData = loadSRS();
