@@ -163,9 +163,17 @@
 
   // ─── Navigation ────────────────────────────────────────────────────────────────
 
+  const VIEWPORT_DEFAULT = 'width=device-width, initial-scale=1.0';
+  const VIEWPORT_NO_ZOOM = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+
   function showScreen(name) {
     Object.values(screens).forEach(s => s.classList.remove('active'));
     screens[name].classList.add('active');
+
+    // Disable pinch/double-tap zoom only while the kana canvas is on screen —
+    // it interferes with drawing but shouldn't limit zoom accessibility elsewhere.
+    const viewportMeta = $('#viewport-meta');
+    if (viewportMeta) viewportMeta.setAttribute('content', name === 'kana' ? VIEWPORT_NO_ZOOM : VIEWPORT_DEFAULT);
 
     const backBtn = $('#btn-back');
     const title = $('#header-title');
