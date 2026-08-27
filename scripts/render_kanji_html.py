@@ -66,9 +66,29 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
     height: 21mm;
     border: 0.4mm solid #999;
     position: relative;
-    background:
-      linear-gradient(to right, #ddd 0.25mm, transparent 0.25mm) 50% 0 / 50% 100% no-repeat,
-      linear-gradient(to bottom, #ddd 0.25mm, transparent 0.25mm) 0 50% / 100% 50% no-repeat;
+  }}
+  /* Flat-color guide lines, not a gradient: Chromium's print-to-PDF turns
+     CSS gradients into shading-pattern + transparency-group XObjects, and
+     with 1000+ boxes on the N1 sheet that bloats the PDF into something
+     many printers' RIPs choke on. Plain fills stay cheap vector rects. */
+  .box-square::before, .box-square::after {{
+    content: "";
+    position: absolute;
+    background: #ddd;
+  }}
+  .box-square::before {{
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 0.25mm;
+    margin-left: -0.125mm;
+  }}
+  .box-square::after {{
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 0.25mm;
+    margin-top: -0.125mm;
   }}
   .row-break {{
     flex-basis: 100%;
