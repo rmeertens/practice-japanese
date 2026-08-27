@@ -2581,6 +2581,8 @@
     } else if (mode === 'kana') {
       initKanaCanvas();
       renderKanaPanel();
+    } else if (mode === 'kanji-sheets') {
+      // Static download links page — no SRS state to render.
     } else {
       renderHub();
     }
