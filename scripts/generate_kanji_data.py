@@ -26,6 +26,28 @@ OUT_DIR = REPO_ROOT / "kanji-sheets" / "data"
 
 LEVELS = [5, 4, 3, 2, 1]
 
+# A couple of kanji this dataset leaves without a jlpt_new value at all
+# (it has jlpt_old but not jlpt_new), even though they're commonly placed
+# at a level — confirmed against the Benkyo app's own N5/N4 lists below.
+LEVEL_OVERRIDE = {"分": 5, "的": 4}
+
+# Exact kanji order transcribed from the Benkyo app (screenshotted by a
+# user), for the two levels we have complete, count-verified data for
+# (N5: 80/80, N4: 167/167). There's no official JLPT kanji list to match
+# against (JLPT hasn't published one since 2010), so every app orders its
+# own — this hardcodes Benkyo's specific sequence for N5/N4 rather than
+# trying to derive it. N3/N2/N1 fall back to the grade+frequency sort
+# below since we don't have Benkyo's order for those.
+MANUAL_ORDER = {
+    5: list("一二三四五六七八九十日月白百中千上下見万左右子女母小大外名川水土時火木本先金車前"
+            "高学書話語読雨天北毎東電午国友出山入分男行人休何年半父校後食生今西南間聞円来気長"),
+    4: list("口田目古明品早世自朝員元的真工有切別町兄少多夕魚黒同字安味妹犬牛特界茶理主注道夏"
+            "運京週売言計試止歩正走題建姉転冬立海歌音方地風起家場洋着集習曜店心思意手持研広台"
+            "始去会室公堂死買力待秋私答住体仕使代貸花肉以夜旅物屋昼社近質作急事画料図用借度不"
+            "族知帰強弟写考教者足院空究終服通銀飯飲館新親青春漢野問開重動病医発文楽英映赤色業"
+            "悪紙鳥勉験駅送"),
+}
+
 # Drop meaning entries that are noise for a practice sheet. Always-noise:
 # radical names and the old-time hour-range glosses that ride along with
 # the Chinese-zodiac kanji (e.g. "11pm-1am"). Zodiac labels themselves
@@ -58,7 +80,7 @@ def main():
 
     by_level = {lvl: [] for lvl in LEVELS}
     for kanji, info in src.items():
-        lvl = info.get("jlpt_new")
+        lvl = LEVEL_OVERRIDE.get(kanji, info.get("jlpt_new"))
         if lvl in by_level:
             by_level[lvl].append({
                 "kanji": kanji,
@@ -71,13 +93,24 @@ def main():
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     for lvl in LEVELS:
         items = by_level[lvl]
-        items.sort(key=lambda x: (
-            x["grade"],
-            x["freq"] is None,
-            x["freq"] if x["freq"] is not None else 0,
-            x["strokes"],
-            x["kanji"],
-        ))
+        by_kanji = {it["kanji"]: it for it in items}
+
+        if lvl in MANUAL_ORDER:
+            order = MANUAL_ORDER[lvl]
+            assert set(order) == set(by_kanji), (
+                f"N{lvl} manual order doesn't match the level's kanji set: "
+                f"missing={set(by_kanji) - set(order)} extra={set(order) - set(by_kanji)}"
+            )
+            items = [by_kanji[k] for k in order]
+        else:
+            items.sort(key=lambda x: (
+                x["grade"],
+                x["freq"] is None,
+                x["freq"] if x["freq"] is not None else 0,
+                x["strokes"],
+                x["kanji"],
+            ))
+
         out = [{"kanji": it["kanji"], "meaning": it["meaning"]} for it in items]
         out_path = OUT_DIR / f"n{lvl}.json"
         out_path.write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n")

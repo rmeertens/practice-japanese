@@ -1,666 +1,670 @@
 [
   {
-    "kanji": "立",
-    "meaning": "Stand Up, Rise"
-  },
-  {
-    "kanji": "手",
-    "meaning": "Hand"
-  },
-  {
-    "kanji": "力",
-    "meaning": "Power, Strength"
-  },
-  {
-    "kanji": "目",
-    "meaning": "Eye, Class"
+    "kanji": "口",
+    "meaning": "Mouth"
   },
   {
     "kanji": "田",
     "meaning": "Rice Field, Rice Paddy"
   },
   {
-    "kanji": "正",
-    "meaning": "Correct, Justice"
-  },
-  {
-    "kanji": "文",
-    "meaning": "Sentence, Literature"
-  },
-  {
-    "kanji": "口",
-    "meaning": "Mouth"
-  },
-  {
-    "kanji": "町",
-    "meaning": "Town, Village"
-  },
-  {
-    "kanji": "空",
-    "meaning": "Empty, Sky"
-  },
-  {
-    "kanji": "足",
-    "meaning": "Leg, Foot"
-  },
-  {
-    "kanji": "早",
-    "meaning": "Early, Fast"
-  },
-  {
-    "kanji": "字",
-    "meaning": "Character, Letter"
-  },
-  {
-    "kanji": "音",
-    "meaning": "Sound, Noise"
-  },
-  {
-    "kanji": "花",
-    "meaning": "Flower"
-  },
-  {
-    "kanji": "赤",
-    "meaning": "Red"
-  },
-  {
-    "kanji": "青",
-    "meaning": "Blue, Green"
-  },
-  {
-    "kanji": "夕",
-    "meaning": "Evening"
-  },
-  {
-    "kanji": "犬",
-    "meaning": "Dog"
-  },
-  {
-    "kanji": "会",
-    "meaning": "Meeting, Meet"
-  },
-  {
-    "kanji": "同",
-    "meaning": "Same, Agree"
-  },
-  {
-    "kanji": "自",
-    "meaning": "Oneself"
-  },
-  {
-    "kanji": "社",
-    "meaning": "Company, Firm"
-  },
-  {
-    "kanji": "地",
-    "meaning": "Ground, Earth"
-  },
-  {
-    "kanji": "方",
-    "meaning": "Direction, Person"
-  },
-  {
-    "kanji": "新",
-    "meaning": "New"
-  },
-  {
-    "kanji": "場",
-    "meaning": "Location, Place"
-  },
-  {
-    "kanji": "明",
-    "meaning": "Bright, Light"
-  },
-  {
-    "kanji": "京",
-    "meaning": "Capital, 10**16"
-  },
-  {
-    "kanji": "通",
-    "meaning": "Traffic, Pass Through"
-  },
-  {
-    "kanji": "言",
-    "meaning": "Say, Word"
-  },
-  {
-    "kanji": "理",
-    "meaning": "Logic, Arrangement"
-  },
-  {
-    "kanji": "体",
-    "meaning": "Body, Substance"
-  },
-  {
-    "kanji": "作",
-    "meaning": "Make, Production"
-  },
-  {
-    "kanji": "用",
-    "meaning": "Utilize, Business"
-  },
-  {
-    "kanji": "強",
-    "meaning": "Strong"
-  },
-  {
-    "kanji": "公",
-    "meaning": "Public, Prince"
-  },
-  {
-    "kanji": "野",
-    "meaning": "Plains, Field"
-  },
-  {
-    "kanji": "思",
-    "meaning": "Think"
-  },
-  {
-    "kanji": "家",
-    "meaning": "House, Home"
-  },
-  {
-    "kanji": "多",
-    "meaning": "Many, Frequent"
-  },
-  {
-    "kanji": "心",
-    "meaning": "Heart, Mind"
-  },
-  {
-    "kanji": "教",
-    "meaning": "Teach, Faith"
-  },
-  {
-    "kanji": "元",
-    "meaning": "Beginning, Former Time"
-  },
-  {
-    "kanji": "近",
-    "meaning": "Near, Early"
-  },
-  {
-    "kanji": "考",
-    "meaning": "Consider, Think Over"
-  },
-  {
-    "kanji": "画",
-    "meaning": "Brush-stroke, Picture"
-  },
-  {
-    "kanji": "海",
-    "meaning": "Sea, Ocean"
-  },
-  {
-    "kanji": "売",
-    "meaning": "Sell"
-  },
-  {
-    "kanji": "知",
-    "meaning": "Know, Wisdom"
-  },
-  {
-    "kanji": "道",
-    "meaning": "Road-way, Street"
-  },
-  {
-    "kanji": "計",
-    "meaning": "Plot, Plan"
-  },
-  {
-    "kanji": "朝",
-    "meaning": "Morning, Dynasty"
-  },
-  {
-    "kanji": "台",
-    "meaning": "Pedestal, A Stand"
-  },
-  {
-    "kanji": "広",
-    "meaning": "Wide, Broad"
-  },
-  {
-    "kanji": "少",
-    "meaning": "Few, Little"
-  },
-  {
-    "kanji": "工",
-    "meaning": "Craft, Construction"
-  },
-  {
-    "kanji": "止",
-    "meaning": "Stop, Halt"
-  },
-  {
-    "kanji": "切",
-    "meaning": "Cut, Cutoff"
-  },
-  {
-    "kanji": "楽",
-    "meaning": "Music, Comfort"
-  },
-  {
-    "kanji": "店",
-    "meaning": "Store, Shop"
-  },
-  {
-    "kanji": "親",
-    "meaning": "Parent, Intimacy"
-  },
-  {
-    "kanji": "答",
-    "meaning": "Solution, Answer"
-  },
-  {
-    "kanji": "夜",
-    "meaning": "Night, Evening"
-  },
-  {
-    "kanji": "帰",
-    "meaning": "Homecoming, Arrive At"
+    "kanji": "目",
+    "meaning": "Eye, Class"
   },
   {
     "kanji": "古",
     "meaning": "Old"
   },
   {
-    "kanji": "歌",
-    "meaning": "Song, Sing"
-  },
-  {
-    "kanji": "買",
-    "meaning": "Buy"
-  },
-  {
-    "kanji": "図",
-    "meaning": "Map, Drawing"
-  },
-  {
-    "kanji": "週",
-    "meaning": "Week"
-  },
-  {
-    "kanji": "室",
-    "meaning": "Room, Apartment"
-  },
-  {
-    "kanji": "歩",
-    "meaning": "Walk, Counter For Steps"
-  },
-  {
-    "kanji": "風",
-    "meaning": "Wind, Air"
-  },
-  {
-    "kanji": "紙",
-    "meaning": "Paper"
-  },
-  {
-    "kanji": "黒",
-    "meaning": "Black"
-  },
-  {
-    "kanji": "春",
-    "meaning": "Springtime, Spring…"
-  },
-  {
-    "kanji": "色",
-    "meaning": "Color"
-  },
-  {
-    "kanji": "走",
-    "meaning": "Run"
-  },
-  {
-    "kanji": "秋",
-    "meaning": "Autumn"
-  },
-  {
-    "kanji": "夏",
-    "meaning": "Summer"
-  },
-  {
-    "kanji": "曜",
-    "meaning": "Weekday"
-  },
-  {
-    "kanji": "肉",
-    "meaning": "Meat"
-  },
-  {
-    "kanji": "鳥",
-    "meaning": "Bird, Chicken"
-  },
-  {
-    "kanji": "冬",
-    "meaning": "Winter"
-  },
-  {
-    "kanji": "昼",
-    "meaning": "Daytime, Noon"
-  },
-  {
-    "kanji": "茶",
-    "meaning": "Tea"
-  },
-  {
-    "kanji": "弟",
-    "meaning": "Younger Brother, Faithful…"
-  },
-  {
-    "kanji": "牛",
-    "meaning": "Cow"
-  },
-  {
-    "kanji": "魚",
-    "meaning": "Fish"
-  },
-  {
-    "kanji": "兄",
-    "meaning": "Elder Brother, Big Brother"
-  },
-  {
-    "kanji": "妹",
-    "meaning": "Younger Sister"
-  },
-  {
-    "kanji": "姉",
-    "meaning": "Elder Sister"
-  },
-  {
-    "kanji": "事",
-    "meaning": "Matter, Thing"
-  },
-  {
-    "kanji": "発",
-    "meaning": "Departure, Discharge"
-  },
-  {
-    "kanji": "者",
-    "meaning": "Someone, Person"
-  },
-  {
-    "kanji": "業",
-    "meaning": "Business, Vocation"
-  },
-  {
-    "kanji": "員",
-    "meaning": "Employee, Member"
-  },
-  {
-    "kanji": "開",
-    "meaning": "Open, Unfold"
-  },
-  {
-    "kanji": "問",
-    "meaning": "Question, Ask"
-  },
-  {
-    "kanji": "代",
-    "meaning": "Substitute, Change"
-  },
-  {
-    "kanji": "動",
-    "meaning": "Move, Motion"
-  },
-  {
-    "kanji": "主",
-    "meaning": "Lord, Chief"
-  },
-  {
-    "kanji": "題",
-    "meaning": "Topic, Subject"
-  },
-  {
-    "kanji": "意",
-    "meaning": "Idea, Mind"
-  },
-  {
-    "kanji": "度",
-    "meaning": "Degrees, Occurrence"
-  },
-  {
-    "kanji": "持",
-    "meaning": "Hold, Have"
-  },
-  {
-    "kanji": "世",
-    "meaning": "Generation, World"
-  },
-  {
-    "kanji": "安",
-    "meaning": "Relax, Cheap"
-  },
-  {
-    "kanji": "院",
-    "meaning": "Inst., Institution"
-  },
-  {
-    "kanji": "界",
-    "meaning": "World, Boundary"
-  },
-  {
-    "kanji": "重",
-    "meaning": "Heavy, Important"
-  },
-  {
-    "kanji": "集",
-    "meaning": "Gather, Meet"
-  },
-  {
-    "kanji": "物",
-    "meaning": "Thing, Object"
-  },
-  {
-    "kanji": "使",
-    "meaning": "Use, Send On A Mission"
+    "kanji": "明",
+    "meaning": "Bright, Light"
   },
   {
     "kanji": "品",
     "meaning": "Goods, Refinement"
   },
   {
-    "kanji": "死",
-    "meaning": "Death, Die"
+    "kanji": "早",
+    "meaning": "Early, Fast"
   },
   {
-    "kanji": "始",
-    "meaning": "Commence, Begin"
+    "kanji": "世",
+    "meaning": "Generation, World"
   },
   {
-    "kanji": "運",
-    "meaning": "Carry, Luck"
+    "kanji": "自",
+    "meaning": "Oneself"
   },
   {
-    "kanji": "終",
-    "meaning": "End, Finish"
+    "kanji": "朝",
+    "meaning": "Morning, Dynasty"
   },
   {
-    "kanji": "住",
-    "meaning": "Dwell, Reside"
+    "kanji": "員",
+    "meaning": "Employee, Member"
+  },
+  {
+    "kanji": "元",
+    "meaning": "Beginning, Former Time"
+  },
+  {
+    "kanji": "的",
+    "meaning": "Bull's Eye, Mark"
   },
   {
     "kanji": "真",
     "meaning": "True, Reality"
   },
   {
+    "kanji": "工",
+    "meaning": "Craft, Construction"
+  },
+  {
     "kanji": "有",
     "meaning": "Possess, Have"
   },
   {
-    "kanji": "急",
-    "meaning": "Hurry, Emergency"
-  },
-  {
-    "kanji": "送",
-    "meaning": "Escort, Send"
-  },
-  {
-    "kanji": "転",
-    "meaning": "Revolve, Turn Around"
-  },
-  {
-    "kanji": "研",
-    "meaning": "Polish, Study Of"
-  },
-  {
-    "kanji": "究",
-    "meaning": "Research, Study"
-  },
-  {
-    "kanji": "起",
-    "meaning": "Rouse, Wake Up"
-  },
-  {
-    "kanji": "着",
-    "meaning": "Don, Arrive"
-  },
-  {
-    "kanji": "病",
-    "meaning": "Ill, Sick"
-  },
-  {
-    "kanji": "待",
-    "meaning": "Wait, Depend On"
-  },
-  {
-    "kanji": "族",
-    "meaning": "Tribe, Family"
-  },
-  {
-    "kanji": "銀",
-    "meaning": "Silver"
-  },
-  {
-    "kanji": "医",
-    "meaning": "Doctor, Medicine"
-  },
-  {
-    "kanji": "仕",
-    "meaning": "Attend, Doing"
-  },
-  {
-    "kanji": "去",
-    "meaning": "Gone, Past"
-  },
-  {
-    "kanji": "味",
-    "meaning": "Flavor, Taste"
-  },
-  {
-    "kanji": "写",
-    "meaning": "Copy, Be Photographed"
-  },
-  {
-    "kanji": "注",
-    "meaning": "Pour, Irrigate"
-  },
-  {
-    "kanji": "悪",
-    "meaning": "Bad, Vice"
-  },
-  {
-    "kanji": "館",
-    "meaning": "Building, Mansion"
-  },
-  {
-    "kanji": "屋",
-    "meaning": "Roof, House"
-  },
-  {
-    "kanji": "習",
-    "meaning": "Learn"
-  },
-  {
-    "kanji": "駅",
-    "meaning": "Station"
-  },
-  {
-    "kanji": "洋",
-    "meaning": "Ocean, Sea"
-  },
-  {
-    "kanji": "旅",
-    "meaning": "Trip, Travel"
-  },
-  {
-    "kanji": "服",
-    "meaning": "Clothing, Admit"
-  },
-  {
-    "kanji": "飲",
-    "meaning": "Drink, Smoke"
-  },
-  {
-    "kanji": "勉",
-    "meaning": "Exertion, Endeavour"
-  },
-  {
-    "kanji": "漢",
-    "meaning": "Sino-, China"
-  },
-  {
-    "kanji": "不",
-    "meaning": "Negative, Non-"
-  },
-  {
-    "kanji": "以",
-    "meaning": "By Means Of, Because"
+    "kanji": "切",
+    "meaning": "Cut, Cutoff"
   },
   {
     "kanji": "別",
     "meaning": "Separate, Branch Off"
   },
   {
+    "kanji": "町",
+    "meaning": "Town, Village"
+  },
+  {
+    "kanji": "兄",
+    "meaning": "Elder Brother, Big Brother"
+  },
+  {
+    "kanji": "少",
+    "meaning": "Few, Little"
+  },
+  {
+    "kanji": "多",
+    "meaning": "Many, Frequent"
+  },
+  {
+    "kanji": "夕",
+    "meaning": "Evening"
+  },
+  {
+    "kanji": "魚",
+    "meaning": "Fish"
+  },
+  {
+    "kanji": "黒",
+    "meaning": "Black"
+  },
+  {
+    "kanji": "同",
+    "meaning": "Same, Agree"
+  },
+  {
+    "kanji": "字",
+    "meaning": "Character, Letter"
+  },
+  {
+    "kanji": "安",
+    "meaning": "Relax, Cheap"
+  },
+  {
+    "kanji": "味",
+    "meaning": "Flavor, Taste"
+  },
+  {
+    "kanji": "妹",
+    "meaning": "Younger Sister"
+  },
+  {
+    "kanji": "犬",
+    "meaning": "Dog"
+  },
+  {
+    "kanji": "牛",
+    "meaning": "Cow"
+  },
+  {
     "kanji": "特",
     "meaning": "Special"
   },
   {
-    "kanji": "料",
-    "meaning": "Fee, Materials"
+    "kanji": "界",
+    "meaning": "World, Boundary"
   },
   {
-    "kanji": "建",
-    "meaning": "Build"
+    "kanji": "茶",
+    "meaning": "Tea"
+  },
+  {
+    "kanji": "理",
+    "meaning": "Logic, Arrangement"
+  },
+  {
+    "kanji": "主",
+    "meaning": "Lord, Chief"
+  },
+  {
+    "kanji": "注",
+    "meaning": "Pour, Irrigate"
+  },
+  {
+    "kanji": "道",
+    "meaning": "Road-way, Street"
+  },
+  {
+    "kanji": "夏",
+    "meaning": "Summer"
+  },
+  {
+    "kanji": "運",
+    "meaning": "Carry, Luck"
+  },
+  {
+    "kanji": "京",
+    "meaning": "Capital, 10**16"
+  },
+  {
+    "kanji": "週",
+    "meaning": "Week"
+  },
+  {
+    "kanji": "売",
+    "meaning": "Sell"
+  },
+  {
+    "kanji": "言",
+    "meaning": "Say, Word"
+  },
+  {
+    "kanji": "計",
+    "meaning": "Plot, Plan"
   },
   {
     "kanji": "試",
     "meaning": "Test, Try"
   },
   {
-    "kanji": "験",
-    "meaning": "Verification, Effect"
+    "kanji": "止",
+    "meaning": "Stop, Halt"
   },
   {
-    "kanji": "英",
-    "meaning": "England, English"
+    "kanji": "歩",
+    "meaning": "Walk, Counter For Steps"
   },
   {
-    "kanji": "借",
-    "meaning": "Borrow, Rent"
+    "kanji": "正",
+    "meaning": "Correct, Justice"
+  },
+  {
+    "kanji": "走",
+    "meaning": "Run"
+  },
+  {
+    "kanji": "題",
+    "meaning": "Topic, Subject"
+  },
+  {
+    "kanji": "建",
+    "meaning": "Build"
+  },
+  {
+    "kanji": "姉",
+    "meaning": "Elder Sister"
+  },
+  {
+    "kanji": "転",
+    "meaning": "Revolve, Turn Around"
+  },
+  {
+    "kanji": "冬",
+    "meaning": "Winter"
+  },
+  {
+    "kanji": "立",
+    "meaning": "Stand Up, Rise"
+  },
+  {
+    "kanji": "海",
+    "meaning": "Sea, Ocean"
+  },
+  {
+    "kanji": "歌",
+    "meaning": "Song, Sing"
+  },
+  {
+    "kanji": "音",
+    "meaning": "Sound, Noise"
+  },
+  {
+    "kanji": "方",
+    "meaning": "Direction, Person"
+  },
+  {
+    "kanji": "地",
+    "meaning": "Ground, Earth"
+  },
+  {
+    "kanji": "風",
+    "meaning": "Wind, Air"
+  },
+  {
+    "kanji": "起",
+    "meaning": "Rouse, Wake Up"
+  },
+  {
+    "kanji": "家",
+    "meaning": "House, Home"
+  },
+  {
+    "kanji": "場",
+    "meaning": "Location, Place"
+  },
+  {
+    "kanji": "洋",
+    "meaning": "Ocean, Sea"
+  },
+  {
+    "kanji": "着",
+    "meaning": "Don, Arrive"
+  },
+  {
+    "kanji": "集",
+    "meaning": "Gather, Meet"
+  },
+  {
+    "kanji": "習",
+    "meaning": "Learn"
+  },
+  {
+    "kanji": "曜",
+    "meaning": "Weekday"
+  },
+  {
+    "kanji": "店",
+    "meaning": "Store, Shop"
+  },
+  {
+    "kanji": "心",
+    "meaning": "Heart, Mind"
+  },
+  {
+    "kanji": "思",
+    "meaning": "Think"
+  },
+  {
+    "kanji": "意",
+    "meaning": "Idea, Mind"
+  },
+  {
+    "kanji": "手",
+    "meaning": "Hand"
+  },
+  {
+    "kanji": "持",
+    "meaning": "Hold, Have"
+  },
+  {
+    "kanji": "研",
+    "meaning": "Polish, Study Of"
+  },
+  {
+    "kanji": "広",
+    "meaning": "Wide, Broad"
+  },
+  {
+    "kanji": "台",
+    "meaning": "Pedestal, A Stand"
+  },
+  {
+    "kanji": "始",
+    "meaning": "Commence, Begin"
+  },
+  {
+    "kanji": "去",
+    "meaning": "Gone, Past"
+  },
+  {
+    "kanji": "会",
+    "meaning": "Meeting, Meet"
+  },
+  {
+    "kanji": "室",
+    "meaning": "Room, Apartment"
+  },
+  {
+    "kanji": "公",
+    "meaning": "Public, Prince"
   },
   {
     "kanji": "堂",
     "meaning": "Public Chamber, Hall"
   },
   {
-    "kanji": "飯",
-    "meaning": "Meal, Boiled Rice"
+    "kanji": "死",
+    "meaning": "Death, Die"
   },
   {
-    "kanji": "質",
-    "meaning": "Substance, Quality"
+    "kanji": "買",
+    "meaning": "Buy"
   },
   {
-    "kanji": "貸",
-    "meaning": "Lend"
+    "kanji": "力",
+    "meaning": "Power, Strength"
+  },
+  {
+    "kanji": "待",
+    "meaning": "Wait, Depend On"
+  },
+  {
+    "kanji": "秋",
+    "meaning": "Autumn"
   },
   {
     "kanji": "私",
     "meaning": "Private, I"
   },
   {
+    "kanji": "答",
+    "meaning": "Solution, Answer"
+  },
+  {
+    "kanji": "住",
+    "meaning": "Dwell, Reside"
+  },
+  {
+    "kanji": "体",
+    "meaning": "Body, Substance"
+  },
+  {
+    "kanji": "仕",
+    "meaning": "Attend, Doing"
+  },
+  {
+    "kanji": "使",
+    "meaning": "Use, Send On A Mission"
+  },
+  {
+    "kanji": "代",
+    "meaning": "Substitute, Change"
+  },
+  {
+    "kanji": "貸",
+    "meaning": "Lend"
+  },
+  {
+    "kanji": "花",
+    "meaning": "Flower"
+  },
+  {
+    "kanji": "肉",
+    "meaning": "Meat"
+  },
+  {
+    "kanji": "以",
+    "meaning": "By Means Of, Because"
+  },
+  {
+    "kanji": "夜",
+    "meaning": "Night, Evening"
+  },
+  {
+    "kanji": "旅",
+    "meaning": "Trip, Travel"
+  },
+  {
+    "kanji": "物",
+    "meaning": "Thing, Object"
+  },
+  {
+    "kanji": "屋",
+    "meaning": "Roof, House"
+  },
+  {
+    "kanji": "昼",
+    "meaning": "Daytime, Noon"
+  },
+  {
+    "kanji": "社",
+    "meaning": "Company, Firm"
+  },
+  {
+    "kanji": "近",
+    "meaning": "Near, Early"
+  },
+  {
+    "kanji": "質",
+    "meaning": "Substance, Quality"
+  },
+  {
+    "kanji": "作",
+    "meaning": "Make, Production"
+  },
+  {
+    "kanji": "急",
+    "meaning": "Hurry, Emergency"
+  },
+  {
+    "kanji": "事",
+    "meaning": "Matter, Thing"
+  },
+  {
+    "kanji": "画",
+    "meaning": "Brush-stroke, Picture"
+  },
+  {
+    "kanji": "料",
+    "meaning": "Fee, Materials"
+  },
+  {
+    "kanji": "図",
+    "meaning": "Map, Drawing"
+  },
+  {
+    "kanji": "用",
+    "meaning": "Utilize, Business"
+  },
+  {
+    "kanji": "借",
+    "meaning": "Borrow, Rent"
+  },
+  {
+    "kanji": "度",
+    "meaning": "Degrees, Occurrence"
+  },
+  {
+    "kanji": "不",
+    "meaning": "Negative, Non-"
+  },
+  {
+    "kanji": "族",
+    "meaning": "Tribe, Family"
+  },
+  {
+    "kanji": "知",
+    "meaning": "Know, Wisdom"
+  },
+  {
+    "kanji": "帰",
+    "meaning": "Homecoming, Arrive At"
+  },
+  {
+    "kanji": "強",
+    "meaning": "Strong"
+  },
+  {
+    "kanji": "弟",
+    "meaning": "Younger Brother, Faithful…"
+  },
+  {
+    "kanji": "写",
+    "meaning": "Copy, Be Photographed"
+  },
+  {
+    "kanji": "考",
+    "meaning": "Consider, Think Over"
+  },
+  {
+    "kanji": "教",
+    "meaning": "Teach, Faith"
+  },
+  {
+    "kanji": "者",
+    "meaning": "Someone, Person"
+  },
+  {
+    "kanji": "足",
+    "meaning": "Leg, Foot"
+  },
+  {
+    "kanji": "院",
+    "meaning": "Inst., Institution"
+  },
+  {
+    "kanji": "空",
+    "meaning": "Empty, Sky"
+  },
+  {
+    "kanji": "究",
+    "meaning": "Research, Study"
+  },
+  {
+    "kanji": "終",
+    "meaning": "End, Finish"
+  },
+  {
+    "kanji": "服",
+    "meaning": "Clothing, Admit"
+  },
+  {
+    "kanji": "通",
+    "meaning": "Traffic, Pass Through"
+  },
+  {
+    "kanji": "銀",
+    "meaning": "Silver"
+  },
+  {
+    "kanji": "飯",
+    "meaning": "Meal, Boiled Rice"
+  },
+  {
+    "kanji": "飲",
+    "meaning": "Drink, Smoke"
+  },
+  {
+    "kanji": "館",
+    "meaning": "Building, Mansion"
+  },
+  {
+    "kanji": "新",
+    "meaning": "New"
+  },
+  {
+    "kanji": "親",
+    "meaning": "Parent, Intimacy"
+  },
+  {
+    "kanji": "青",
+    "meaning": "Blue, Green"
+  },
+  {
+    "kanji": "春",
+    "meaning": "Springtime, Spring…"
+  },
+  {
+    "kanji": "漢",
+    "meaning": "Sino-, China"
+  },
+  {
+    "kanji": "野",
+    "meaning": "Plains, Field"
+  },
+  {
+    "kanji": "問",
+    "meaning": "Question, Ask"
+  },
+  {
+    "kanji": "開",
+    "meaning": "Open, Unfold"
+  },
+  {
+    "kanji": "重",
+    "meaning": "Heavy, Important"
+  },
+  {
+    "kanji": "動",
+    "meaning": "Move, Motion"
+  },
+  {
+    "kanji": "病",
+    "meaning": "Ill, Sick"
+  },
+  {
+    "kanji": "医",
+    "meaning": "Doctor, Medicine"
+  },
+  {
+    "kanji": "発",
+    "meaning": "Departure, Discharge"
+  },
+  {
+    "kanji": "文",
+    "meaning": "Sentence, Literature"
+  },
+  {
+    "kanji": "楽",
+    "meaning": "Music, Comfort"
+  },
+  {
+    "kanji": "英",
+    "meaning": "England, English"
+  },
+  {
     "kanji": "映",
     "meaning": "Reflect, Reflection"
+  },
+  {
+    "kanji": "赤",
+    "meaning": "Red"
+  },
+  {
+    "kanji": "色",
+    "meaning": "Color"
+  },
+  {
+    "kanji": "業",
+    "meaning": "Business, Vocation"
+  },
+  {
+    "kanji": "悪",
+    "meaning": "Bad, Vice"
+  },
+  {
+    "kanji": "紙",
+    "meaning": "Paper"
+  },
+  {
+    "kanji": "鳥",
+    "meaning": "Bird, Chicken"
+  },
+  {
+    "kanji": "勉",
+    "meaning": "Exertion, Endeavour"
+  },
+  {
+    "kanji": "験",
+    "meaning": "Verification, Effect"
+  },
+  {
+    "kanji": "駅",
+    "meaning": "Station"
+  },
+  {
+    "kanji": "送",
+    "meaning": "Escort, Send"
   }
 ]
