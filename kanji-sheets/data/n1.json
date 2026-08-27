@@ -1,7 +1,203 @@
 [
   {
+    "kanji": "矢",
+    "meaning": "Dart, Arrow"
+  },
+  {
+    "kanji": "刀",
+    "meaning": "Sword, Saber"
+  },
+  {
+    "kanji": "弓",
+    "meaning": "Bow, Bow (archery, Violin)"
+  },
+  {
+    "kanji": "汽",
+    "meaning": "Vapor, Steam"
+  },
+  {
+    "kanji": "第",
+    "meaning": "No., Residence"
+  },
+  {
+    "kanji": "宮",
+    "meaning": "Shinto Shrine…"
+  },
+  {
+    "kanji": "整",
+    "meaning": "Organize, Arranging"
+  },
+  {
+    "kanji": "昭",
+    "meaning": "Shining, Bright"
+  },
+  {
+    "kanji": "級",
+    "meaning": "Class, Rank"
+  },
+  {
+    "kanji": "詩",
+    "meaning": "Poem, Poetry"
+  },
+  {
+    "kanji": "丁",
+    "meaning": "Street, Ward"
+  },
+  {
+    "kanji": "豆",
+    "meaning": "Beans, Pea"
+  },
+  {
+    "kanji": "暑",
+    "meaning": "Sultry, Hot"
+  },
+  {
+    "kanji": "帳",
+    "meaning": "Notebook, Account Book"
+  },
+  {
+    "kanji": "羊",
+    "meaning": "Sheep"
+  },
+  {
+    "kanji": "笛",
+    "meaning": "Flute, Clarinet"
+  },
+  {
     "kanji": "氏",
     "meaning": "Family Name, Surname"
+  },
+  {
+    "kanji": "結",
+    "meaning": "Tie, Bind"
+  },
+  {
+    "kanji": "案",
+    "meaning": "Plan, Suggestion"
+  },
+  {
+    "kanji": "挙",
+    "meaning": "Raise, Plan"
+  },
+  {
+    "kanji": "松",
+    "meaning": "Pine Tree"
+  },
+  {
+    "kanji": "票",
+    "meaning": "Ballot, Label"
+  },
+  {
+    "kanji": "器",
+    "meaning": "Utensil, Vessel"
+  },
+  {
+    "kanji": "士",
+    "meaning": "Gentleman, Scholar"
+  },
+  {
+    "kanji": "健",
+    "meaning": "Healthy, Health"
+  },
+  {
+    "kanji": "隊",
+    "meaning": "Regiment, Party"
+  },
+  {
+    "kanji": "標",
+    "meaning": "Signpost, Seal"
+  },
+  {
+    "kanji": "司",
+    "meaning": "Director, Official"
+  },
+  {
+    "kanji": "康",
+    "meaning": "Ease, Peace"
+  },
+  {
+    "kanji": "紀",
+    "meaning": "Chronicle, Account"
+  },
+  {
+    "kanji": "博",
+    "meaning": "Dr., Command"
+  },
+  {
+    "kanji": "救",
+    "meaning": "Salvation, Save"
+  },
+  {
+    "kanji": "功",
+    "meaning": "Achievement, Merits"
+  },
+  {
+    "kanji": "養",
+    "meaning": "Foster, Bring Up"
+  },
+  {
+    "kanji": "街",
+    "meaning": "Boulevard, Street"
+  },
+  {
+    "kanji": "節",
+    "meaning": "Node, Season"
+  },
+  {
+    "kanji": "郡",
+    "meaning": "County, District"
+  },
+  {
+    "kanji": "典",
+    "meaning": "Code, Ceremony"
+  },
+  {
+    "kanji": "倉",
+    "meaning": "Godown, Warehouse"
+  },
+  {
+    "kanji": "唱",
+    "meaning": "Chant, Recite"
+  },
+  {
+    "kanji": "旗",
+    "meaning": "National Flag, Banner"
+  },
+  {
+    "kanji": "梅",
+    "meaning": "Plum"
+  },
+  {
+    "kanji": "牧",
+    "meaning": "Breed, Care For"
+  },
+  {
+    "kanji": "泣",
+    "meaning": "Cry, Weep"
+  },
+  {
+    "kanji": "径",
+    "meaning": "Diameter, Path"
+  },
+  {
+    "kanji": "脈",
+    "meaning": "Vein, Pulse"
+  },
+  {
+    "kanji": "鏡",
+    "meaning": "Mirror, Speculum"
+  },
+  {
+    "kanji": "巣",
+    "meaning": "Nest, Rookery"
+  },
+  {
+    "kanji": "芽",
+    "meaning": "Bud, Sprout"
+  },
+  {
+    "kanji": "腸",
+    "meaning": "Intestines, Guts"
   },
   {
     "kanji": "統",
@@ -10,26 +206,6 @@
   {
     "kanji": "保",
     "meaning": "Protect, Guarantee"
-  },
-  {
-    "kanji": "第",
-    "meaning": "No., Residence"
-  },
-  {
-    "kanji": "結",
-    "meaning": "Tie, Bind"
-  },
-  {
-    "kanji": "派",
-    "meaning": "Faction, Group"
-  },
-  {
-    "kanji": "案",
-    "meaning": "Plan, Suggestion"
-  },
-  {
-    "kanji": "策",
-    "meaning": "Scheme, Plan"
   },
   {
     "kanji": "基",
@@ -44,68 +220,24 @@
     "meaning": "Propose, Take Along"
   },
   {
-    "kanji": "挙",
-    "meaning": "Raise, Plan"
-  },
-  {
     "kanji": "応",
     "meaning": "Apply, Answer"
-  },
-  {
-    "kanji": "企",
-    "meaning": "Undertake, Scheme"
   },
   {
     "kanji": "検",
     "meaning": "Examination, Investigate"
   },
   {
-    "kanji": "藤",
-    "meaning": "Wisteria"
-  },
-  {
-    "kanji": "沢",
-    "meaning": "Swamp, Marsh"
-  },
-  {
-    "kanji": "裁",
-    "meaning": "Tailor, Judge"
-  },
-  {
     "kanji": "証",
     "meaning": "Evidence, Proof"
-  },
-  {
-    "kanji": "援",
-    "meaning": "Abet, Help"
-  },
-  {
-    "kanji": "施",
-    "meaning": "Give, Bestow"
-  },
-  {
-    "kanji": "井",
-    "meaning": "Well, Well Crib"
   },
   {
     "kanji": "護",
     "meaning": "Safeguard, Protect"
   },
   {
-    "kanji": "展",
-    "meaning": "Unfold, Expand"
-  },
-  {
     "kanji": "態",
     "meaning": "Attitude, Condition"
-  },
-  {
-    "kanji": "鮮",
-    "meaning": "Fresh, Vivid"
-  },
-  {
-    "kanji": "視",
-    "meaning": "Inspection, Regard As"
   },
   {
     "kanji": "条",
@@ -120,10 +252,6 @@
     "meaning": "Single, Alone"
   },
   {
-    "kanji": "宮",
-    "meaning": "Shinto Shrine…"
-  },
-  {
     "kanji": "率",
     "meaning": "Ratio, Rate"
   },
@@ -136,24 +264,160 @@
     "meaning": "Lengthen, Counter For…"
   },
   {
-    "kanji": "監",
-    "meaning": "Oversee, Official"
-  },
-  {
-    "kanji": "環",
-    "meaning": "Ring, Circle"
-  },
-  {
-    "kanji": "審",
-    "meaning": "Hearing, Judge"
-  },
-  {
     "kanji": "義",
     "meaning": "Righteousness, Justice"
   },
   {
-    "kanji": "訴",
-    "meaning": "Accusation, Sue"
+    "kanji": "評",
+    "meaning": "Evaluate, Criticism"
+  },
+  {
+    "kanji": "製",
+    "meaning": "Made In..., Manufacture"
+  },
+  {
+    "kanji": "授",
+    "meaning": "Impart, Instruct"
+  },
+  {
+    "kanji": "修",
+    "meaning": "Discipline, Conduct…"
+  },
+  {
+    "kanji": "織",
+    "meaning": "Weave, Fabric"
+  },
+  {
+    "kanji": "故",
+    "meaning": "Happenstance, Especially"
+  },
+  {
+    "kanji": "弁",
+    "meaning": "Valve, Petal"
+  },
+  {
+    "kanji": "素",
+    "meaning": "Elementary, Principle"
+  },
+  {
+    "kanji": "益",
+    "meaning": "Benefit, Gain"
+  },
+  {
+    "kanji": "興",
+    "meaning": "Entertain, Revive"
+  },
+  {
+    "kanji": "志",
+    "meaning": "Intention, Plan"
+  },
+  {
+    "kanji": "属",
+    "meaning": "Belong, Genus"
+  },
+  {
+    "kanji": "災",
+    "meaning": "Disaster, Calamity"
+  },
+  {
+    "kanji": "銭",
+    "meaning": "Coin, .01 Yen"
+  },
+  {
+    "kanji": "謝",
+    "meaning": "Apologize, Thank"
+  },
+  {
+    "kanji": "仮",
+    "meaning": "Sham, Temporary"
+  },
+  {
+    "kanji": "賀",
+    "meaning": "Congratulations, Joy"
+  },
+  {
+    "kanji": "徳",
+    "meaning": "Benevolence, Virtue"
+  },
+  {
+    "kanji": "序",
+    "meaning": "Preface, Beginning"
+  },
+  {
+    "kanji": "舎",
+    "meaning": "Cottage, Inn"
+  },
+  {
+    "kanji": "敵",
+    "meaning": "Enemy, Foe"
+  },
+  {
+    "kanji": "酸",
+    "meaning": "Acid, Bitterness"
+  },
+  {
+    "kanji": "桜",
+    "meaning": "Cherry"
+  },
+  {
+    "kanji": "句",
+    "meaning": "Phrase, Clause"
+  },
+  {
+    "kanji": "墓",
+    "meaning": "Grave, Tomb"
+  },
+  {
+    "kanji": "飼",
+    "meaning": "Domesticate, Raise"
+  },
+  {
+    "kanji": "恩",
+    "meaning": "Grace, Kindness"
+  },
+  {
+    "kanji": "往",
+    "meaning": "Journey, Travel"
+  },
+  {
+    "kanji": "肥",
+    "meaning": "Fertilizer, Get Fat"
+  },
+  {
+    "kanji": "俵",
+    "meaning": "Bag, Bale"
+  },
+  {
+    "kanji": "眼",
+    "meaning": "Eyeball"
+  },
+  {
+    "kanji": "潔",
+    "meaning": "Undefiled, Pure"
+  },
+  {
+    "kanji": "舌",
+    "meaning": "Tongue, Reed"
+  },
+  {
+    "kanji": "派",
+    "meaning": "Faction, Group"
+  },
+  {
+    "kanji": "策",
+    "meaning": "Scheme, Plan"
+  },
+  {
+    "kanji": "裁",
+    "meaning": "Tailor, Judge"
+  },
+  {
+    "kanji": "展",
+    "meaning": "Unfold, Expand"
+  },
+  {
+    "kanji": "視",
+    "meaning": "Inspection, Regard As"
   },
   {
     "kanji": "株",
@@ -172,112 +436,20 @@
     "meaning": "Masses, Great Numbers"
   },
   {
-    "kanji": "評",
-    "meaning": "Evaluate, Criticism"
-  },
-  {
-    "kanji": "影",
-    "meaning": "Shadow, Silhouette"
-  },
-  {
-    "kanji": "松",
-    "meaning": "Pine Tree"
-  },
-  {
-    "kanji": "撃",
-    "meaning": "Beat, Attack"
-  },
-  {
-    "kanji": "佐",
-    "meaning": "Assistant, Help"
-  },
-  {
-    "kanji": "核",
-    "meaning": "Nucleus, Core"
-  },
-  {
-    "kanji": "整",
-    "meaning": "Organize, Arranging"
-  },
-  {
-    "kanji": "融",
-    "meaning": "Dissolve, Melt"
-  },
-  {
-    "kanji": "製",
-    "meaning": "Made In..., Manufacture"
-  },
-  {
-    "kanji": "票",
-    "meaning": "Ballot, Label"
-  },
-  {
-    "kanji": "渉",
-    "meaning": "Ford, Go Cross"
-  },
-  {
-    "kanji": "響",
-    "meaning": "Echo, Sound"
-  },
-  {
     "kanji": "推",
     "meaning": "Conjecture, Infer"
-  },
-  {
-    "kanji": "請",
-    "meaning": "Solicit, Invite"
-  },
-  {
-    "kanji": "器",
-    "meaning": "Utensil, Vessel"
-  },
-  {
-    "kanji": "士",
-    "meaning": "Gentleman, Scholar"
   },
   {
     "kanji": "討",
     "meaning": "Chastise, Attack"
   },
   {
-    "kanji": "攻",
-    "meaning": "Aggression, Attack"
-  },
-  {
-    "kanji": "崎",
-    "meaning": "Promontory, Cape"
-  },
-  {
-    "kanji": "督",
-    "meaning": "Coach, Command"
-  },
-  {
-    "kanji": "授",
-    "meaning": "Impart, Instruct"
-  },
-  {
-    "kanji": "催",
-    "meaning": "Sponsor, Hold (a Meeting)"
-  },
-  {
-    "kanji": "及",
-    "meaning": "Reach Out, Exert"
-  },
-  {
     "kanji": "憲",
     "meaning": "Constitution, Law"
   },
   {
-    "kanji": "離",
-    "meaning": "Detach, Separation"
-  },
-  {
     "kanji": "激",
     "meaning": "Violent, Get Excited"
-  },
-  {
-    "kanji": "摘",
-    "meaning": "Pinch, Pick"
   },
   {
     "kanji": "系",
@@ -288,14 +460,6 @@
     "meaning": "Criticism, Strike"
   },
   {
-    "kanji": "郎",
-    "meaning": "Son, Counter For Sons"
-  },
-  {
-    "kanji": "健",
-    "meaning": "Healthy, Health"
-  },
-  {
     "kanji": "盟",
     "meaning": "Alliance, Oath"
   },
@@ -304,32 +468,8 @@
     "meaning": "Accompany, Obey"
   },
   {
-    "kanji": "修",
-    "meaning": "Discipline, Conduct…"
-  },
-  {
-    "kanji": "隊",
-    "meaning": "Regiment, Party"
-  },
-  {
-    "kanji": "織",
-    "meaning": "Weave, Fabric"
-  },
-  {
     "kanji": "拡",
     "meaning": "Broaden, Extend"
-  },
-  {
-    "kanji": "故",
-    "meaning": "Happenstance, Especially"
-  },
-  {
-    "kanji": "振",
-    "meaning": "Shake, Wave"
-  },
-  {
-    "kanji": "弁",
-    "meaning": "Valve, Petal"
   },
   {
     "kanji": "就",
@@ -340,92 +480,20 @@
     "meaning": "Uncommon, Different"
   },
   {
-    "kanji": "献",
-    "meaning": "Offering, Counter For…"
-  },
-  {
     "kanji": "厳",
     "meaning": "Stern, Strictness"
-  },
-  {
-    "kanji": "維",
-    "meaning": "Fiber, Tie"
-  },
-  {
-    "kanji": "浜",
-    "meaning": "Seacoast, Beach"
   },
   {
     "kanji": "遺",
     "meaning": "Bequeath, Leave Behind"
   },
   {
-    "kanji": "塁",
-    "meaning": "Bases, Fort"
-  },
-  {
-    "kanji": "邦",
-    "meaning": "Home Country, Country"
-  },
-  {
-    "kanji": "素",
-    "meaning": "Elementary, Principle"
-  },
-  {
-    "kanji": "遣",
-    "meaning": "Dispatch, Despatch"
-  },
-  {
-    "kanji": "抗",
-    "meaning": "Confront, Resist"
-  },
-  {
     "kanji": "模",
     "meaning": "Imitation, Copy"
   },
   {
-    "kanji": "雄",
-    "meaning": "Masculine, Male"
-  },
-  {
-    "kanji": "益",
-    "meaning": "Benefit, Gain"
-  },
-  {
-    "kanji": "緊",
-    "meaning": "Tense, Solid"
-  },
-  {
-    "kanji": "標",
-    "meaning": "Signpost, Seal"
-  },
-  {
     "kanji": "宣",
     "meaning": "Proclaim, Say"
-  },
-  {
-    "kanji": "昭",
-    "meaning": "Shining, Bright"
-  },
-  {
-    "kanji": "廃",
-    "meaning": "Abolish, Obsolete"
-  },
-  {
-    "kanji": "伊",
-    "meaning": "Italy, That One"
-  },
-  {
-    "kanji": "江",
-    "meaning": "Creek, Inlet"
-  },
-  {
-    "kanji": "僚",
-    "meaning": "Colleague, Official"
-  },
-  {
-    "kanji": "吉",
-    "meaning": "Good Luck, Joy"
   },
   {
     "kanji": "盛",
@@ -440,6 +508,390 @@
     "meaning": "Look To, Face"
   },
   {
+    "kanji": "源",
+    "meaning": "Source, Origin"
+  },
+  {
+    "kanji": "創",
+    "meaning": "Genesis, Wound"
+  },
+  {
+    "kanji": "障",
+    "meaning": "Hinder, Hurt"
+  },
+  {
+    "kanji": "筋",
+    "meaning": "Muscle, Sinew"
+  },
+  {
+    "kanji": "善",
+    "meaning": "Virtuous, Good"
+  },
+  {
+    "kanji": "密",
+    "meaning": "Secrecy, Density (pop)"
+  },
+  {
+    "kanji": "我",
+    "meaning": "Ego, I"
+  },
+  {
+    "kanji": "幕",
+    "meaning": "Curtain, Bunting"
+  },
+  {
+    "kanji": "染",
+    "meaning": "Dye, Color"
+  },
+  {
+    "kanji": "傷",
+    "meaning": "Wound, Hurt"
+  },
+  {
+    "kanji": "秘",
+    "meaning": "Secret, Conceal"
+  },
+  {
+    "kanji": "縮",
+    "meaning": "Shrink, Contract"
+  },
+  {
+    "kanji": "射",
+    "meaning": "Shoot, Shine Into"
+  },
+  {
+    "kanji": "揮",
+    "meaning": "Brandish, Wave"
+  },
+  {
+    "kanji": "賃",
+    "meaning": "Fare, Fee"
+  },
+  {
+    "kanji": "貴",
+    "meaning": "Precious, Value"
+  },
+  {
+    "kanji": "納",
+    "meaning": "Settlement, Obtain"
+  },
+  {
+    "kanji": "樹",
+    "meaning": "Timber, Trees"
+  },
+  {
+    "kanji": "至",
+    "meaning": "Climax, Arrive"
+  },
+  {
+    "kanji": "宗",
+    "meaning": "Religion, Sect"
+  },
+  {
+    "kanji": "宙",
+    "meaning": "Mid-air, Air"
+  },
+  {
+    "kanji": "操",
+    "meaning": "Maneuver, Manipulate"
+  },
+  {
+    "kanji": "誕",
+    "meaning": "Nativity, Be Born"
+  },
+  {
+    "kanji": "訳",
+    "meaning": "Translate, Reason"
+  },
+  {
+    "kanji": "看",
+    "meaning": "Watch Over, See"
+  },
+  {
+    "kanji": "奏",
+    "meaning": "Play Music, Speak To A…"
+  },
+  {
+    "kanji": "郷",
+    "meaning": "Home Town, Village"
+  },
+  {
+    "kanji": "己",
+    "meaning": "Self"
+  },
+  {
+    "kanji": "忠",
+    "meaning": "Loyalty, Fidelity"
+  },
+  {
+    "kanji": "沿",
+    "meaning": "Run Alongside, Follow…"
+  },
+  {
+    "kanji": "誠",
+    "meaning": "Sincerity, Admonish"
+  },
+  {
+    "kanji": "俳",
+    "meaning": "Haiku, Actor"
+  },
+  {
+    "kanji": "聖",
+    "meaning": "Holy, Saint"
+  },
+  {
+    "kanji": "潮",
+    "meaning": "Tide, Salt Water"
+  },
+  {
+    "kanji": "鋼",
+    "meaning": "Steel"
+  },
+  {
+    "kanji": "縦",
+    "meaning": "Vertical, Length"
+  },
+  {
+    "kanji": "仁",
+    "meaning": "Humanity, Virtue"
+  },
+  {
+    "kanji": "穴",
+    "meaning": "Hole, Aperture"
+  },
+  {
+    "kanji": "暖",
+    "meaning": "Warmth"
+  },
+  {
+    "kanji": "朗",
+    "meaning": "Melodious, Clear"
+  },
+  {
+    "kanji": "肺",
+    "meaning": "Lungs"
+  },
+  {
+    "kanji": "熟",
+    "meaning": "Mellow, Ripen"
+  },
+  {
+    "kanji": "陛",
+    "meaning": "Highness, Steps (of…"
+  },
+  {
+    "kanji": "糖",
+    "meaning": "Sugar"
+  },
+  {
+    "kanji": "覧",
+    "meaning": "Perusal, See"
+  },
+  {
+    "kanji": "奮",
+    "meaning": "Stirred Up, Be Invigorated"
+  },
+  {
+    "kanji": "后",
+    "meaning": "Empress, Queen"
+  },
+  {
+    "kanji": "班",
+    "meaning": "Squad, Corps"
+  },
+  {
+    "kanji": "寸",
+    "meaning": "Measurement, Tenth Of A…"
+  },
+  {
+    "kanji": "磁",
+    "meaning": "Magnet, Porcelain"
+  },
+  {
+    "kanji": "垂",
+    "meaning": "Droop, Suspend"
+  },
+  {
+    "kanji": "穀",
+    "meaning": "Cereals, Grain"
+  },
+  {
+    "kanji": "絹",
+    "meaning": "Silk"
+  },
+  {
+    "kanji": "尺",
+    "meaning": "Shaku, Japanese Foot"
+  },
+  {
+    "kanji": "蚕",
+    "meaning": "Silkworm"
+  },
+  {
+    "kanji": "企",
+    "meaning": "Undertake, Scheme"
+  },
+  {
+    "kanji": "藤",
+    "meaning": "Wisteria"
+  },
+  {
+    "kanji": "沢",
+    "meaning": "Swamp, Marsh"
+  },
+  {
+    "kanji": "援",
+    "meaning": "Abet, Help"
+  },
+  {
+    "kanji": "施",
+    "meaning": "Give, Bestow"
+  },
+  {
+    "kanji": "井",
+    "meaning": "Well, Well Crib"
+  },
+  {
+    "kanji": "鮮",
+    "meaning": "Fresh, Vivid"
+  },
+  {
+    "kanji": "監",
+    "meaning": "Oversee, Official"
+  },
+  {
+    "kanji": "環",
+    "meaning": "Ring, Circle"
+  },
+  {
+    "kanji": "審",
+    "meaning": "Hearing, Judge"
+  },
+  {
+    "kanji": "訴",
+    "meaning": "Accusation, Sue"
+  },
+  {
+    "kanji": "影",
+    "meaning": "Shadow, Silhouette"
+  },
+  {
+    "kanji": "撃",
+    "meaning": "Beat, Attack"
+  },
+  {
+    "kanji": "佐",
+    "meaning": "Assistant, Help"
+  },
+  {
+    "kanji": "核",
+    "meaning": "Nucleus, Core"
+  },
+  {
+    "kanji": "融",
+    "meaning": "Dissolve, Melt"
+  },
+  {
+    "kanji": "渉",
+    "meaning": "Ford, Go Cross"
+  },
+  {
+    "kanji": "響",
+    "meaning": "Echo, Sound"
+  },
+  {
+    "kanji": "請",
+    "meaning": "Solicit, Invite"
+  },
+  {
+    "kanji": "攻",
+    "meaning": "Aggression, Attack"
+  },
+  {
+    "kanji": "崎",
+    "meaning": "Promontory, Cape"
+  },
+  {
+    "kanji": "督",
+    "meaning": "Coach, Command"
+  },
+  {
+    "kanji": "催",
+    "meaning": "Sponsor, Hold (a Meeting)"
+  },
+  {
+    "kanji": "及",
+    "meaning": "Reach Out, Exert"
+  },
+  {
+    "kanji": "離",
+    "meaning": "Detach, Separation"
+  },
+  {
+    "kanji": "摘",
+    "meaning": "Pinch, Pick"
+  },
+  {
+    "kanji": "郎",
+    "meaning": "Son, Counter For Sons"
+  },
+  {
+    "kanji": "振",
+    "meaning": "Shake, Wave"
+  },
+  {
+    "kanji": "献",
+    "meaning": "Offering, Counter For…"
+  },
+  {
+    "kanji": "維",
+    "meaning": "Fiber, Tie"
+  },
+  {
+    "kanji": "浜",
+    "meaning": "Seacoast, Beach"
+  },
+  {
+    "kanji": "塁",
+    "meaning": "Bases, Fort"
+  },
+  {
+    "kanji": "邦",
+    "meaning": "Home Country, Country"
+  },
+  {
+    "kanji": "遣",
+    "meaning": "Dispatch, Despatch"
+  },
+  {
+    "kanji": "抗",
+    "meaning": "Confront, Resist"
+  },
+  {
+    "kanji": "雄",
+    "meaning": "Masculine, Male"
+  },
+  {
+    "kanji": "緊",
+    "meaning": "Tense, Solid"
+  },
+  {
+    "kanji": "廃",
+    "meaning": "Abolish, Obsolete"
+  },
+  {
+    "kanji": "江",
+    "meaning": "Creek, Inlet"
+  },
+  {
+    "kanji": "僚",
+    "meaning": "Colleague, Official"
+  },
+  {
+    "kanji": "吉",
+    "meaning": "Good Luck, Joy"
+  },
+  {
     "kanji": "踏",
     "meaning": "Step, Trample"
   },
@@ -452,32 +904,12 @@
     "meaning": "Bond, Loan"
   },
   {
-    "kanji": "興",
-    "meaning": "Entertain, Revive"
-  },
-  {
-    "kanji": "源",
-    "meaning": "Source, Origin"
-  },
-  {
     "kanji": "儀",
     "meaning": "Ceremony, Rule"
   },
   {
-    "kanji": "創",
-    "meaning": "Genesis, Wound"
-  },
-  {
-    "kanji": "障",
-    "meaning": "Hinder, Hurt"
-  },
-  {
     "kanji": "継",
     "meaning": "Inherit, Succeed"
-  },
-  {
-    "kanji": "筋",
-    "meaning": "Muscle, Sinew"
   },
   {
     "kanji": "闘",
@@ -490,18 +922,6 @@
   {
     "kanji": "避",
     "meaning": "Evade, Avoid"
-  },
-  {
-    "kanji": "司",
-    "meaning": "Director, Official"
-  },
-  {
-    "kanji": "康",
-    "meaning": "Ease, Peace"
-  },
-  {
-    "kanji": "善",
-    "meaning": "Virtuous, Good"
   },
   {
     "kanji": "逮",
@@ -520,10 +940,6 @@
     "meaning": "Crumble, Die"
   },
   {
-    "kanji": "紀",
-    "meaning": "Chronicle, Account"
-  },
-  {
     "kanji": "聴",
     "meaning": "Listen, Headstrong"
   },
@@ -532,20 +948,8 @@
     "meaning": "Undress, Removing"
   },
   {
-    "kanji": "級",
-    "meaning": "Class, Rank"
-  },
-  {
-    "kanji": "博",
-    "meaning": "Dr., Command"
-  },
-  {
     "kanji": "締",
     "meaning": "Tighten, Tie"
-  },
-  {
-    "kanji": "救",
-    "meaning": "Salvation, Save"
   },
   {
     "kanji": "執",
@@ -564,16 +968,8 @@
     "meaning": "Plane, Sharpen"
   },
   {
-    "kanji": "密",
-    "meaning": "Secrecy, Density (pop)"
-  },
-  {
     "kanji": "措",
     "meaning": "Set Aside, Give Up"
-  },
-  {
-    "kanji": "志",
-    "meaning": "Intention, Plan"
   },
   {
     "kanji": "載",
@@ -584,10 +980,6 @@
     "meaning": "Camp, Battle Array"
   },
   {
-    "kanji": "我",
-    "meaning": "Ego, I"
-  },
-  {
     "kanji": "為",
     "meaning": "Do, Change"
   },
@@ -596,20 +988,8 @@
     "meaning": "Repress, Well"
   },
   {
-    "kanji": "幕",
-    "meaning": "Curtain, Bunting"
-  },
-  {
-    "kanji": "染",
-    "meaning": "Dye, Color"
-  },
-  {
     "kanji": "奈",
     "meaning": "Nara, What?"
-  },
-  {
-    "kanji": "傷",
-    "meaning": "Wound, Hurt"
   },
   {
     "kanji": "択",
@@ -632,16 +1012,8 @@
     "meaning": "Reparation, Make Up For"
   },
   {
-    "kanji": "功",
-    "meaning": "Achievement, Merits"
-  },
-  {
     "kanji": "拠",
     "meaning": "Foothold, Based On"
-  },
-  {
-    "kanji": "秘",
-    "meaning": "Secret, Conceal"
   },
   {
     "kanji": "拒",
@@ -692,16 +1064,8 @@
     "meaning": "Consort, Accompany"
   },
   {
-    "kanji": "養",
-    "meaning": "Foster, Bring Up"
-  },
-  {
     "kanji": "懸",
     "meaning": "State Of Suspension, Hang"
-  },
-  {
-    "kanji": "街",
-    "meaning": "Boulevard, Street"
   },
   {
     "kanji": "契",
@@ -724,16 +1088,8 @@
     "meaning": "Residence, Mansion"
   },
   {
-    "kanji": "縮",
-    "meaning": "Shrink, Contract"
-  },
-  {
     "kanji": "還",
     "meaning": "Send Back, Return"
-  },
-  {
-    "kanji": "属",
-    "meaning": "Belong, Genus"
   },
   {
     "kanji": "慮",
@@ -760,24 +1116,12 @@
     "meaning": "Slacken, Loosen"
   },
   {
-    "kanji": "節",
-    "meaning": "Node, Season"
-  },
-  {
     "kanji": "需",
     "meaning": "Demand, Request"
   },
   {
-    "kanji": "射",
-    "meaning": "Shoot, Shine Into"
-  },
-  {
     "kanji": "購",
     "meaning": "Subscription, Buy"
-  },
-  {
-    "kanji": "揮",
-    "meaning": "Brandish, Wave"
   },
   {
     "kanji": "充",
@@ -800,16 +1144,8 @@
     "meaning": "Edge, Origin"
   },
   {
-    "kanji": "賃",
-    "meaning": "Fare, Fee"
-  },
-  {
     "kanji": "獲",
     "meaning": "Seize, Get"
-  },
-  {
-    "kanji": "郡",
-    "meaning": "County, District"
   },
   {
     "kanji": "併",
@@ -818,10 +1154,6 @@
   {
     "kanji": "徹",
     "meaning": "Penetrate, Clear"
-  },
-  {
-    "kanji": "貴",
-    "meaning": "Precious, Value"
   },
   {
     "kanji": "衝",
@@ -834,10 +1166,6 @@
   {
     "kanji": "奪",
     "meaning": "Rob, Take By Force"
-  },
-  {
-    "kanji": "災",
-    "meaning": "Disaster, Calamity"
   },
   {
     "kanji": "浦",
@@ -856,14 +1184,6 @@
     "meaning": "Appellation, Praise"
   },
   {
-    "kanji": "納",
-    "meaning": "Settlement, Obtain"
-  },
-  {
-    "kanji": "樹",
-    "meaning": "Timber, Trees"
-  },
-  {
     "kanji": "挑",
     "meaning": "Challenge, Contend For"
   },
@@ -874,14 +1194,6 @@
   {
     "kanji": "紛",
     "meaning": "Distract, Be Mistaken For"
-  },
-  {
-    "kanji": "至",
-    "meaning": "Climax, Arrive"
-  },
-  {
-    "kanji": "宗",
-    "meaning": "Religion, Sect"
   },
   {
     "kanji": "促",
@@ -896,24 +1208,12 @@
     "meaning": "Withdraw, Draw In"
   },
   {
-    "kanji": "智",
-    "meaning": "Wisdom, Intellect"
-  },
-  {
     "kanji": "握",
     "meaning": "Grip, Hold"
   },
   {
-    "kanji": "宙",
-    "meaning": "Mid-air, Air"
-  },
-  {
     "kanji": "俊",
     "meaning": "Sagacious, Genius"
-  },
-  {
-    "kanji": "銭",
-    "meaning": "Coin, .01 Yen"
   },
   {
     "kanji": "渋",
@@ -922,10 +1222,6 @@
   {
     "kanji": "銃",
     "meaning": "Gun, Arms"
-  },
-  {
-    "kanji": "操",
-    "meaning": "Maneuver, Manipulate"
   },
   {
     "kanji": "携",
@@ -944,20 +1240,12 @@
     "meaning": "Snapshot, Take Pictures"
   },
   {
-    "kanji": "誕",
-    "meaning": "Nativity, Be Born"
-  },
-  {
     "kanji": "侵",
     "meaning": "Encroach, Invade"
   },
   {
     "kanji": "括",
     "meaning": "Fasten, Tie Up"
-  },
-  {
-    "kanji": "謝",
-    "meaning": "Apologize, Thank"
   },
   {
     "kanji": "駆",
@@ -978,10 +1266,6 @@
   {
     "kanji": "稲",
     "meaning": "Rice Plant"
-  },
-  {
-    "kanji": "仮",
-    "meaning": "Sham, Temporary"
   },
   {
     "kanji": "裂",
@@ -1008,10 +1292,6 @@
     "meaning": "Strict, Hard"
   },
   {
-    "kanji": "訳",
-    "meaning": "Translate, Reason"
-  },
-  {
     "kanji": "芝",
     "meaning": "Turf, Lawn"
   },
@@ -1020,28 +1300,12 @@
     "meaning": "Hawser, Class (genus)"
   },
   {
-    "kanji": "典",
-    "meaning": "Code, Ceremony"
-  },
-  {
-    "kanji": "賀",
-    "meaning": "Congratulations, Joy"
-  },
-  {
     "kanji": "扱",
     "meaning": "Handle, Entertain"
   },
   {
     "kanji": "顧",
     "meaning": "Look Back, Review"
-  },
-  {
-    "kanji": "弘",
-    "meaning": "Vast, Broad"
-  },
-  {
-    "kanji": "看",
-    "meaning": "Watch Over, See"
   },
   {
     "kanji": "訟",
@@ -1064,10 +1328,6 @@
     "meaning": "Delight, Joy"
   },
   {
-    "kanji": "奏",
-    "meaning": "Play Music, Speak To A…"
-  },
-  {
     "kanji": "勧",
     "meaning": "Persuade, Recommend"
   },
@@ -1086,10 +1346,6 @@
   {
     "kanji": "縄",
     "meaning": "Straw Rope, Cord"
-  },
-  {
-    "kanji": "郷",
-    "meaning": "Home Town, Village"
   },
   {
     "kanji": "揺",
@@ -1124,10 +1380,6 @@
     "meaning": "Conceal, Hide"
   },
   {
-    "kanji": "徳",
-    "meaning": "Benevolence, Virtue"
-  },
-  {
     "kanji": "哲",
     "meaning": "Philosophy, Clear"
   },
@@ -1138,10 +1390,6 @@
   {
     "kanji": "釈",
     "meaning": "Explanation"
-  },
-  {
-    "kanji": "己",
-    "meaning": "Self"
   },
   {
     "kanji": "妥",
@@ -1180,18 +1428,6 @@
     "meaning": "Temporarily, A While"
   },
   {
-    "kanji": "忠",
-    "meaning": "Loyalty, Fidelity"
-  },
-  {
-    "kanji": "倉",
-    "meaning": "Godown, Warehouse"
-  },
-  {
-    "kanji": "彦",
-    "meaning": "Lad, Boy (ancient)"
-  },
-  {
     "kanji": "肝",
     "meaning": "Liver, Pluck"
   },
@@ -1200,28 +1436,12 @@
     "meaning": "Yell, Cry"
   },
   {
-    "kanji": "沿",
-    "meaning": "Run Alongside, Follow…"
-  },
-  {
     "kanji": "妙",
     "meaning": "Exquisite, Strange"
   },
   {
-    "kanji": "唱",
-    "meaning": "Chant, Recite"
-  },
-  {
-    "kanji": "阿",
-    "meaning": "Africa, Flatter"
-  },
-  {
     "kanji": "索",
     "meaning": "Cord, Rope"
-  },
-  {
-    "kanji": "誠",
-    "meaning": "Sincerity, Admonish"
   },
   {
     "kanji": "襲",
@@ -1230,10 +1450,6 @@
   {
     "kanji": "懇",
     "meaning": "Sociable, Kind"
-  },
-  {
-    "kanji": "俳",
-    "meaning": "Haiku, Actor"
   },
   {
     "kanji": "柄",
@@ -1246,14 +1462,6 @@
   {
     "kanji": "麻",
     "meaning": "Hemp, Flax"
-  },
-  {
-    "kanji": "李",
-    "meaning": "Plum"
-  },
-  {
-    "kanji": "浩",
-    "meaning": "Wide Expanse, Abundance"
   },
   {
     "kanji": "剤",
@@ -1288,20 +1496,12 @@
     "meaning": "Consolation, Amusement"
   },
   {
-    "kanji": "序",
-    "meaning": "Preface, Beginning"
-  },
-  {
     "kanji": "旬",
     "meaning": "Decameron, Ten-day Period"
   },
   {
     "kanji": "兼",
     "meaning": "Concurrently, And"
-  },
-  {
-    "kanji": "聖",
-    "meaning": "Holy, Saint"
   },
   {
     "kanji": "旨",
@@ -1314,10 +1514,6 @@
   {
     "kanji": "柳",
     "meaning": "Willow"
-  },
-  {
-    "kanji": "舎",
-    "meaning": "Cottage, Inn"
   },
   {
     "kanji": "偽",
@@ -1352,10 +1548,6 @@
     "meaning": "Sacrifice"
   },
   {
-    "kanji": "旗",
-    "meaning": "National Flag, Banner"
-  },
-  {
     "kanji": "距",
     "meaning": "Long-distance, Spur"
   },
@@ -1376,10 +1568,6 @@
     "meaning": "Dragon, Imperial"
   },
   {
-    "kanji": "詩",
-    "meaning": "Poem, Poetry"
-  },
-  {
     "kanji": "繁",
     "meaning": "Luxuriant, Thick"
   },
@@ -1390,10 +1578,6 @@
   {
     "kanji": "潟",
     "meaning": "Lagoon"
-  },
-  {
-    "kanji": "敵",
-    "meaning": "Enemy, Foe"
   },
   {
     "kanji": "魅",
@@ -1420,10 +1604,6 @@
     "meaning": "Sphere, Circle"
   },
   {
-    "kanji": "酸",
-    "meaning": "Acid, Bitterness"
-  },
-  {
     "kanji": "罰",
     "meaning": "Penalty, Punishment"
   },
@@ -1444,24 +1624,12 @@
     "meaning": "Skids, Leg"
   },
   {
-    "kanji": "潮",
-    "meaning": "Tide, Salt Water"
-  },
-  {
-    "kanji": "梅",
-    "meaning": "Plum"
-  },
-  {
     "kanji": "尽",
     "meaning": "Exhaust, Use Up"
   },
   {
     "kanji": "僕",
     "meaning": "Me, I (male)"
-  },
-  {
-    "kanji": "桜",
-    "meaning": "Cherry"
   },
   {
     "kanji": "滑",
@@ -1478,14 +1646,6 @@
   {
     "kanji": "賠",
     "meaning": "Compensation, Indemnify"
-  },
-  {
-    "kanji": "句",
-    "meaning": "Phrase, Clause"
-  },
-  {
-    "kanji": "鋼",
-    "meaning": "Steel"
   },
   {
     "kanji": "頑",
@@ -1506,10 +1666,6 @@
   {
     "kanji": "励",
     "meaning": "Encourage, Be Diligent"
-  },
-  {
-    "kanji": "縦",
-    "meaning": "Vertical, Length"
   },
   {
     "kanji": "輝",
@@ -1564,10 +1720,6 @@
     "meaning": "Sovereign, The Emperor"
   },
   {
-    "kanji": "宏",
-    "meaning": "Wide, Large"
-  },
-  {
     "kanji": "唆",
     "meaning": "Tempt, Seduce"
   },
@@ -1612,10 +1764,6 @@
     "meaning": "Swell, Get Fat"
   },
   {
-    "kanji": "矢",
-    "meaning": "Dart, Arrow"
-  },
-  {
     "kanji": "耐",
     "meaning": "-proof, Enduring"
   },
@@ -1656,10 +1804,6 @@
     "meaning": "Chess Piece, Japanese…"
   },
   {
-    "kanji": "丁",
-    "meaning": "Street, Ward"
-  },
-  {
     "kanji": "恒",
     "meaning": "Constancy, Always"
   },
@@ -1670,10 +1814,6 @@
   {
     "kanji": "冒",
     "meaning": "Risk, Face"
-  },
-  {
-    "kanji": "之",
-    "meaning": "Of, This"
   },
   {
     "kanji": "倫",
@@ -1696,10 +1836,6 @@
     "meaning": "Pear Tree"
   },
   {
-    "kanji": "仁",
-    "meaning": "Humanity, Virtue"
-  },
-  {
     "kanji": "克",
     "meaning": "Overcome, Kindly"
   },
@@ -1714,10 +1850,6 @@
   {
     "kanji": "拘",
     "meaning": "Arrest, Seize"
-  },
-  {
-    "kanji": "墓",
-    "meaning": "Grave, Tomb"
   },
   {
     "kanji": "黙",
@@ -1768,10 +1900,6 @@
     "meaning": "Hearth, Furnace"
   },
   {
-    "kanji": "牧",
-    "meaning": "Breed, Care For"
-  },
-  {
     "kanji": "殊",
     "meaning": "Particularly, Especially"
   },
@@ -1786,10 +1914,6 @@
   {
     "kanji": "輩",
     "meaning": "Comrade, Fellow"
-  },
-  {
-    "kanji": "穴",
-    "meaning": "Hole, Aperture"
   },
   {
     "kanji": "奇",
@@ -1808,20 +1932,8 @@
     "meaning": "Conspire, Cheat"
   },
   {
-    "kanji": "暖",
-    "meaning": "Warmth"
-  },
-  {
-    "kanji": "昌",
-    "meaning": "Prosperous, Bright"
-  },
-  {
     "kanji": "拍",
     "meaning": "Clap, Beat (music)"
-  },
-  {
-    "kanji": "朗",
-    "meaning": "Melodious, Clear"
   },
   {
     "kanji": "寛",
@@ -1834,10 +1946,6 @@
   {
     "kanji": "胞",
     "meaning": "Placenta, Sac"
-  },
-  {
-    "kanji": "泣",
-    "meaning": "Cry, Weep"
   },
   {
     "kanji": "隔",
@@ -1856,24 +1964,12 @@
     "meaning": "Spare Time, Rest"
   },
   {
-    "kanji": "肺",
-    "meaning": "Lungs"
-  },
-  {
     "kanji": "貞",
     "meaning": "Upright, Chastity"
   },
   {
-    "kanji": "靖",
-    "meaning": "Peaceful"
-  },
-  {
     "kanji": "鑑",
     "meaning": "Specimen, Take Warning…"
-  },
-  {
-    "kanji": "飼",
-    "meaning": "Domesticate, Raise"
   },
   {
     "kanji": "陰",
@@ -1906,10 +2002,6 @@
   {
     "kanji": "啓",
     "meaning": "Disclose, Open"
-  },
-  {
-    "kanji": "也",
-    "meaning": "To Be (classical)"
   },
   {
     "kanji": "丘",
@@ -1948,28 +2040,8 @@
     "meaning": "Pregnancy"
   },
   {
-    "kanji": "熟",
-    "meaning": "Mellow, Ripen"
-  },
-  {
-    "kanji": "旭",
-    "meaning": "Rising Sun, Morning Sun"
-  },
-  {
-    "kanji": "恩",
-    "meaning": "Grace, Kindness"
-  },
-  {
     "kanji": "騰",
     "meaning": "Leaping Up, Jumping Up"
-  },
-  {
-    "kanji": "往",
-    "meaning": "Journey, Travel"
-  },
-  {
-    "kanji": "豆",
-    "meaning": "Beans, Pea"
   },
   {
     "kanji": "遂",
@@ -1982,10 +2054,6 @@
   {
     "kanji": "岐",
     "meaning": "Branch Off, Fork In Road"
-  },
-  {
-    "kanji": "陛",
-    "meaning": "Highness, Steps (of…"
   },
   {
     "kanji": "緯",
@@ -2006,10 +2074,6 @@
   {
     "kanji": "屈",
     "meaning": "Yield, Bend"
-  },
-  {
-    "kanji": "径",
-    "meaning": "Diameter, Path"
   },
   {
     "kanji": "淡",
@@ -2034,14 +2098,6 @@
   {
     "kanji": "准",
     "meaning": "Quasi-, Semi-"
-  },
-  {
-    "kanji": "暑",
-    "meaning": "Sultry, Hot"
-  },
-  {
-    "kanji": "磯",
-    "meaning": "Seashore, Beach"
   },
   {
     "kanji": "奨",
@@ -2076,10 +2132,6 @@
     "meaning": "Spirits, Soul"
   },
   {
-    "kanji": "帳",
-    "meaning": "Notebook, Account Book"
-  },
-  {
     "kanji": "悔",
     "meaning": "Repent, Regret"
   },
@@ -2112,16 +2164,8 @@
     "meaning": "Set, Lay A Foundation"
   },
   {
-    "kanji": "肥",
-    "meaning": "Fertilizer, Get Fat"
-  },
-  {
     "kanji": "徐",
     "meaning": "Gradually, Slowly"
-  },
-  {
-    "kanji": "糖",
-    "meaning": "Sugar"
   },
   {
     "kanji": "搭",
@@ -2132,20 +2176,12 @@
     "meaning": "Shield, Escutcheon"
   },
   {
-    "kanji": "脈",
-    "meaning": "Vein, Pulse"
-  },
-  {
     "kanji": "滝",
     "meaning": "Waterfall, Rapids"
   },
   {
     "kanji": "軌",
     "meaning": "Rut, Wheel"
-  },
-  {
-    "kanji": "俵",
-    "meaning": "Bag, Bale"
   },
   {
     "kanji": "妨",
@@ -2208,24 +2244,12 @@
     "meaning": "Diagonal, Slanting"
   },
   {
-    "kanji": "鏡",
-    "meaning": "Mirror, Speculum"
-  },
-  {
-    "kanji": "聡",
-    "meaning": "Wise, Fast Learner"
-  },
-  {
     "kanji": "浪",
     "meaning": "Wandering, Waves"
   },
   {
     "kanji": "亜",
     "meaning": "Asia, Rank Next"
-  },
-  {
-    "kanji": "覧",
-    "meaning": "Perusal, See"
   },
   {
     "kanji": "詐",
@@ -2252,20 +2276,12 @@
     "meaning": "Purple, Violet"
   },
   {
-    "kanji": "曙",
-    "meaning": "Dawn, Daybreak"
-  },
-  {
     "kanji": "紋",
     "meaning": "Family Crest, Figures"
   },
   {
     "kanji": "卸",
     "meaning": "Wholesale"
-  },
-  {
-    "kanji": "奮",
-    "meaning": "Stirred Up, Be Invigorated"
   },
   {
     "kanji": "欄",
@@ -2282,10 +2298,6 @@
   {
     "kanji": "拓",
     "meaning": "Clear (the Land), Open"
-  },
-  {
-    "kanji": "眼",
-    "meaning": "Eyeball"
   },
   {
     "kanji": "獄",
@@ -2328,24 +2340,12 @@
     "meaning": "Angling, Fish"
   },
   {
-    "kanji": "萩",
-    "meaning": "Bush Clover"
-  },
-  {
     "kanji": "粛",
     "meaning": "Solemn, Quietly"
   },
   {
-    "kanji": "栗",
-    "meaning": "Chestnut"
-  },
-  {
     "kanji": "愚",
     "meaning": "Foolish, Folly"
-  },
-  {
-    "kanji": "嘉",
-    "meaning": "Applaud, Praise"
   },
   {
     "kanji": "遭",
@@ -2436,10 +2436,6 @@
     "meaning": "Self-effacing, Humble…"
   },
   {
-    "kanji": "后",
-    "meaning": "Empress, Queen"
-  },
-  {
     "kanji": "嘆",
     "meaning": "Sigh, Lament"
   },
@@ -2452,10 +2448,6 @@
     "meaning": "Sickle, Scythe"
   },
   {
-    "kanji": "巣",
-    "meaning": "Nest, Rookery"
-  },
-  {
     "kanji": "頻",
     "meaning": "Repeatedly, Recur"
   },
@@ -2464,16 +2456,8 @@
     "meaning": "Harp, Koto"
   },
   {
-    "kanji": "班",
-    "meaning": "Squad, Corps"
-  },
-  {
     "kanji": "棚",
     "meaning": "Shelf, Ledge"
-  },
-  {
-    "kanji": "潔",
-    "meaning": "Undefiled, Pure"
   },
   {
     "kanji": "酷",
@@ -2490,14 +2474,6 @@
   {
     "kanji": "寂",
     "meaning": "Loneliness, Quietly"
-  },
-  {
-    "kanji": "辰",
-    "meaning": "Sign Of The Dragon, Fifth…"
-  },
-  {
-    "kanji": "霞",
-    "meaning": "Be Hazy, Grow Dim"
   },
   {
     "kanji": "伏",
@@ -2572,16 +2548,8 @@
     "meaning": "Pavilion, Restaurant"
   },
   {
-    "kanji": "淳",
-    "meaning": "Pure"
-  },
-  {
     "kanji": "怪",
     "meaning": "Suspicious, Mystery"
-  },
-  {
-    "kanji": "鳩",
-    "meaning": "Pigeon, Dove"
   },
   {
     "kanji": "酔",
@@ -2624,10 +2592,6 @@
     "meaning": "Mulberry"
   },
   {
-    "kanji": "桂",
-    "meaning": "Japanese Judas-tree…"
-  },
-  {
     "kanji": "髄",
     "meaning": "Marrow, Pith"
   },
@@ -2638,10 +2602,6 @@
   {
     "kanji": "盆",
     "meaning": "Basin, Lantern Festival"
-  },
-  {
-    "kanji": "晋",
-    "meaning": "Advance"
   },
   {
     "kanji": "穂",
@@ -2680,20 +2640,8 @@
     "meaning": "Conveyor, Carry"
   },
   {
-    "kanji": "晃",
-    "meaning": "Clear"
-  },
-  {
     "kanji": "癒",
     "meaning": "Healing, Cure"
-  },
-  {
-    "kanji": "桐",
-    "meaning": "Paulownia"
-  },
-  {
-    "kanji": "寸",
-    "meaning": "Measurement, Tenth Of A…"
   },
   {
     "kanji": "郭",
@@ -2716,10 +2664,6 @@
     "meaning": "Banquet, Feast"
   },
   {
-    "kanji": "鷹",
-    "meaning": "Hawk"
-  },
-  {
     "kanji": "賓",
     "meaning": "V.i.p., Guest"
   },
@@ -2740,18 +2684,6 @@
     "meaning": "Remorse, Regret"
   },
   {
-    "kanji": "猪",
-    "meaning": "Boar"
-  },
-  {
-    "kanji": "紘",
-    "meaning": "Large"
-  },
-  {
-    "kanji": "磁",
-    "meaning": "Magnet, Porcelain"
-  },
-  {
     "kanji": "弥",
     "meaning": "All The More, Increasingly"
   },
@@ -2768,20 +2700,8 @@
     "meaning": "Revise, Correct"
   },
   {
-    "kanji": "芽",
-    "meaning": "Bud, Sprout"
-  },
-  {
-    "kanji": "庄",
-    "meaning": "Level, In The Country"
-  },
-  {
     "kanji": "傘",
     "meaning": "Umbrella"
-  },
-  {
-    "kanji": "敦",
-    "meaning": "Industry, Kindliness"
   },
   {
     "kanji": "騎",
@@ -2810,14 +2730,6 @@
   {
     "kanji": "寮",
     "meaning": "Dormitory, Hostel"
-  },
-  {
-    "kanji": "祐",
-    "meaning": "Help"
-  },
-  {
-    "kanji": "鵬",
-    "meaning": "Phoenix"
   },
   {
     "kanji": "鉛",
@@ -2852,10 +2764,6 @@
     "meaning": "Artisan, Workman"
   },
   {
-    "kanji": "垂",
-    "meaning": "Droop, Suspend"
-  },
-  {
     "kanji": "蛇",
     "meaning": "Snake, Serpent"
   },
@@ -2874,10 +2782,6 @@
   {
     "kanji": "眺",
     "meaning": "Stare, Watch"
-  },
-  {
-    "kanji": "亘",
-    "meaning": "Span, Range"
   },
   {
     "kanji": "呉",
@@ -2920,14 +2824,6 @@
     "meaning": "Chief, Count"
   },
   {
-    "kanji": "笹",
-    "meaning": "Bamboo Grass, (kokuji)"
-  },
-  {
-    "kanji": "穀",
-    "meaning": "Cereals, Grain"
-  },
-  {
     "kanji": "陵",
     "meaning": "Mausoleum, Imperial Tomb"
   },
@@ -2968,10 +2864,6 @@
     "meaning": "Lovely, Beautiful"
   },
   {
-    "kanji": "綾",
-    "meaning": "Design, Figured Cloth"
-  },
-  {
     "kanji": "臭",
     "meaning": "Stinking, Ill-smelling"
   },
@@ -3008,10 +2900,6 @@
     "meaning": "Embarrass, Humiliate"
   },
   {
-    "kanji": "毅",
-    "meaning": "Strong"
-  },
-  {
     "kanji": "轄",
     "meaning": "Control, Wedge"
   },
@@ -3022,10 +2910,6 @@
   {
     "kanji": "弦",
     "meaning": "Bowstring, Chord"
-  },
-  {
-    "kanji": "稔",
-    "meaning": "Harvest, Ripen"
   },
   {
     "kanji": "窒",
@@ -3084,10 +2968,6 @@
     "meaning": "Forge, Discipline"
   },
   {
-    "kanji": "刀",
-    "meaning": "Sword, Saber"
-  },
-  {
     "kanji": "鼓",
     "meaning": "Drum, Beat"
   },
@@ -3108,10 +2988,6 @@
     "meaning": "Rotation, Go Around"
   },
   {
-    "kanji": "弓",
-    "meaning": "Bow, Bow (archery, Violin)"
-  },
-  {
     "kanji": "幣",
     "meaning": "Cash, Bad Habit"
   },
@@ -3124,10 +3000,6 @@
     "meaning": "Fan, Folding Fan"
   },
   {
-    "kanji": "腸",
-    "meaning": "Intestines, Guts"
-  },
-  {
     "kanji": "槽",
     "meaning": "Vat, Tub"
   },
@@ -3136,16 +3008,8 @@
     "meaning": "Mercy"
   },
   {
-    "kanji": "楊",
-    "meaning": "Willow"
-  },
-  {
     "kanji": "伐",
     "meaning": "Fell, Strike"
-  },
-  {
-    "kanji": "駿",
-    "meaning": "A Good Horse, Speed"
   },
   {
     "kanji": "漬",
@@ -3154,10 +3018,6 @@
   {
     "kanji": "糾",
     "meaning": "Twist, Ask"
-  },
-  {
-    "kanji": "亮",
-    "meaning": "Clear, Help"
   },
   {
     "kanji": "墳",
@@ -3174,14 +3034,6 @@
   {
     "kanji": "娯",
     "meaning": "Recreation, Pleasure"
-  },
-  {
-    "kanji": "椿",
-    "meaning": "Camellia"
-  },
-  {
-    "kanji": "舌",
-    "meaning": "Tongue, Reed"
   },
   {
     "kanji": "羅",
@@ -3204,16 +3056,8 @@
     "meaning": "Summit, Peak"
   },
   {
-    "kanji": "圭",
-    "meaning": "Square Jewel, Corner"
-  },
-  {
     "kanji": "醸",
     "meaning": "Brew, Cause"
-  },
-  {
-    "kanji": "蓮",
-    "meaning": "Lotus"
   },
   {
     "kanji": "弔",
@@ -3246,10 +3090,6 @@
   {
     "kanji": "猟",
     "meaning": "Game-hunting, Shooting"
-  },
-  {
-    "kanji": "羊",
-    "meaning": "Sheep"
   },
   {
     "kanji": "款",
@@ -3312,10 +3152,6 @@
     "meaning": "Bubbles, Foam"
   },
   {
-    "kanji": "瑞",
-    "meaning": "Congratulations"
-  },
-  {
     "kanji": "又",
     "meaning": "Or Again, Furthermore"
   },
@@ -3344,10 +3180,6 @@
     "meaning": "Frolic, Play"
   },
   {
-    "kanji": "伍",
-    "meaning": "Five, Five-man Squad"
-  },
-  {
     "kanji": "忌",
     "meaning": "Mourning, Abhor"
   },
@@ -3362,10 +3194,6 @@
   {
     "kanji": "斗",
     "meaning": "Big Dipper, Ten Sho (vol)"
-  },
-  {
-    "kanji": "蘭",
-    "meaning": "Orchid, Holland"
   },
   {
     "kanji": "迅",
@@ -3392,24 +3220,12 @@
     "meaning": "Enjoy, Receive"
   },
   {
-    "kanji": "秦",
-    "meaning": "Manchu Dynasty, Name…"
-  },
-  {
-    "kanji": "茅",
-    "meaning": "Miscanthus Reed"
-  },
-  {
     "kanji": "藩",
     "meaning": "Clan, Enclosure"
   },
   {
     "kanji": "沙",
     "meaning": "Sand"
-  },
-  {
-    "kanji": "輔",
-    "meaning": "Help"
   },
   {
     "kanji": "媒",
@@ -3448,10 +3264,6 @@
     "meaning": "Chinquapin, Mallet"
   },
   {
-    "kanji": "絹",
-    "meaning": "Silk"
-  },
-  {
     "kanji": "陪",
     "meaning": "Obeisance, Follow"
   },
@@ -3462,10 +3274,6 @@
   {
     "kanji": "譜",
     "meaning": "Musical Score, Music"
-  },
-  {
-    "kanji": "郁",
-    "meaning": "Cultural Progress, Perfume"
   },
   {
     "kanji": "悠",
@@ -3488,18 +3296,6 @@
     "meaning": "Greatness, Excellence"
   },
   {
-    "kanji": "楠",
-    "meaning": "Camphor Tree"
-  },
-  {
-    "kanji": "笛",
-    "meaning": "Flute, Clarinet"
-  },
-  {
-    "kanji": "玲",
-    "meaning": "Sound Of Jewels"
-  },
-  {
     "kanji": "奴",
     "meaning": "Guy, Slave"
   },
@@ -3510,10 +3306,6 @@
   {
     "kanji": "拳",
     "meaning": "Fist"
-  },
-  {
-    "kanji": "翔",
-    "meaning": "Soar, Fly"
   },
   {
     "kanji": "遷",
@@ -3528,20 +3320,12 @@
     "meaning": "Waiter, Samurai"
   },
   {
-    "kanji": "尺",
-    "meaning": "Shaku, Japanese Foot"
-  },
-  {
     "kanji": "峠",
     "meaning": "Mountain Peak, Mountain…"
   },
   {
     "kanji": "篤",
     "meaning": "Fervent, Kind"
-  },
-  {
-    "kanji": "肇",
-    "meaning": "Beginning"
   },
   {
     "kanji": "渇",
@@ -3554,10 +3338,6 @@
   {
     "kanji": "雌",
     "meaning": "Feminine, Female"
-  },
-  {
-    "kanji": "亨",
-    "meaning": "Pass Through, Go Smoothly"
   },
   {
     "kanji": "堪",
@@ -3580,16 +3360,8 @@
     "meaning": "Relay, In Turn"
   },
   {
-    "kanji": "嶺",
-    "meaning": "Peak, Summit"
-  },
-  {
     "kanji": "甚",
     "meaning": "Tremendously, Very"
-  },
-  {
-    "kanji": "喬",
-    "meaning": "High, Boasting"
   },
   {
     "kanji": "崇",
@@ -3612,40 +3384,16 @@
     "meaning": "Pleasure, Happy"
   },
   {
-    "kanji": "寅",
-    "meaning": "Sign Of The Tiger, Third…"
-  },
-  {
     "kanji": "礁",
     "meaning": "Reef, Sunken Rock"
-  },
-  {
-    "kanji": "乃",
-    "meaning": "From, Possessive Particle"
-  },
-  {
-    "kanji": "洲",
-    "meaning": "Continent, Sandbar"
   },
   {
     "kanji": "屯",
     "meaning": "Barracks, Police Station"
   },
   {
-    "kanji": "樺",
-    "meaning": "Birch, Dark Red"
-  },
-  {
-    "kanji": "槙",
-    "meaning": "Twig, Ornamental Evergreen"
-  },
-  {
     "kanji": "姻",
     "meaning": "Matrimony, Marry"
-  },
-  {
-    "kanji": "巌",
-    "meaning": "Rock, Crag"
   },
   {
     "kanji": "擬",
@@ -3668,16 +3416,8 @@
     "meaning": "Leisure"
   },
   {
-    "kanji": "胡",
-    "meaning": "Barbarian, Foreign"
-  },
-  {
     "kanji": "幽",
     "meaning": "Seclude, Confine To A Room"
-  },
-  {
-    "kanji": "峻",
-    "meaning": "High, Steep"
   },
   {
     "kanji": "曹",
@@ -3708,20 +3448,12 @@
     "meaning": "Military Officer, Jailer"
   },
   {
-    "kanji": "槻",
-    "meaning": "Zelkova Tree"
-  },
-  {
     "kanji": "隷",
     "meaning": "Slave, Servant"
   },
   {
     "kanji": "禍",
     "meaning": "Calamity, Misfortune"
-  },
-  {
-    "kanji": "蝶",
-    "meaning": "Butterfly"
   },
   {
     "kanji": "酪",
@@ -3740,14 +3472,6 @@
     "meaning": "Departed, Die"
   },
   {
-    "kanji": "汽",
-    "meaning": "Vapor, Steam"
-  },
-  {
-    "kanji": "琢",
-    "meaning": "Polish"
-  },
-  {
     "kanji": "匿",
     "meaning": "Hide, Shelter"
   },
@@ -3760,16 +3484,8 @@
     "meaning": "Lightning-bug, Firefly"
   },
   {
-    "kanji": "蕉",
-    "meaning": "Banana, Plantain"
-  },
-  {
     "kanji": "寡",
     "meaning": "Widow, Minority"
-  },
-  {
-    "kanji": "琉",
-    "meaning": "Precious Stone, Gem"
   },
   {
     "kanji": "痢",
@@ -3778,10 +3494,6 @@
   {
     "kanji": "庸",
     "meaning": "Commonplace, Ordinary"
-  },
-  {
-    "kanji": "朋",
-    "meaning": "Companion, Friend"
   },
   {
     "kanji": "坑",
@@ -3804,24 +3516,12 @@
     "meaning": "Paddy Ridge, Levee"
   },
   {
-    "kanji": "遼",
-    "meaning": "Distant"
-  },
-  {
     "kanji": "唄",
     "meaning": "Song, Ballad"
   },
   {
     "kanji": "孔",
     "meaning": "Cavity, Hole"
-  },
-  {
-    "kanji": "橘",
-    "meaning": "Mandarin Orange"
-  },
-  {
-    "kanji": "漱",
-    "meaning": "Gargle, Rinse Mouth"
   },
   {
     "kanji": "呂",
@@ -3834,18 +3534,6 @@
   {
     "kanji": "嬢",
     "meaning": "Lass, Girl"
-  },
-  {
-    "kanji": "苑",
-    "meaning": "Garden, Farm"
-  },
-  {
-    "kanji": "巽",
-    "meaning": "Southeast"
-  },
-  {
-    "kanji": "杜",
-    "meaning": "Woods, Grove"
   },
   {
     "kanji": "渓",
@@ -3872,10 +3560,6 @@
     "meaning": "Boil, Ferment"
   },
   {
-    "kanji": "欣",
-    "meaning": "Take Pleasure In, Rejoice"
-  },
-  {
     "kanji": "窯",
     "meaning": "Kiln, Oven"
   },
@@ -3900,14 +3584,6 @@
     "meaning": "Anxiety, Trouble"
   },
   {
-    "kanji": "巴",
-    "meaning": "Comma-design"
-  },
-  {
-    "kanji": "禎",
-    "meaning": "Happiness, Blessed"
-  },
-  {
     "kanji": "劾",
     "meaning": "Censure, Criminal…"
   },
@@ -3920,16 +3596,8 @@
     "meaning": "Tariff, Crop Tax"
   },
   {
-    "kanji": "稜",
-    "meaning": "Angle, Edge"
-  },
-  {
     "kanji": "桟",
     "meaning": "Scaffold, Cleat"
-  },
-  {
-    "kanji": "倭",
-    "meaning": "Yamato, Ancient Japan"
   },
   {
     "kanji": "婿",
@@ -3938,10 +3606,6 @@
   {
     "kanji": "慕",
     "meaning": "Pining, Yearn For"
-  },
-  {
-    "kanji": "斐",
-    "meaning": "Beautiful, Patterned"
   },
   {
     "kanji": "罷",
@@ -3960,28 +3624,12 @@
     "meaning": "Captured, Criminal"
   },
   {
-    "kanji": "魁",
-    "meaning": "Charging Ahead Of Others"
-  },
-  {
     "kanji": "虹",
     "meaning": "Rainbow"
   },
   {
-    "kanji": "鴻",
-    "meaning": "Large Bird, Wild Goose"
-  },
-  {
     "kanji": "泌",
     "meaning": "Ooze, Flow"
-  },
-  {
-    "kanji": "於",
-    "meaning": "At, In"
-  },
-  {
-    "kanji": "赳",
-    "meaning": "Strong And Brave"
   },
   {
     "kanji": "漸",
@@ -3992,10 +3640,6 @@
     "meaning": "Mosquito"
   },
   {
-    "kanji": "葵",
-    "meaning": "Hollyhock"
-  },
-  {
     "kanji": "厄",
     "meaning": "Unlucky, Misfortune"
   },
@@ -4004,36 +3648,16 @@
     "meaning": "Seaweed, Duckweed"
   },
   {
-    "kanji": "禄",
-    "meaning": "Fief, Allowance"
-  },
-  {
-    "kanji": "孟",
-    "meaning": "Chief, Beginning"
-  },
-  {
     "kanji": "嫡",
     "meaning": "Legitimate Wife, Direct…"
-  },
-  {
-    "kanji": "尭",
-    "meaning": "High, Far"
   },
   {
     "kanji": "嚇",
     "meaning": "Menacing, Dignity"
   },
   {
-    "kanji": "巳",
-    "meaning": "Sign Of The Snake Or…"
-  },
-  {
     "kanji": "凸",
     "meaning": "Convex, Beetle Brow"
-  },
-  {
-    "kanji": "暢",
-    "meaning": "Stretch"
   },
   {
     "kanji": "韻",
@@ -4052,32 +3676,12 @@
     "meaning": "Imperial Order"
   },
   {
-    "kanji": "芹",
-    "meaning": "Parsley"
-  },
-  {
-    "kanji": "杏",
-    "meaning": "Apricot"
-  },
-  {
     "kanji": "棺",
     "meaning": "Coffin, Casket"
   },
   {
     "kanji": "儒",
     "meaning": "Confucian"
-  },
-  {
-    "kanji": "鳳",
-    "meaning": "Male Mythical Bird"
-  },
-  {
-    "kanji": "馨",
-    "meaning": "Fragrant, Balmy"
-  },
-  {
-    "kanji": "慧",
-    "meaning": "Wise"
   },
   {
     "kanji": "愁",
@@ -4088,20 +3692,8 @@
     "meaning": "Watchtower, Lookout"
   },
   {
-    "kanji": "彬",
-    "meaning": "Refined, Gentle"
-  },
-  {
-    "kanji": "匡",
-    "meaning": "Correct, Save"
-  },
-  {
     "kanji": "眉",
     "meaning": "Eyebrow"
-  },
-  {
-    "kanji": "欽",
-    "meaning": "Respect, Revere"
   },
   {
     "kanji": "薪",
@@ -4116,32 +3708,12 @@
     "meaning": "Grant, Gift"
   },
   {
-    "kanji": "嵯",
-    "meaning": "Steep, Craggy"
-  },
-  {
-    "kanji": "綜",
-    "meaning": "Rule, Synthesize"
-  },
-  {
     "kanji": "繕",
     "meaning": "Darning, Repair"
   },
   {
     "kanji": "栓",
     "meaning": "Plug, Bolt"
-  },
-  {
-    "kanji": "翠",
-    "meaning": "Green, Kingfisher"
-  },
-  {
-    "kanji": "鮎",
-    "meaning": "Freshwater Trout, Smelt"
-  },
-  {
-    "kanji": "榛",
-    "meaning": "Hazelnut, Filbert"
   },
   {
     "kanji": "凹",
@@ -4152,24 +3724,8 @@
     "meaning": "Glossy, Luster"
   },
   {
-    "kanji": "惣",
-    "meaning": "All"
-  },
-  {
-    "kanji": "蔦",
-    "meaning": "Vine, Ivy"
-  },
-  {
     "kanji": "錬",
     "meaning": "Tempering, Refine"
-  },
-  {
-    "kanji": "隼",
-    "meaning": "Falcon"
-  },
-  {
-    "kanji": "渚",
-    "meaning": "Strand, Beach"
   },
   {
     "kanji": "衷",
@@ -4184,16 +3740,660 @@
     "meaning": "Reject, Retreat"
   },
   {
+    "kanji": "詔",
+    "meaning": "Imperial Edict"
+  },
+  {
+    "kanji": "憧",
+    "meaning": "Yearn After, Long For"
+  },
+  {
+    "kanji": "宵",
+    "meaning": "Wee Hours, Evening"
+  },
+  {
+    "kanji": "妄",
+    "meaning": "Delusion, Unnecessarily"
+  },
+  {
+    "kanji": "酌",
+    "meaning": "Bar-tending, Serving Sake"
+  },
+  {
+    "kanji": "頒",
+    "meaning": "Distribute, Disseminate"
+  },
+  {
+    "kanji": "肢",
+    "meaning": "Limb, Arms & Legs"
+  },
+  {
+    "kanji": "謄",
+    "meaning": "Mimeograph, Copy"
+  },
+  {
+    "kanji": "嗣",
+    "meaning": "Heir, Succeed"
+  },
+  {
+    "kanji": "畝",
+    "meaning": "Furrow, Thirty Tsubo"
+  },
+  {
+    "kanji": "抄",
+    "meaning": "Extract, Selection"
+  },
+  {
+    "kanji": "爽",
+    "meaning": "Refreshing, Bracing"
+  },
+  {
+    "kanji": "惰",
+    "meaning": "Lazy, Laziness"
+  },
+  {
+    "kanji": "蛮",
+    "meaning": "Barbarian"
+  },
+  {
+    "kanji": "旺",
+    "meaning": "Flourishing, Successful"
+  },
+  {
+    "kanji": "壱",
+    "meaning": "One (in Documents)"
+  },
+  {
+    "kanji": "瑠",
+    "meaning": "Lapis Lazuli"
+  },
+  {
+    "kanji": "侯",
+    "meaning": "Marquis, Lord"
+  },
+  {
+    "kanji": "弧",
+    "meaning": "Arc, Arch"
+  },
+  {
+    "kanji": "附",
+    "meaning": "Affixed, Attach"
+  },
+  {
+    "kanji": "但",
+    "meaning": "However, But"
+  },
+  {
+    "kanji": "芋",
+    "meaning": "Potato"
+  },
+  {
+    "kanji": "婆",
+    "meaning": "Old Woman, Grandma"
+  },
+  {
+    "kanji": "倣",
+    "meaning": "Emulate, Imitate"
+  },
+  {
+    "kanji": "倹",
+    "meaning": "Frugal, Economy"
+  },
+  {
+    "kanji": "繭",
+    "meaning": "Cocoon"
+  },
+  {
+    "kanji": "斤",
+    "meaning": "Axe, 1.32 Lb"
+  },
+  {
+    "kanji": "且",
+    "meaning": "Moreover, Also"
+  },
+  {
+    "kanji": "丙",
+    "meaning": "Third Class, 3rd"
+  },
+  {
+    "kanji": "旦",
+    "meaning": "Daybreak, Dawn"
+  },
+  {
+    "kanji": "伎",
+    "meaning": "Deed, Skill"
+  },
+  {
+    "kanji": "吏",
+    "meaning": "Officer, An Official"
+  },
+  {
+    "kanji": "弐",
+    "meaning": "Ii, Two"
+  },
+  {
+    "kanji": "冶",
+    "meaning": "Melting, Smelting"
+  },
+  {
+    "kanji": "汰",
+    "meaning": "Washing, Sieving"
+  },
+  {
+    "kanji": "采",
+    "meaning": "Dice, Form"
+  },
+  {
+    "kanji": "朕",
+    "meaning": "Majestic Plural, Imperial…"
+  },
+  {
+    "kanji": "耗",
+    "meaning": "Decrease"
+  },
+  {
+    "kanji": "痘",
+    "meaning": "Pox, Smallpox"
+  },
+  {
+    "kanji": "塑",
+    "meaning": "Model, Molding"
+  },
+  {
+    "kanji": "虞",
+    "meaning": "Fear, Uneasiness"
+  },
+  {
+    "kanji": "箇",
+    "meaning": "Counter For Articles"
+  },
+  {
+    "kanji": "璃",
+    "meaning": "Glassy, Lapis Lazuli"
+  },
+  {
+    "kanji": "謁",
+    "meaning": "Audience, Audience (with…"
+  },
+  {
+    "kanji": "賦",
+    "meaning": "Levy, Ode"
+  },
+  {
+    "kanji": "遵",
+    "meaning": "Abide By, Follow"
+  },
+  {
+    "kanji": "墾",
+    "meaning": "Ground-breaking, Open Up…"
+  },
+  {
+    "kanji": "爵",
+    "meaning": "Baron, Peerage"
+  },
+  {
+    "kanji": "瞭",
+    "meaning": "Clear"
+  },
+  {
+    "kanji": "濫",
+    "meaning": "Excessive, Overflow"
+  },
+  {
+    "kanji": "伊",
+    "meaning": "Italy, That One"
+  },
+  {
+    "kanji": "智",
+    "meaning": "Wisdom, Intellect"
+  },
+  {
+    "kanji": "弘",
+    "meaning": "Vast, Broad"
+  },
+  {
+    "kanji": "彦",
+    "meaning": "Lad, Boy (ancient)"
+  },
+  {
+    "kanji": "阿",
+    "meaning": "Africa, Flatter"
+  },
+  {
+    "kanji": "李",
+    "meaning": "Plum"
+  },
+  {
+    "kanji": "浩",
+    "meaning": "Wide Expanse, Abundance"
+  },
+  {
+    "kanji": "宏",
+    "meaning": "Wide, Large"
+  },
+  {
+    "kanji": "之",
+    "meaning": "Of, This"
+  },
+  {
+    "kanji": "昌",
+    "meaning": "Prosperous, Bright"
+  },
+  {
+    "kanji": "靖",
+    "meaning": "Peaceful"
+  },
+  {
+    "kanji": "也",
+    "meaning": "To Be (classical)"
+  },
+  {
+    "kanji": "旭",
+    "meaning": "Rising Sun, Morning Sun"
+  },
+  {
+    "kanji": "磯",
+    "meaning": "Seashore, Beach"
+  },
+  {
+    "kanji": "聡",
+    "meaning": "Wise, Fast Learner"
+  },
+  {
+    "kanji": "曙",
+    "meaning": "Dawn, Daybreak"
+  },
+  {
+    "kanji": "萩",
+    "meaning": "Bush Clover"
+  },
+  {
+    "kanji": "栗",
+    "meaning": "Chestnut"
+  },
+  {
+    "kanji": "嘉",
+    "meaning": "Applaud, Praise"
+  },
+  {
+    "kanji": "辰",
+    "meaning": "Sign Of The Dragon, Fifth…"
+  },
+  {
+    "kanji": "霞",
+    "meaning": "Be Hazy, Grow Dim"
+  },
+  {
+    "kanji": "淳",
+    "meaning": "Pure"
+  },
+  {
+    "kanji": "鳩",
+    "meaning": "Pigeon, Dove"
+  },
+  {
+    "kanji": "桂",
+    "meaning": "Japanese Judas-tree…"
+  },
+  {
+    "kanji": "晋",
+    "meaning": "Advance"
+  },
+  {
+    "kanji": "晃",
+    "meaning": "Clear"
+  },
+  {
+    "kanji": "桐",
+    "meaning": "Paulownia"
+  },
+  {
+    "kanji": "鷹",
+    "meaning": "Hawk"
+  },
+  {
+    "kanji": "猪",
+    "meaning": "Boar"
+  },
+  {
+    "kanji": "紘",
+    "meaning": "Large"
+  },
+  {
+    "kanji": "庄",
+    "meaning": "Level, In The Country"
+  },
+  {
+    "kanji": "敦",
+    "meaning": "Industry, Kindliness"
+  },
+  {
+    "kanji": "祐",
+    "meaning": "Help"
+  },
+  {
+    "kanji": "鵬",
+    "meaning": "Phoenix"
+  },
+  {
+    "kanji": "亘",
+    "meaning": "Span, Range"
+  },
+  {
+    "kanji": "笹",
+    "meaning": "Bamboo Grass, (kokuji)"
+  },
+  {
+    "kanji": "綾",
+    "meaning": "Design, Figured Cloth"
+  },
+  {
+    "kanji": "毅",
+    "meaning": "Strong"
+  },
+  {
+    "kanji": "稔",
+    "meaning": "Harvest, Ripen"
+  },
+  {
+    "kanji": "楊",
+    "meaning": "Willow"
+  },
+  {
+    "kanji": "駿",
+    "meaning": "A Good Horse, Speed"
+  },
+  {
+    "kanji": "亮",
+    "meaning": "Clear, Help"
+  },
+  {
+    "kanji": "椿",
+    "meaning": "Camellia"
+  },
+  {
+    "kanji": "圭",
+    "meaning": "Square Jewel, Corner"
+  },
+  {
+    "kanji": "蓮",
+    "meaning": "Lotus"
+  },
+  {
+    "kanji": "瑞",
+    "meaning": "Congratulations"
+  },
+  {
+    "kanji": "伍",
+    "meaning": "Five, Five-man Squad"
+  },
+  {
+    "kanji": "蘭",
+    "meaning": "Orchid, Holland"
+  },
+  {
+    "kanji": "秦",
+    "meaning": "Manchu Dynasty, Name…"
+  },
+  {
+    "kanji": "茅",
+    "meaning": "Miscanthus Reed"
+  },
+  {
+    "kanji": "輔",
+    "meaning": "Help"
+  },
+  {
+    "kanji": "郁",
+    "meaning": "Cultural Progress, Perfume"
+  },
+  {
+    "kanji": "楠",
+    "meaning": "Camphor Tree"
+  },
+  {
+    "kanji": "玲",
+    "meaning": "Sound Of Jewels"
+  },
+  {
+    "kanji": "翔",
+    "meaning": "Soar, Fly"
+  },
+  {
+    "kanji": "肇",
+    "meaning": "Beginning"
+  },
+  {
+    "kanji": "亨",
+    "meaning": "Pass Through, Go Smoothly"
+  },
+  {
+    "kanji": "嶺",
+    "meaning": "Peak, Summit"
+  },
+  {
+    "kanji": "喬",
+    "meaning": "High, Boasting"
+  },
+  {
+    "kanji": "寅",
+    "meaning": "Sign Of The Tiger, Third…"
+  },
+  {
+    "kanji": "乃",
+    "meaning": "From, Possessive Particle"
+  },
+  {
+    "kanji": "洲",
+    "meaning": "Continent, Sandbar"
+  },
+  {
+    "kanji": "樺",
+    "meaning": "Birch, Dark Red"
+  },
+  {
+    "kanji": "槙",
+    "meaning": "Twig, Ornamental Evergreen"
+  },
+  {
+    "kanji": "巌",
+    "meaning": "Rock, Crag"
+  },
+  {
+    "kanji": "胡",
+    "meaning": "Barbarian, Foreign"
+  },
+  {
+    "kanji": "峻",
+    "meaning": "High, Steep"
+  },
+  {
+    "kanji": "槻",
+    "meaning": "Zelkova Tree"
+  },
+  {
+    "kanji": "蝶",
+    "meaning": "Butterfly"
+  },
+  {
+    "kanji": "琢",
+    "meaning": "Polish"
+  },
+  {
+    "kanji": "蕉",
+    "meaning": "Banana, Plantain"
+  },
+  {
+    "kanji": "琉",
+    "meaning": "Precious Stone, Gem"
+  },
+  {
+    "kanji": "朋",
+    "meaning": "Companion, Friend"
+  },
+  {
+    "kanji": "遼",
+    "meaning": "Distant"
+  },
+  {
+    "kanji": "橘",
+    "meaning": "Mandarin Orange"
+  },
+  {
+    "kanji": "漱",
+    "meaning": "Gargle, Rinse Mouth"
+  },
+  {
+    "kanji": "苑",
+    "meaning": "Garden, Farm"
+  },
+  {
+    "kanji": "巽",
+    "meaning": "Southeast"
+  },
+  {
+    "kanji": "杜",
+    "meaning": "Woods, Grove"
+  },
+  {
+    "kanji": "欣",
+    "meaning": "Take Pleasure In, Rejoice"
+  },
+  {
+    "kanji": "巴",
+    "meaning": "Comma-design"
+  },
+  {
+    "kanji": "禎",
+    "meaning": "Happiness, Blessed"
+  },
+  {
+    "kanji": "稜",
+    "meaning": "Angle, Edge"
+  },
+  {
+    "kanji": "倭",
+    "meaning": "Yamato, Ancient Japan"
+  },
+  {
+    "kanji": "斐",
+    "meaning": "Beautiful, Patterned"
+  },
+  {
+    "kanji": "魁",
+    "meaning": "Charging Ahead Of Others"
+  },
+  {
+    "kanji": "鴻",
+    "meaning": "Large Bird, Wild Goose"
+  },
+  {
+    "kanji": "於",
+    "meaning": "At, In"
+  },
+  {
+    "kanji": "赳",
+    "meaning": "Strong And Brave"
+  },
+  {
+    "kanji": "葵",
+    "meaning": "Hollyhock"
+  },
+  {
+    "kanji": "禄",
+    "meaning": "Fief, Allowance"
+  },
+  {
+    "kanji": "孟",
+    "meaning": "Chief, Beginning"
+  },
+  {
+    "kanji": "尭",
+    "meaning": "High, Far"
+  },
+  {
+    "kanji": "巳",
+    "meaning": "Sign Of The Snake Or…"
+  },
+  {
+    "kanji": "暢",
+    "meaning": "Stretch"
+  },
+  {
+    "kanji": "芹",
+    "meaning": "Parsley"
+  },
+  {
+    "kanji": "杏",
+    "meaning": "Apricot"
+  },
+  {
+    "kanji": "鳳",
+    "meaning": "Male Mythical Bird"
+  },
+  {
+    "kanji": "馨",
+    "meaning": "Fragrant, Balmy"
+  },
+  {
+    "kanji": "慧",
+    "meaning": "Wise"
+  },
+  {
+    "kanji": "彬",
+    "meaning": "Refined, Gentle"
+  },
+  {
+    "kanji": "匡",
+    "meaning": "Correct, Save"
+  },
+  {
+    "kanji": "欽",
+    "meaning": "Respect, Revere"
+  },
+  {
+    "kanji": "嵯",
+    "meaning": "Steep, Craggy"
+  },
+  {
+    "kanji": "綜",
+    "meaning": "Rule, Synthesize"
+  },
+  {
+    "kanji": "翠",
+    "meaning": "Green, Kingfisher"
+  },
+  {
+    "kanji": "鮎",
+    "meaning": "Freshwater Trout, Smelt"
+  },
+  {
+    "kanji": "榛",
+    "meaning": "Hazelnut, Filbert"
+  },
+  {
+    "kanji": "惣",
+    "meaning": "All"
+  },
+  {
+    "kanji": "蔦",
+    "meaning": "Vine, Ivy"
+  },
+  {
+    "kanji": "隼",
+    "meaning": "Falcon"
+  },
+  {
+    "kanji": "渚",
+    "meaning": "Strand, Beach"
+  },
+  {
     "kanji": "稀",
     "meaning": "Rare, Phenomenal"
   },
   {
     "kanji": "芙",
     "meaning": "Lotus, Mt Fuji"
-  },
-  {
-    "kanji": "詔",
-    "meaning": "Imperial Edict"
   },
   {
     "kanji": "皐",
@@ -4224,18 +4424,6 @@
     "meaning": "Kindness, Moisten"
   },
   {
-    "kanji": "憧",
-    "meaning": "Yearn After, Long For"
-  },
-  {
-    "kanji": "宵",
-    "meaning": "Wee Hours, Evening"
-  },
-  {
-    "kanji": "妄",
-    "meaning": "Delusion, Unnecessarily"
-  },
-  {
     "kanji": "惇",
     "meaning": "Sincere, Kind"
   },
@@ -4246,14 +4434,6 @@
   {
     "kanji": "甫",
     "meaning": "For The First Time, Not…"
-  },
-  {
-    "kanji": "酌",
-    "meaning": "Bar-tending, Serving Sake"
-  },
-  {
-    "kanji": "蚕",
-    "meaning": "Silkworm"
   },
   {
     "kanji": "嬉",
@@ -4268,16 +4448,8 @@
     "meaning": "Shine, Light"
   },
   {
-    "kanji": "頒",
-    "meaning": "Distribute, Disseminate"
-  },
-  {
     "kanji": "只",
     "meaning": "Only, Free"
-  },
-  {
-    "kanji": "肢",
-    "meaning": "Limb, Arms & Legs"
   },
   {
     "kanji": "檀",
@@ -4292,20 +4464,12 @@
     "meaning": "Comet"
   },
   {
-    "kanji": "謄",
-    "meaning": "Mimeograph, Copy"
-  },
-  {
     "kanji": "梓",
     "meaning": "Catalpa Tree, Woodblock…"
   },
   {
     "kanji": "丑",
     "meaning": "Sign Of The Ox Or Cow…"
-  },
-  {
-    "kanji": "嗣",
-    "meaning": "Heir, Succeed"
   },
   {
     "kanji": "叶",
@@ -4328,36 +4492,12 @@
     "meaning": "Nursing, Attending"
   },
   {
-    "kanji": "畝",
-    "meaning": "Furrow, Thirty Tsubo"
-  },
-  {
-    "kanji": "抄",
-    "meaning": "Extract, Selection"
-  },
-  {
-    "kanji": "爽",
-    "meaning": "Refreshing, Bracing"
-  },
-  {
     "kanji": "黎",
     "meaning": "Dark, Black"
   },
   {
-    "kanji": "惰",
-    "meaning": "Lazy, Laziness"
-  },
-  {
-    "kanji": "蛮",
-    "meaning": "Barbarian"
-  },
-  {
     "kanji": "冴",
     "meaning": "Be Clear, Serene"
-  },
-  {
-    "kanji": "旺",
-    "meaning": "Flourishing, Successful"
   },
   {
     "kanji": "萌",
@@ -4368,20 +4508,8 @@
     "meaning": "Recollect, Remember"
   },
   {
-    "kanji": "壱",
-    "meaning": "One (in Documents)"
-  },
-  {
-    "kanji": "瑠",
-    "meaning": "Lapis Lazuli"
-  },
-  {
     "kanji": "允",
     "meaning": "License, Sincerity"
-  },
-  {
-    "kanji": "侯",
-    "meaning": "Marquis, Lord"
   },
   {
     "kanji": "蒔",
@@ -4390,10 +4518,6 @@
   {
     "kanji": "鯉",
     "meaning": "Carp"
-  },
-  {
-    "kanji": "弧",
-    "meaning": "Arc, Arch"
   },
   {
     "kanji": "遥",
@@ -4408,10 +4532,6 @@
     "meaning": "Sparkle Of Jewelry…"
   },
   {
-    "kanji": "附",
-    "meaning": "Affixed, Attach"
-  },
-  {
     "kanji": "彪",
     "meaning": "Spotted, Mottled"
   },
@@ -4420,16 +4540,8 @@
     "meaning": "East"
   },
   {
-    "kanji": "但",
-    "meaning": "However, But"
-  },
-  {
     "kanji": "綺",
     "meaning": "Figured Cloth, Beautiful"
-  },
-  {
-    "kanji": "芋",
-    "meaning": "Potato"
   },
   {
     "kanji": "茜",
@@ -4452,10 +4564,6 @@
     "meaning": "Burr, Ball"
   },
   {
-    "kanji": "婆",
-    "meaning": "Old Woman, Grandma"
-  },
-  {
     "kanji": "緋",
     "meaning": "Scarlet, Cardinal"
   },
@@ -4470,10 +4578,6 @@
   {
     "kanji": "邑",
     "meaning": "Village, Rural Community"
-  },
-  {
-    "kanji": "倣",
-    "meaning": "Emulate, Imitate"
   },
   {
     "kanji": "碧",
@@ -4496,16 +4600,8 @@
     "meaning": "Serving Our Elders"
   },
   {
-    "kanji": "倹",
-    "meaning": "Frugal, Economy"
-  },
-  {
     "kanji": "柚",
     "meaning": "Citron"
-  },
-  {
-    "kanji": "繭",
-    "meaning": "Cocoon"
   },
   {
     "kanji": "勺",
@@ -4514,22 +4610,6 @@
   {
     "kanji": "匁",
     "meaning": "Monme, 3.75 Grams"
-  },
-  {
-    "kanji": "斤",
-    "meaning": "Axe, 1.32 Lb"
-  },
-  {
-    "kanji": "且",
-    "meaning": "Moreover, Also"
-  },
-  {
-    "kanji": "丙",
-    "meaning": "Third Class, 3rd"
-  },
-  {
-    "kanji": "旦",
-    "meaning": "Daybreak, Dawn"
   },
   {
     "kanji": "丞",
@@ -4544,32 +4624,12 @@
     "meaning": "Also, Again"
   },
   {
-    "kanji": "伎",
-    "meaning": "Deed, Skill"
-  },
-  {
     "kanji": "凪",
     "meaning": "Lull, Calm"
   },
   {
-    "kanji": "吏",
-    "meaning": "Officer, An Official"
-  },
-  {
-    "kanji": "弐",
-    "meaning": "Ii, Two"
-  },
-  {
     "kanji": "伶",
     "meaning": "Actor"
-  },
-  {
-    "kanji": "冶",
-    "meaning": "Melting, Smelting"
-  },
-  {
-    "kanji": "汰",
-    "meaning": "Washing, Sieving"
   },
   {
     "kanji": "玖",
@@ -4598,10 +4658,6 @@
   {
     "kanji": "迪",
     "meaning": "Edify, Way"
-  },
-  {
-    "kanji": "采",
-    "meaning": "Dice, Form"
   },
   {
     "kanji": "勁",
@@ -4664,20 +4720,12 @@
     "meaning": "Clear"
   },
   {
-    "kanji": "朕",
-    "meaning": "Majestic Plural, Imperial…"
-  },
-  {
     "kanji": "栞",
     "meaning": "Bookmark, Guidebook"
   },
   {
     "kanji": "紗",
     "meaning": "Gauze, Gossamer"
-  },
-  {
-    "kanji": "耗",
-    "meaning": "Decrease"
   },
   {
     "kanji": "莉",
@@ -4748,20 +4796,12 @@
     "meaning": "Jewel, Tinkling Of Jewelry"
   },
   {
-    "kanji": "痘",
-    "meaning": "Pox, Smallpox"
-  },
-  {
     "kanji": "竣",
     "meaning": "End, Finish"
   },
   {
     "kanji": "脹",
     "meaning": "Dilate, Distend"
-  },
-  {
-    "kanji": "塑",
-    "meaning": "Model, Molding"
   },
   {
     "kanji": "嵩",
@@ -4792,10 +4832,6 @@
     "meaning": "Lotus"
   },
   {
-    "kanji": "虞",
-    "meaning": "Fear, Uneasiness"
-  },
-  {
     "kanji": "裟",
     "meaning": "Buddhist Surplice"
   },
@@ -4820,10 +4856,6 @@
     "meaning": "Large, Great"
   },
   {
-    "kanji": "箇",
-    "meaning": "Counter For Articles"
-  },
-  {
     "kanji": "綸",
     "meaning": "Thread, Silk Cloth"
   },
@@ -4844,10 +4876,6 @@
     "meaning": "Bright, Sunny"
   },
   {
-    "kanji": "璃",
-    "meaning": "Glassy, Lapis Lazuli"
-  },
-  {
     "kanji": "誼",
     "meaning": "Friendship, Intimacy"
   },
@@ -4860,24 +4888,8 @@
     "meaning": "Fact, Reality"
   },
   {
-    "kanji": "謁",
-    "meaning": "Audience, Audience (with…"
-  },
-  {
-    "kanji": "賦",
-    "meaning": "Levy, Ode"
-  },
-  {
-    "kanji": "遵",
-    "meaning": "Abide By, Follow"
-  },
-  {
     "kanji": "叡",
     "meaning": "Intelligence, Imperial"
-  },
-  {
-    "kanji": "墾",
-    "meaning": "Ground-breaking, Open Up…"
   },
   {
     "kanji": "澪",
@@ -4900,20 +4912,8 @@
     "meaning": "Brilliant"
   },
   {
-    "kanji": "爵",
-    "meaning": "Baron, Peerage"
-  },
-  {
-    "kanji": "瞭",
-    "meaning": "Clear"
-  },
-  {
     "kanji": "鞠",
     "meaning": "Ball"
-  },
-  {
-    "kanji": "濫",
-    "meaning": "Excessive, Overflow"
   },
   {
     "kanji": "燿",

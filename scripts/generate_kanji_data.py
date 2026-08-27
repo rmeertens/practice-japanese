@@ -3,8 +3,12 @@
 
 Source data: davidluzgouveia/kanji-data (MIT), a KANJIDIC2-derived dataset
 with an unofficial jlpt_new (N5-N1) level mapping matching the widely used
-"Tanos" JLPT kanji lists. Kanji within each level are ordered by written-
-frequency rank, which is the conventional order those lists are presented in.
+"Tanos" JLPT kanji lists. There is no single canonical order for these lists
+(JLPT has not published an official kanji list since 2010, so every app/site
+compiles and orders its own) — we sort by Japanese school grade (1-6, then
+the secondary-school/jouyou grade 8, then non-jouyou grade 9), which is a
+well-defined, independently verifiable convention. Written-frequency rank
+breaks ties within a grade.
 
 Usage:
     python3 scripts/generate_kanji_data.py <path-to-kanji-data.json>
@@ -59,6 +63,7 @@ def main():
             by_level[lvl].append({
                 "kanji": kanji,
                 "meaning": clean_meaning(info.get("meanings")),
+                "grade": info.get("grade") or 99,
                 "freq": info.get("freq"),
                 "strokes": info.get("strokes") or 0,
             })
@@ -67,6 +72,7 @@ def main():
     for lvl in LEVELS:
         items = by_level[lvl]
         items.sort(key=lambda x: (
+            x["grade"],
             x["freq"] is None,
             x["freq"] if x["freq"] is not None else 0,
             x["strokes"],

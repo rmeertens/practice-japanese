@@ -8,10 +8,6 @@
     "meaning": "One"
   },
   {
-    "kanji": "国",
-    "meaning": "Country"
-  },
-  {
     "kanji": "人",
     "meaning": "Person"
   },
@@ -40,24 +36,12 @@
     "meaning": "In, Inside"
   },
   {
-    "kanji": "長",
-    "meaning": "Long, Leader"
-  },
-  {
     "kanji": "出",
     "meaning": "Exit, Leave"
   },
   {
     "kanji": "三",
     "meaning": "Three"
-  },
-  {
-    "kanji": "時",
-    "meaning": "Time, Hour"
-  },
-  {
-    "kanji": "行",
-    "meaning": "Going, Journey"
   },
   {
     "kanji": "見",
@@ -68,14 +52,6 @@
     "meaning": "Month, Moon"
   },
   {
-    "kanji": "後",
-    "meaning": "Behind, Back"
-  },
-  {
-    "kanji": "前",
-    "meaning": "In Front, Before"
-  },
-  {
     "kanji": "生",
     "meaning": "Life, Genuine"
   },
@@ -84,24 +60,12 @@
     "meaning": "Five"
   },
   {
-    "kanji": "間",
-    "meaning": "Interval, Space"
-  },
-  {
     "kanji": "上",
     "meaning": "Above, Up"
   },
   {
-    "kanji": "東",
-    "meaning": "East"
-  },
-  {
     "kanji": "四",
     "meaning": "Four"
-  },
-  {
-    "kanji": "今",
-    "meaning": "Now"
   },
   {
     "kanji": "金",
@@ -120,20 +84,12 @@
     "meaning": "Study, Learning"
   },
   {
-    "kanji": "高",
-    "meaning": "Tall, High"
-  },
-  {
     "kanji": "円",
     "meaning": "Circle, Yen"
   },
   {
     "kanji": "子",
     "meaning": "Child"
-  },
-  {
-    "kanji": "外",
-    "meaning": "Outside"
   },
   {
     "kanji": "八",
@@ -146,10 +102,6 @@
   {
     "kanji": "下",
     "meaning": "Below, Down"
-  },
-  {
-    "kanji": "来",
-    "meaning": "Come, Due"
   },
   {
     "kanji": "気",
@@ -168,28 +120,12 @@
     "meaning": "Mountain"
   },
   {
-    "kanji": "話",
-    "meaning": "Tale, Talk"
-  },
-  {
     "kanji": "女",
     "meaning": "Woman, Female"
   },
   {
-    "kanji": "北",
-    "meaning": "North"
-  },
-  {
-    "kanji": "午",
-    "meaning": "Noon"
-  },
-  {
     "kanji": "百",
     "meaning": "Hundred"
-  },
-  {
-    "kanji": "書",
-    "meaning": "Write"
   },
   {
     "kanji": "先",
@@ -212,28 +148,12 @@
     "meaning": "Water"
   },
   {
-    "kanji": "半",
-    "meaning": "Half, Middle"
-  },
-  {
     "kanji": "男",
     "meaning": "Male"
   },
   {
-    "kanji": "西",
-    "meaning": "West, Spain"
-  },
-  {
-    "kanji": "電",
-    "meaning": "Electricity"
-  },
-  {
     "kanji": "校",
     "meaning": "Exam, School"
-  },
-  {
-    "kanji": "語",
-    "meaning": "Word, Speech"
   },
   {
     "kanji": "土",
@@ -244,16 +164,124 @@
     "meaning": "Tree, Wood"
   },
   {
+    "kanji": "車",
+    "meaning": "Car"
+  },
+  {
+    "kanji": "白",
+    "meaning": "White"
+  },
+  {
+    "kanji": "天",
+    "meaning": "Heavens, Sky"
+  },
+  {
+    "kanji": "火",
+    "meaning": "Fire"
+  },
+  {
+    "kanji": "右",
+    "meaning": "Right"
+  },
+  {
+    "kanji": "左",
+    "meaning": "Left"
+  },
+  {
+    "kanji": "休",
+    "meaning": "Rest, Day Off"
+  },
+  {
+    "kanji": "雨",
+    "meaning": "Rain"
+  },
+  {
+    "kanji": "国",
+    "meaning": "Country"
+  },
+  {
+    "kanji": "長",
+    "meaning": "Long, Leader"
+  },
+  {
+    "kanji": "時",
+    "meaning": "Time, Hour"
+  },
+  {
+    "kanji": "行",
+    "meaning": "Going, Journey"
+  },
+  {
+    "kanji": "後",
+    "meaning": "Behind, Back"
+  },
+  {
+    "kanji": "前",
+    "meaning": "In Front, Before"
+  },
+  {
+    "kanji": "間",
+    "meaning": "Interval, Space"
+  },
+  {
+    "kanji": "東",
+    "meaning": "East"
+  },
+  {
+    "kanji": "今",
+    "meaning": "Now"
+  },
+  {
+    "kanji": "高",
+    "meaning": "Tall, High"
+  },
+  {
+    "kanji": "外",
+    "meaning": "Outside"
+  },
+  {
+    "kanji": "来",
+    "meaning": "Come, Due"
+  },
+  {
+    "kanji": "話",
+    "meaning": "Tale, Talk"
+  },
+  {
+    "kanji": "北",
+    "meaning": "North"
+  },
+  {
+    "kanji": "午",
+    "meaning": "Noon"
+  },
+  {
+    "kanji": "書",
+    "meaning": "Write"
+  },
+  {
+    "kanji": "半",
+    "meaning": "Half, Middle"
+  },
+  {
+    "kanji": "西",
+    "meaning": "West, Spain"
+  },
+  {
+    "kanji": "電",
+    "meaning": "Electricity"
+  },
+  {
+    "kanji": "語",
+    "meaning": "Word, Speech"
+  },
+  {
     "kanji": "聞",
     "meaning": "Hear, Ask"
   },
   {
     "kanji": "食",
     "meaning": "Eat, Food"
-  },
-  {
-    "kanji": "車",
-    "meaning": "Car"
   },
   {
     "kanji": "何",
@@ -272,24 +300,8 @@
     "meaning": "Every"
   },
   {
-    "kanji": "白",
-    "meaning": "White"
-  },
-  {
-    "kanji": "天",
-    "meaning": "Heavens, Sky"
-  },
-  {
     "kanji": "母",
     "meaning": "Mother"
-  },
-  {
-    "kanji": "火",
-    "meaning": "Fire"
-  },
-  {
-    "kanji": "右",
-    "meaning": "Right"
   },
   {
     "kanji": "読",
@@ -300,19 +312,7 @@
     "meaning": "Friend"
   },
   {
-    "kanji": "左",
-    "meaning": "Left"
-  },
-  {
-    "kanji": "休",
-    "meaning": "Rest, Day Off"
-  },
-  {
     "kanji": "父",
     "meaning": "Father"
-  },
-  {
-    "kanji": "雨",
-    "meaning": "Rain"
   }
 ]
