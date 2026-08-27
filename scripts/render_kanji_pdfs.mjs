@@ -26,9 +26,9 @@ if (!buildDir || !outDir) {
 
 const levels = [5, 4, 3, 2, 1];
 
-const headerTemplate = (level) => `
+const headerTemplate = (level, label) => `
   <div style="font-size:8px; width:100%; padding:0 10mm; color:#888; display:flex; justify-content:space-between;">
-    <span>Tokidoki — JLPT N${level} Kanji Practice</span>
+    <span>Tokidoki — JLPT N${level} Kanji ${label}</span>
   </div>`;
 
 const footerTemplate = `
@@ -36,24 +36,39 @@ const footerTemplate = `
     <span class="pageNumber"></span>&nbsp;/&nbsp;<span class="totalPages"></span>
   </div>`;
 
+async function printOne(browser, htmlPath, outPath, level, label) {
+  const page = await browser.newPage();
+  await page.goto(pathToFileURL(htmlPath).href, { waitUntil: "load" });
+  await page.pdf({
+    path: outPath,
+    format: "A4",
+    printBackground: true,
+    displayHeaderFooter: true,
+    headerTemplate: headerTemplate(level, label),
+    footerTemplate,
+    margin: { top: "14mm", bottom: "12mm", left: "12mm", right: "12mm" },
+  });
+  await page.close();
+  console.log(`N${level} ${label} -> ${outPath}`);
+}
+
 const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
 try {
   for (const level of levels) {
-    const page = await browser.newPage();
-    const htmlPath = path.join(buildDir, `n${level}.html`);
-    await page.goto(pathToFileURL(htmlPath).href, { waitUntil: "load" });
-    const outPath = path.join(outDir, `tokidoki-kanji-n${level}.pdf`);
-    await page.pdf({
-      path: outPath,
-      format: "A4",
-      printBackground: true,
-      displayHeaderFooter: true,
-      headerTemplate: headerTemplate(level),
-      footerTemplate,
-      margin: { top: "14mm", bottom: "12mm", left: "12mm", right: "12mm" },
-    });
-    await page.close();
-    console.log(`N${level} -> ${outPath}`);
+    await printOne(
+      browser,
+      path.join(buildDir, `n${level}.html`),
+      path.join(outDir, `tokidoki-kanji-n${level}.pdf`),
+      level,
+      "Practice",
+    );
+    await printOne(
+      browser,
+      path.join(buildDir, `n${level}-answers.html`),
+      path.join(outDir, `tokidoki-kanji-n${level}-answers.pdf`),
+      level,
+      "Answer Key",
+    );
   }
 } finally {
   await browser.close();
