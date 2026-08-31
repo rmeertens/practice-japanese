@@ -302,7 +302,8 @@ body {
 
 .chapter-card-links {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 4px;
   margin-top: 8px;
 }
 
