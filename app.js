@@ -2771,6 +2771,19 @@
     return !!el && !el.classList.contains('hidden');
   }
 
+  // Stops a handled shortcut key from also reaching browser extensions like
+  // Vimium, which bind their own global keydown listeners (Space to scroll,
+  // etc.) and don't know these keys mean something to this app. Our
+  // listeners run in the capture phase (registered with `true` below) so
+  // they fire before such bubble-phase listeners even see the event —
+  // stopPropagation() here then keeps it from reaching them at all. Call
+  // this only for keys the app actually consumes, not on every keydown, so
+  // extension shortcuts still work normally for everything else.
+  function consumeKey(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
   function init() {
     renderSharedChrome();
     initTheme();
@@ -2864,9 +2877,10 @@
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && overlayOpen('ref-overlay')) {
+        consumeKey(e);
         closeReference();
       }
-    });
+    }, true);
 
     // Settings button
     function openSettings() {
@@ -2977,12 +2991,12 @@
       if (overlayOpen('ref-overlay')) return;
 
       if (kanaAnswered) {
-        if (e.key === '1') { e.preventDefault(); gradeKanaAndAdvance(1); return; }
-        if (e.key === '2' || e.key === ' ') { e.preventDefault(); gradeKanaAndAdvance(4); return; }
+        if (e.key === '1') { consumeKey(e); gradeKanaAndAdvance(1); return; }
+        if (e.key === '2' || e.key === ' ') { consumeKey(e); gradeKanaAndAdvance(4); return; }
         return;
       }
-      if (e.key === ' ') { e.preventDefault(); revealKanaAnswer(); return; }
-    });
+      if (e.key === ' ') { consumeKey(e); revealKanaAnswer(); return; }
+    }, true);
 
     // ─── Kanji quiz ──────────────────────────────────────────────────────────────
 
@@ -3025,20 +3039,20 @@
       if (overlayOpen('ref-overlay')) return;
 
       if ((e.ctrlKey || e.metaKey) && e.key === 'z') {
-        e.preventDefault();
+        consumeKey(e);
         undoLastKanjiQuizGrade();
         return;
       }
 
       if (kanjiQuizAnswered) {
-        if (e.key === '1') { e.preventDefault(); gradeKanjiQuizAndAdvance(1); return; }
-        if (e.key === '2' || e.key === ' ') { e.preventDefault(); gradeKanjiQuizAndAdvance(4); return; }
-        if (e.key === 'z' || e.key === 'Z') { e.preventDefault(); undoLastKanjiQuizGrade(); return; }
+        if (e.key === '1') { consumeKey(e); gradeKanjiQuizAndAdvance(1); return; }
+        if (e.key === '2' || e.key === ' ') { consumeKey(e); gradeKanjiQuizAndAdvance(4); return; }
+        if (e.key === 'z' || e.key === 'Z') { consumeKey(e); undoLastKanjiQuizGrade(); return; }
         return;
       }
-      if (e.key === ' ') { e.preventDefault(); revealKanjiQuizAnswer(); return; }
-      if (e.key === 'z' || e.key === 'Z') { e.preventDefault(); undoLastKanjiQuizGrade(); return; }
-    });
+      if (e.key === ' ') { consumeKey(e); revealKanjiQuizAnswer(); return; }
+      if (e.key === 'z' || e.key === 'Z') { consumeKey(e); undoLastKanjiQuizGrade(); return; }
+    }, true);
 
     // Reference tabs
     $$('.ref-tab').forEach(tab => {
@@ -3071,6 +3085,7 @@
     // Keyboard shortcuts
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && overlayOpen('settings-overlay')) {
+        consumeKey(e);
         closeSettings();
         return;
       }
@@ -3079,27 +3094,27 @@
       if (overlayOpen('settings-overlay')) return;
 
       if ((e.ctrlKey || e.metaKey) && e.key === 'z') {
-        e.preventDefault();
+        consumeKey(e);
         undoLastGrade();
         return;
       }
 
       if (answered) {
-        if (e.key === '1') { e.preventDefault(); gradeAndAdvance(1); return; }
-        if (e.key === '2' || e.key === ' ') { e.preventDefault(); gradeAndAdvance(4); return; }
-        if (e.key === 'z' || e.key === 'Z') { e.preventDefault(); undoLastGrade(); return; }
+        if (e.key === '1') { consumeKey(e); gradeAndAdvance(1); return; }
+        if (e.key === '2' || e.key === ' ') { consumeKey(e); gradeAndAdvance(4); return; }
+        if (e.key === 'z' || e.key === 'Z') { consumeKey(e); undoLastGrade(); return; }
         return;
       }
 
       // Card front is showing
-      if (e.key === 'h' || e.key === 'H') { e.preventDefault(); toggleHint(); return; }
+      if (e.key === 'h' || e.key === 'H') { consumeKey(e); toggleHint(); return; }
       if (settings.typingMode) {
-        if (e.key === 'Enter' && !e.isComposing) { e.preventDefault(); checkAnswer(); }
+        if (e.key === 'Enter' && !e.isComposing) { consumeKey(e); checkAnswer(); }
       } else {
-        if (e.key === ' ') { e.preventDefault(); showAnswer(); return; }
-        if (e.key === 'z' || e.key === 'Z') { e.preventDefault(); undoLastGrade(); return; }
+        if (e.key === ' ') { consumeKey(e); showAnswer(); return; }
+        if (e.key === 'z' || e.key === 'Z') { consumeKey(e); undoLastGrade(); return; }
       }
-    });
+    }, true);
   }
 
   document.addEventListener('DOMContentLoaded', init);
