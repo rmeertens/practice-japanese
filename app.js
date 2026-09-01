@@ -2435,6 +2435,7 @@
   let kanjiQuizCorrect = 0;
   let currentKanjiQuizCard = null;
   let kanjiQuizAnswered = false;
+  let kanjiQuizUndoStack = [];
 
   function kanjiQuizCardId(level, direction, kanji) {
     return `kanjiquiz_${level}_${direction}_${kanji}`;
@@ -2487,11 +2488,17 @@
     kanjiQuizIndex = 0;
     kanjiQuizCorrect = 0;
     kanjiQuizTotal = kanjiQuizSessionCards.length;
+    kanjiQuizUndoStack = [];
 
     showScreen('kanji-quiz');
     $('#kanji-quiz-session-complete').classList.add('hidden');
     $('#kanji-quiz-card').classList.remove('hidden');
     showKanjiQuizCard();
+  }
+
+  function updateKanjiQuizUndoButton() {
+    const btn = $('#btn-kanji-quiz-undo');
+    if (btn) btn.classList.toggle('hidden', kanjiQuizUndoStack.length === 0);
   }
 
   function showKanjiQuizCard() {
@@ -2523,6 +2530,8 @@
 
     $('#kanji-quiz-reveal-area').classList.remove('hidden');
     $('#kanji-quiz-answer-area').classList.add('hidden');
+
+    updateKanjiQuizUndoButton();
   }
 
   function revealKanjiQuizAnswer() {
@@ -2549,6 +2558,15 @@
     if (!kanjiQuizAnswered || !currentKanjiQuizCard) return;
 
     const id = currentKanjiQuizCard.id;
+
+    kanjiQuizUndoStack.push({
+      cardId: id,
+      prevSrsState: srsData[id] ? { ...srsData[id] } : null,
+      prevStats: { ...statsData },
+      index: kanjiQuizIndex,
+      correct: kanjiQuizCorrect,
+    });
+
     const state = getCardState(srsData, id);
     srsData[id] = gradeCard(state, grade);
     saveSRS(srsData);
@@ -2564,6 +2582,34 @@
 
     kanjiQuizIndex++;
     showKanjiQuizCard();
+  }
+
+  // "Previous" for a card you graded wrong (e.g. clicked Got It but were
+  // actually wrong) — pops the undo stack, restoring that card's prior SRS
+  // state and stats, then re-shows it so you can grade it again correctly.
+  function undoLastKanjiQuizGrade() {
+    if (kanjiQuizUndoStack.length === 0) return;
+
+    const undo = kanjiQuizUndoStack.pop();
+
+    if (undo.prevSrsState) {
+      srsData[undo.cardId] = undo.prevSrsState;
+    } else {
+      delete srsData[undo.cardId];
+    }
+    saveSRS(srsData);
+
+    statsData = { ...undo.prevStats };
+    saveStats(statsData);
+
+    kanjiQuizIndex = undo.index;
+    kanjiQuizCorrect = undo.correct;
+
+    $('#kanji-quiz-session-complete').classList.add('hidden');
+    $('#kanji-quiz-card').classList.remove('hidden');
+
+    showKanjiQuizCard();
+    flashSaveIndicator();
   }
 
   function finishKanjiQuizSession() {
@@ -2971,17 +3017,27 @@
       renderKanjiQuizPanel();
     });
 
+    on('#btn-kanji-quiz-undo', 'click', undoLastKanjiQuizGrade);
+
     document.addEventListener('keydown', (e) => {
       if (!(screens['kanji-quiz'] && screens['kanji-quiz'].classList.contains('active'))) return;
       if (overlayOpen('settings-overlay')) return;
       if (overlayOpen('ref-overlay')) return;
 
+      if ((e.ctrlKey || e.metaKey) && e.key === 'z') {
+        e.preventDefault();
+        undoLastKanjiQuizGrade();
+        return;
+      }
+
       if (kanjiQuizAnswered) {
         if (e.key === '1') { e.preventDefault(); gradeKanjiQuizAndAdvance(1); return; }
         if (e.key === '2' || e.key === ' ') { e.preventDefault(); gradeKanjiQuizAndAdvance(4); return; }
+        if (e.key === 'z' || e.key === 'Z') { e.preventDefault(); undoLastKanjiQuizGrade(); return; }
         return;
       }
       if (e.key === ' ') { e.preventDefault(); revealKanjiQuizAnswer(); return; }
+      if (e.key === 'z' || e.key === 'Z') { e.preventDefault(); undoLastKanjiQuizGrade(); return; }
     });
 
     // Reference tabs
