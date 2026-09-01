@@ -193,11 +193,19 @@ body {
   border-radius: var(--radius-sm);
   padding: 4px;
   border: 1px solid var(--border);
+  /* More tabs than fit a narrow viewport scroll horizontally instead of
+     silently overflowing the container — flex-shrink alone can't get a
+     tab below its own text's min-content width. */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
 
+.mode-tabs::-webkit-scrollbar { display: none; }
+
 .mode-tab, .mode-tab:visited {
-  flex: 1;
-  padding: 10px;
+  flex: 0 0 auto;
+  padding: 10px 14px;
   border: none;
   border-radius: 6px;
   background: transparent;
@@ -208,6 +216,7 @@ body {
   transition: all var(--transition);
   text-decoration: none;
   text-align: center;
+  white-space: nowrap;
 }
 
 .mode-tab.active, .mode-tab.active:visited {
@@ -924,6 +933,7 @@ body {
 /* Kana drawing practice */
 .kana-settings-row {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   margin-bottom: 16px;
 }
@@ -1056,6 +1066,16 @@ body {
 .kana-answer-romaji {
   font-size: 0.95rem;
   color: var(--text-dim);
+}
+
+/* Kanji quiz: the meaning side of a card (English text, so sized down from
+   .kana-answer-char's single-glyph 5rem to stay readable on longer phrases) */
+.kanji-quiz-meaning {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-align: center;
+  line-height: 1.3;
 }
 
 /* Reference overlay */
@@ -1734,17 +1754,8 @@ body {
   .ref-explanation .conj-table th { padding: 6px; font-size: 0.65rem; }
   .ref-exc-list { grid-template-columns: 1fr 1fr; }
 
-  .mode-tabs {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  .mode-tabs::-webkit-scrollbar { display: none; }
   .mode-tab {
-    flex: 0 0 auto;
-    padding: 10px 14px;
     font-size: 0.82rem;
-    white-space: nowrap;
   }
 }
 

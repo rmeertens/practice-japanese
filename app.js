@@ -122,6 +122,7 @@
     chapters: $('#screen-chapters'),
     study: $('#screen-study'),
     kana: $('#screen-kana'),
+    'kanji-quiz': $('#screen-kanji-quiz'),
   };
 
   // ─── Theme ─────────────────────────────────────────────────────────────────────
@@ -187,6 +188,9 @@
     } else if (name === 'kana') {
       backBtn.classList.remove('hidden');
       title.textContent = 'Kana Practice';
+    } else if (name === 'kanji-quiz') {
+      backBtn.classList.remove('hidden');
+      title.textContent = 'Kanji Quiz';
     }
   }
 
@@ -354,6 +358,13 @@
     KANA_DATA.katakana.forEach(k => { if (isDue(getCardState(srsData, kanaCardId('katakana', k.kana)))) due++; });
     return due;
   }
+
+  // No countDueKanjiQuiz/hub badge: the quiz pool is 5 levels x 2 directions
+  // (4000+ cards, mostly never studied), so a summed "due" count would dwarf
+  // every other hub number and make the total meaningless. Build Your Own
+  // has the same kind of open-ended pool and likewise skips a hub badge —
+  // the kanji-quiz page itself shows a due count scoped to your own
+  // level/direction selection, which is the number that's actually useful.
 
   function renderHub() {
     const verbDue = countDueVerbs();
@@ -2406,6 +2417,163 @@
     kanaCtx.clearRect(0, 0, canvas.width, canvas.height);
   }
 
+  // ─── Kanji Quiz (self-graded flashcards, either direction) ─────────────────────
+  //
+  // Reuses the SRS engine and card layout the kana mode established above.
+  // Each kanji/direction pair gets its own SRS state (recalling the kanji from
+  // its meaning and recalling the meaning from the kanji are different skills),
+  // and there's no drawing canvas here — the printable sheets already cover
+  // handwriting practice with real pen and paper; this is a quick digital
+  // recall check in both directions.
+
+  const KANJI_QUIZ_LEVELS = ['n5', 'n4', 'n3', 'n2', 'n1'];
+  const KANJI_QUIZ_DIRECTIONS = ['meaning-to-kanji', 'kanji-to-meaning'];
+
+  let kanjiQuizSessionCards = [];
+  let kanjiQuizIndex = 0;
+  let kanjiQuizTotal = 0;
+  let kanjiQuizCorrect = 0;
+  let currentKanjiQuizCard = null;
+  let kanjiQuizAnswered = false;
+
+  function kanjiQuizCardId(level, direction, kanji) {
+    return `kanjiquiz_${level}_${direction}_${kanji}`;
+  }
+
+  function getKanjiQuizDirection() {
+    const checked = $('input[name="kanji-quiz-direction"]:checked');
+    return checked ? checked.value : 'meaning-to-kanji';
+  }
+
+  function getKanjiQuizLevels() {
+    return KANJI_QUIZ_LEVELS.filter(level => {
+      const el = $(`#kanji-quiz-toggle-${level}`);
+      return el && el.checked;
+    });
+  }
+
+  function getKanjiQuizPool() {
+    const direction = getKanjiQuizDirection();
+    const pool = [];
+    getKanjiQuizLevels().forEach(level => {
+      KANJI_QUIZ_DATA[level].forEach(k => {
+        pool.push({
+          level, direction, kanji: k.kanji, meaning: k.meaning,
+          id: kanjiQuizCardId(level, direction, k.kanji),
+        });
+      });
+    });
+    return pool;
+  }
+
+  function renderKanjiQuizPanel() {
+    const pool = getKanjiQuizPool();
+    const due = pool.filter(k => isDue(getCardState(srsData, k.id))).length;
+    const el = $('#kanji-quiz-due-count');
+    if (el) el.textContent = due;
+  }
+
+  function startKanjiQuizStudy() {
+    const pool = getKanjiQuizPool();
+    if (pool.length === 0) return;
+
+    const due = pool.filter(k => isDue(getCardState(srsData, k.id)));
+    kanjiQuizSessionCards = prioritizeDifficult(due.length > 0 ? due : pool.slice());
+
+    if (kanjiQuizSessionCards.length > 20) {
+      kanjiQuizSessionCards = kanjiQuizSessionCards.slice(0, 20);
+    }
+
+    kanjiQuizIndex = 0;
+    kanjiQuizCorrect = 0;
+    kanjiQuizTotal = kanjiQuizSessionCards.length;
+
+    showScreen('kanji-quiz');
+    $('#kanji-quiz-session-complete').classList.add('hidden');
+    $('#kanji-quiz-card').classList.remove('hidden');
+    showKanjiQuizCard();
+  }
+
+  function showKanjiQuizCard() {
+    if (kanjiQuizIndex >= kanjiQuizSessionCards.length) {
+      finishKanjiQuizSession();
+      return;
+    }
+
+    kanjiQuizAnswered = false;
+    currentKanjiQuizCard = kanjiQuizSessionCards[kanjiQuizIndex];
+
+    const pct = (kanjiQuizIndex / kanjiQuizTotal) * 100;
+    $('#kanji-quiz-bar-fill').style.width = pct + '%';
+    $('#kanji-quiz-progress-text').textContent = `${kanjiQuizIndex + 1} / ${kanjiQuizTotal}`;
+
+    const meaningToKanji = currentKanjiQuizCard.direction === 'meaning-to-kanji';
+    $('#kanji-quiz-prompt-label').textContent = meaningToKanji ? 'Recall the kanji' : 'Recall the meaning';
+
+    const prompt = $('#kanji-quiz-prompt');
+    if (meaningToKanji) {
+      prompt.textContent = currentKanjiQuizCard.meaning;
+      prompt.className = 'kanji-quiz-meaning';
+    } else {
+      prompt.textContent = currentKanjiQuizCard.kanji;
+      prompt.className = 'kana-answer-char';
+    }
+
+    $('#kanji-quiz-level-badge').textContent = currentKanjiQuizCard.level.toUpperCase();
+
+    $('#kanji-quiz-reveal-area').classList.remove('hidden');
+    $('#kanji-quiz-answer-area').classList.add('hidden');
+  }
+
+  function revealKanjiQuizAnswer() {
+    if (kanjiQuizAnswered || !currentKanjiQuizCard) return;
+    kanjiQuizAnswered = true;
+
+    $('#kanji-quiz-reveal-area').classList.add('hidden');
+    $('#kanji-quiz-answer-area').classList.remove('hidden');
+
+    const meaningToKanji = currentKanjiQuizCard.direction === 'meaning-to-kanji';
+    const answer = $('#kanji-quiz-answer');
+    if (meaningToKanji) {
+      answer.textContent = currentKanjiQuizCard.kanji;
+      answer.className = 'kana-answer-char';
+      $('#kanji-quiz-answer-recap').textContent = `${currentKanjiQuizCard.meaning} · ${currentKanjiQuizCard.level.toUpperCase()}`;
+    } else {
+      answer.textContent = currentKanjiQuizCard.meaning;
+      answer.className = 'kanji-quiz-meaning';
+      $('#kanji-quiz-answer-recap').textContent = `${currentKanjiQuizCard.kanji} · ${currentKanjiQuizCard.level.toUpperCase()}`;
+    }
+  }
+
+  function gradeKanjiQuizAndAdvance(grade) {
+    if (!kanjiQuizAnswered || !currentKanjiQuizCard) return;
+
+    const id = currentKanjiQuizCard.id;
+    const state = getCardState(srsData, id);
+    srsData[id] = gradeCard(state, grade);
+    saveSRS(srsData);
+
+    updateStreak();
+    statsData.todayReviews = (statsData.todayReviews || 0) + 1;
+    if (grade >= 4) {
+      statsData.todayCorrect = (statsData.todayCorrect || 0) + 1;
+      kanjiQuizCorrect++;
+    }
+    saveStats(statsData);
+    flashSaveIndicator();
+
+    kanjiQuizIndex++;
+    showKanjiQuizCard();
+  }
+
+  function finishKanjiQuizSession() {
+    $('#kanji-quiz-card').classList.add('hidden');
+    $('#kanji-quiz-session-complete').classList.remove('hidden');
+    $('#kanji-quiz-session-total').textContent = kanjiQuizTotal;
+    $('#kanji-quiz-session-correct').textContent = kanjiQuizCorrect;
+    $('#kanji-quiz-session-accuracy').textContent = (kanjiQuizTotal > 0 ? Math.round((kanjiQuizCorrect / kanjiQuizTotal) * 100) : 0) + '%';
+  }
+
   // ─── Utilities ─────────────────────────────────────────────────────────────────
 
   function shuffle(arr) {
@@ -2561,6 +2729,12 @@
     renderSharedChrome();
     initTheme();
 
+    // The mode-tabs row scrolls horizontally once there are more tabs than
+    // fit — make sure the active one (which can be the last tab) actually
+    // starts in view instead of requiring a manual scroll to find it.
+    const activeTab = $('.mode-tab.active');
+    if (activeTab) activeTab.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+
     srsData = loadSRS();
     statsData = loadStats();
     renderGlobalStats();
@@ -2583,6 +2757,8 @@
       renderKanaPanel();
     } else if (mode === 'kanji-sheets') {
       // Static download links page — no SRS state to render.
+    } else if (mode === 'kanji-quiz') {
+      renderKanjiQuizPanel();
     } else {
       renderHub();
     }
@@ -2596,6 +2772,7 @@
       if (mode === 'verbs') renderChapters();
       else if (mode === 'adjectives') renderAdjChapters();
       else if (mode === 'kana') renderKanaPanel();
+      else if (mode === 'kanji-quiz') renderKanjiQuizPanel();
     });
 
     // Reference overlay
@@ -2761,6 +2938,52 @@
       if (e.key === ' ') { e.preventDefault(); revealKanaAnswer(); return; }
     });
 
+    // ─── Kanji quiz ──────────────────────────────────────────────────────────────
+
+    $$('input[name="kanji-quiz-direction"]').forEach(el => {
+      el.addEventListener('change', renderKanjiQuizPanel);
+    });
+
+    function toggleKanjiQuizLevel(e) {
+      const anyChecked = KANJI_QUIZ_LEVELS.some(level => $(`#kanji-quiz-toggle-${level}`).checked);
+      if (!anyChecked) {
+        e.target.checked = true;
+        return;
+      }
+      renderKanjiQuizPanel();
+    }
+
+    KANJI_QUIZ_LEVELS.forEach(level => {
+      on(`#kanji-quiz-toggle-${level}`, 'change', toggleKanjiQuizLevel);
+    });
+
+    on('#btn-start-kanji-quiz', 'click', startKanjiQuizStudy);
+    on('#btn-kanji-quiz-reveal', 'click', revealKanjiQuizAnswer);
+
+    $$('.btn-grade[data-kanji-quiz-grade]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        gradeKanjiQuizAndAdvance(parseInt(btn.dataset.kanjiQuizGrade));
+      });
+    });
+
+    on('#btn-kanji-quiz-back-to-chapters', 'click', () => {
+      showScreen('chapters');
+      renderKanjiQuizPanel();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!(screens['kanji-quiz'] && screens['kanji-quiz'].classList.contains('active'))) return;
+      if (overlayOpen('settings-overlay')) return;
+      if (overlayOpen('ref-overlay')) return;
+
+      if (kanjiQuizAnswered) {
+        if (e.key === '1') { e.preventDefault(); gradeKanjiQuizAndAdvance(1); return; }
+        if (e.key === '2' || e.key === ' ') { e.preventDefault(); gradeKanjiQuizAndAdvance(4); return; }
+        return;
+      }
+      if (e.key === ' ') { e.preventDefault(); revealKanjiQuizAnswer(); return; }
+    });
+
     // Reference tabs
     $$('.ref-tab').forEach(tab => {
       tab.addEventListener('click', () => {
@@ -2781,6 +3004,7 @@
         if (mode === 'verbs') renderChapters();
         else if (mode === 'adjectives') renderAdjChapters();
         else if (mode === 'kana') renderKanaPanel();
+        else if (mode === 'kanji-quiz') renderKanjiQuizPanel();
         else if (mode === 'hub') renderHub();
       }
     });

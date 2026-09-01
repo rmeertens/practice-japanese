@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" id="viewport-meta" content="width=device-width, initial-scale=1.0">
+  <title>JLPT Kanji Quiz &amp; Flashcards | Tokidoki</title>
+  <meta name="description" content="Free JLPT kanji flashcard quiz (N5–N1). Test recall in either direction — meaning to kanji, or kanji to meaning — with spaced repetition so you review what you don't know.">
+  <meta property="og:title" content="JLPT Kanji Quiz &amp; Flashcards | Tokidoki">
+  <meta property="og:description" content="Free JLPT kanji flashcard quiz (N5–N1), either direction, scheduled with spaced repetition. No login required.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tokidoki.meertens.dev/kanji-quiz.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="JLPT Kanji Quiz &amp; Flashcards | Tokidoki">
+  <meta name="twitter:description" content="Free JLPT kanji flashcard quiz (N5–N1), either direction, scheduled with spaced repetition.">
+  <link rel="canonical" href="https://tokidoki.meertens.dev/kanji-quiz.html">
+  <link rel="stylesheet" href="style.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXWYNZC7YH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXWYNZC7YH');
+  </script>
+</head>
+<body data-mode="kanji-quiz">
+  <div id="app">
+
+    <!-- Header -->
+    <!-- Header (rendered by renderSharedChrome() in app.js) -->
+    <div id="header-mount"></div>
+
+    <!-- Screen: Chapter Select -->
+    <main id="screen-chapters" class="screen active">
+      <nav class="mode-tabs">
+        <a class="mode-tab" href="verbs.html">Verbs</a>
+        <a class="mode-tab" href="adjectives.html">Adjectives</a>
+        <a class="mode-tab" href="custom.html">Build Your Own</a>
+        <a class="mode-tab" href="sentences.html">Sentences</a>
+        <a class="mode-tab" href="kana.html">Kana</a>
+        <a class="mode-tab" href="kanji.html">Practice Sheets</a>
+        <a class="mode-tab active" href="kanji-quiz.html">Kanji Quiz</a>
+      </nav>
+      <div id="kanji-quiz-panel">
+        <p class="tab-intro">
+          Self-graded kanji flashcards. Pick a direction and which JLPT levels to include,
+          then start a session scheduled with spaced repetition so you review what you don't
+          know most often.
+        </p>
+        <div class="kana-settings-row">
+          <label class="kana-script-toggle">
+            <input type="radio" name="kanji-quiz-direction" id="kanji-quiz-dir-mk" value="meaning-to-kanji" checked>
+            Meaning &rarr; Kanji
+          </label>
+          <label class="kana-script-toggle">
+            <input type="radio" name="kanji-quiz-direction" id="kanji-quiz-dir-km" value="kanji-to-meaning">
+            Kanji &rarr; Meaning
+          </label>
+        </div>
+        <div class="kana-settings-row">
+          <label class="kana-script-toggle"><input type="checkbox" id="kanji-quiz-toggle-n5" checked> N5</label>
+          <label class="kana-script-toggle"><input type="checkbox" id="kanji-quiz-toggle-n4"> N4</label>
+          <label class="kana-script-toggle"><input type="checkbox" id="kanji-quiz-toggle-n3"> N3</label>
+          <label class="kana-script-toggle"><input type="checkbox" id="kanji-quiz-toggle-n2"> N2</label>
+          <label class="kana-script-toggle"><input type="checkbox" id="kanji-quiz-toggle-n1"> N1</label>
+        </div>
+        <div class="kana-start-card">
+          <div class="kana-start-info">
+            <span class="stat-num" id="kanji-quiz-due-count">0</span>
+            <span class="stat-label">cards due</span>
+          </div>
+          <button id="btn-start-kanji-quiz" class="btn-primary btn-start-custom">Start Quiz</button>
+        </div>
+      </div>
+      <div class="reset-section">
+        <button id="btn-reset" class="btn-danger">Reset All Progress</button>
+      </div>
+    </main>
+
+    <!-- Screen: Kanji Quiz -->
+    <main id="screen-kanji-quiz" class="screen">
+      <div class="study-toolbar">
+        <div class="study-progress">
+          <div class="study-progress-bar"><div id="kanji-quiz-bar-fill" class="study-bar-fill"></div></div>
+          <span id="kanji-quiz-progress-text" class="study-progress-text">0 / 0</span>
+        </div>
+      </div>
+      <div id="save-indicator" class="save-indicator hidden">Saved</div>
+
+      <div id="kanji-quiz-card" class="card kana-card">
+        <div class="kana-prompt-label" id="kanji-quiz-prompt-label">Recall the kanji</div>
+        <div id="kanji-quiz-prompt"></div>
+        <div class="kana-script-badge" id="kanji-quiz-level-badge"></div>
+
+        <div class="reveal-area" id="kanji-quiz-reveal-area">
+          <button id="btn-kanji-quiz-reveal" class="btn-reveal">Show Answer</button>
+          <span class="reveal-hint">Space = show answer</span>
+        </div>
+
+        <div class="kana-answer-area hidden" id="kanji-quiz-answer-area">
+          <div id="kanji-quiz-answer"></div>
+          <div class="kana-answer-romaji" id="kanji-quiz-answer-recap"></div>
+          <div class="grade-buttons">
+            <button class="btn-grade btn-again" data-kanji-quiz-grade="1"><span class="grade-key">1</span> Didn't know</button>
+            <button class="btn-grade btn-easy" data-kanji-quiz-grade="4"><span class="grade-key">2</span> Got it</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="kanji-quiz-session-complete" class="session-complete hidden">
+        <div class="complete-icon">🎉</div>
+        <h2>Session Complete!</h2>
+        <div class="session-stats">
+          <div class="stat"><span class="stat-num" id="kanji-quiz-session-total">0</span><span class="stat-label">Cards</span></div>
+          <div class="stat"><span class="stat-num" id="kanji-quiz-session-correct">0</span><span class="stat-label">Got It</span></div>
+          <div class="stat"><span class="stat-num" id="kanji-quiz-session-accuracy">0%</span><span class="stat-label">Accuracy</span></div>
+        </div>
+        <button id="btn-kanji-quiz-back-to-chapters" class="btn-primary">Back to Chapters</button>
+      </div>
+    </main>
+
+  </div>
+
+  <script src="conjugator.js"></script>
+  <script src="verbs.js"></script>
+  <script src="kana.js"></script>
+  <script src="kanji-quiz-data.js"></script>
+  <script src="app.js"></script>
+
+  <!-- Static content for search engines -->
+  <section id="seo-content" aria-hidden="true">
+    <h2>JLPT Kanji Quiz &amp; Flashcards</h2>
+    <p>
+      Free, no-login kanji flashcard quiz covering JLPT N5 through N1. Test yourself in
+      either direction — see the meaning and recall the kanji, or see the kanji and recall
+      its meaning — then self-grade against the revealed answer. Progress is scheduled with
+      spaced repetition (SRS) per direction, so you review what you find hardest instead of
+      what you already know. Uses the same kanji lists and order as the
+      <a href="kanji.html">printable practice sheets</a>.
+    </p>
+  </section>
+</body>
+</html>
