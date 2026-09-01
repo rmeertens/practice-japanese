@@ -1473,6 +1473,12 @@
   }
 
   function finishSession() {
+    // Clear these so stale keyboard state (e.g. a leftover "answered")
+    // can't silently re-grade the last card if a shortcut key is pressed
+    // on the session-complete screen before "Back to Chapters" is clicked.
+    answered = false;
+    currentCard = null;
+
     $('#card').classList.add('hidden');
     const complete = $('#session-complete');
     complete.classList.remove('hidden');
@@ -2357,6 +2363,9 @@
   }
 
   function finishKanaSession() {
+    kanaAnswered = false;
+    currentKanaCard = null;
+
     $('#kana-card').classList.add('hidden');
     $('#kana-session-complete').classList.remove('hidden');
     $('#kana-session-total').textContent = kanaTotal;
@@ -2613,6 +2622,9 @@
   }
 
   function finishKanjiQuizSession() {
+    kanjiQuizAnswered = false;
+    currentKanjiQuizCard = null;
+
     $('#kanji-quiz-card').classList.add('hidden');
     $('#kanji-quiz-session-complete').classList.remove('hidden');
     $('#kanji-quiz-session-total').textContent = kanjiQuizTotal;
@@ -2782,6 +2794,18 @@
   function consumeKey(e) {
     e.preventDefault();
     e.stopPropagation();
+  }
+
+  // True when the focused element already has its own native meaning for
+  // Space (checkboxes, radios, other buttons, text inputs, links) — a
+  // global "Space = start/continue" shortcut should defer to that instead
+  // of hijacking Space away from, say, toggling a level checkbox the user
+  // just tabbed to.
+  function focusHasOwnSpaceAction() {
+    const el = document.activeElement;
+    if (!el || el === document.body) return false;
+    if (['INPUT', 'TEXTAREA', 'SELECT', 'BUTTON', 'A'].includes(el.tagName)) return true;
+    return el.isContentEditable;
   }
 
   function init() {
@@ -2980,21 +3004,38 @@
       });
     });
 
-    on('#btn-kana-back-to-chapters', 'click', () => {
+    function backToKanaChapters() {
       showScreen('chapters');
       renderKanaPanel();
-    });
+    }
+
+    on('#btn-kana-back-to-chapters', 'click', backToKanaChapters);
 
     document.addEventListener('keydown', (e) => {
-      if (!(screens.kana && screens.kana.classList.contains('active'))) return;
       if (overlayOpen('settings-overlay')) return;
       if (overlayOpen('ref-overlay')) return;
+
+      // Setup screen: Space starts a session, same as clicking Start Practice —
+      // but only when focus isn't on a checkbox/etc. that already owns Space.
+      if (mode === 'kana' && screens.chapters && screens.chapters.classList.contains('active')) {
+        if (e.key === ' ' && !focusHasOwnSpaceAction()) { consumeKey(e); startKanaStudy(); }
+        return;
+      }
+
+      if (!(screens.kana && screens.kana.classList.contains('active'))) return;
 
       if (kanaAnswered) {
         if (e.key === '1') { consumeKey(e); gradeKanaAndAdvance(1); return; }
         if (e.key === '2' || e.key === ' ') { consumeKey(e); gradeKanaAndAdvance(4); return; }
         return;
       }
+
+      // Session-complete screen: Space goes back, same as clicking the button.
+      if (!$('#kana-session-complete').classList.contains('hidden')) {
+        if (e.key === ' ' && !focusHasOwnSpaceAction()) { consumeKey(e); backToKanaChapters(); }
+        return;
+      }
+
       if (e.key === ' ') { consumeKey(e); revealKanaAnswer(); return; }
     }, true);
 
@@ -3026,17 +3067,27 @@
       });
     });
 
-    on('#btn-kanji-quiz-back-to-chapters', 'click', () => {
+    function backToKanjiQuizChapters() {
       showScreen('chapters');
       renderKanjiQuizPanel();
-    });
+    }
+
+    on('#btn-kanji-quiz-back-to-chapters', 'click', backToKanjiQuizChapters);
 
     on('#btn-kanji-quiz-undo', 'click', undoLastKanjiQuizGrade);
 
     document.addEventListener('keydown', (e) => {
-      if (!(screens['kanji-quiz'] && screens['kanji-quiz'].classList.contains('active'))) return;
       if (overlayOpen('settings-overlay')) return;
       if (overlayOpen('ref-overlay')) return;
+
+      // Setup screen: Space starts a session, same as clicking Start Quiz —
+      // but only when focus isn't on a checkbox/radio that already owns Space.
+      if (mode === 'kanji-quiz' && screens.chapters && screens.chapters.classList.contains('active')) {
+        if (e.key === ' ' && !focusHasOwnSpaceAction()) { consumeKey(e); startKanjiQuizStudy(); }
+        return;
+      }
+
+      if (!(screens['kanji-quiz'] && screens['kanji-quiz'].classList.contains('active'))) return;
 
       if ((e.ctrlKey || e.metaKey) && e.key === 'z') {
         consumeKey(e);
@@ -3050,6 +3101,13 @@
         if (e.key === 'z' || e.key === 'Z') { consumeKey(e); undoLastKanjiQuizGrade(); return; }
         return;
       }
+
+      // Session-complete screen: Space goes back, same as clicking the button.
+      if (!$('#kanji-quiz-session-complete').classList.contains('hidden')) {
+        if (e.key === ' ' && !focusHasOwnSpaceAction()) { consumeKey(e); backToKanjiQuizChapters(); }
+        return;
+      }
+
       if (e.key === ' ') { consumeKey(e); revealKanjiQuizAnswer(); return; }
       if (e.key === 'z' || e.key === 'Z') { consumeKey(e); undoLastKanjiQuizGrade(); return; }
     }, true);
