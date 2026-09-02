@@ -476,12 +476,13 @@
   function flashSaveIndicator() {
     const el = $('#save-indicator');
     if (!el) return;
-    el.classList.remove('hidden');
+    // Only ever toggle opacity (via .show), never display — the element
+    // keeps its layout space at all times so the page doesn't shift when
+    // the message fades out.
     el.classList.add('show');
     clearTimeout(saveTimeout);
     saveTimeout = setTimeout(() => {
       el.classList.remove('show');
-      setTimeout(() => el.classList.add('hidden'), 300);
     }, 1200);
   }
 
