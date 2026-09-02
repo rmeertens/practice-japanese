@@ -123,6 +123,7 @@
     study: $('#screen-study'),
     kana: $('#screen-kana'),
     'kanji-quiz': $('#screen-kanji-quiz'),
+    confusable: $('#screen-confusable'),
   };
 
   // ─── Theme ─────────────────────────────────────────────────────────────────────
@@ -191,6 +192,9 @@
     } else if (name === 'kanji-quiz') {
       backBtn.classList.remove('hidden');
       title.textContent = 'Kanji Quiz';
+    } else if (name === 'confusable') {
+      backBtn.classList.remove('hidden');
+      title.textContent = 'Confusing Kanji';
     }
   }
 
@@ -474,7 +478,11 @@
   }
 
   function flashSaveIndicator() {
-    const el = $('#save-indicator');
+    // Query scoped to the active screen first: pages with more than one
+    // study-like screen (e.g. kanji-quiz.html's flashcard and Confusing
+    // Kanji screens) each carry their own .save-indicator element, since
+    // only one can be visible at a time.
+    const el = document.querySelector('.screen.active .save-indicator') || $('#save-indicator');
     if (!el) return;
     // Only ever toggle opacity (via .show), never display — the element
     // keeps its layout space at all times so the page doesn't shift when
@@ -2456,6 +2464,11 @@
     return checked ? checked.value : 'meaning-to-kanji';
   }
 
+  function getKanjiQuizType() {
+    const checked = $('input[name="kanji-quiz-type"]:checked');
+    return checked ? checked.value : 'flashcards';
+  }
+
   function getKanjiQuizLevels() {
     return KANJI_QUIZ_LEVELS.filter(level => {
       const el = $(`#kanji-quiz-toggle-${level}`);
@@ -2478,7 +2491,19 @@
   }
 
   function renderKanjiQuizPanel() {
-    const pool = getKanjiQuizPool();
+    const isConfusable = getKanjiQuizType() === 'confusable';
+
+    const dirRow = $('#kanji-quiz-direction-row');
+    if (dirRow) dirRow.classList.toggle('hidden', isConfusable);
+
+    const intro = $('#kanji-quiz-intro');
+    if (intro) {
+      intro.textContent = isConfusable
+        ? 'Multiple-choice quiz built from kanji that look alike. Pick the right meaning out of 4 choices — the wrong ones are meanings of similar-looking kanji.'
+        : "Self-graded kanji flashcards. Pick a direction and which JLPT levels to include, then start a session scheduled with spaced repetition so you review what you don't know most often.";
+    }
+
+    const pool = isConfusable ? getConfusablePool() : getKanjiQuizPool();
     const due = pool.filter(k => isDue(getCardState(srsData, k.id))).length;
     const el = $('#kanji-quiz-due-count');
     if (el) el.textContent = due;
@@ -2631,6 +2656,275 @@
     $('#kanji-quiz-session-total').textContent = kanjiQuizTotal;
     $('#kanji-quiz-session-correct').textContent = kanjiQuizCorrect;
     $('#kanji-quiz-session-accuracy').textContent = (kanjiQuizTotal > 0 ? Math.round((kanjiQuizCorrect / kanjiQuizTotal) * 100) : 0) + '%';
+  }
+
+  // ─── Confusing Kanji (multiple-choice, using visually-similar kanji groups) ────
+  //
+  // Distractors come from the kanji's own "confusable group" (see
+  // kanji-sheets/data/confusable_kanji_groups.json, built from pixel-overlap
+  // similarity on rendered glyphs) so the wrong choices are plausible
+  // mix-ups rather than random noise. Most groups only have 1-2 other
+  // members, so we pad out to 3 distractors with other confusable kanji
+  // when a group is too small on its own.
+
+  let confusableFlatPool = null; // [{kanji, meaning, level, groupIndex}], built once
+
+  let confusableSessionCards = [];
+  let confusableIndex = 0;
+  let confusableTotal = 0;
+  let confusableCorrect = 0;
+  let currentConfusableCard = null;
+  let currentConfusableChoices = [];
+  let confusableAnswered = false;
+  let confusableUndoStack = [];
+
+  function buildConfusableFlatPool() {
+    if (confusableFlatPool) return;
+    confusableFlatPool = [];
+    (window.CONFUSABLE_KANJI_GROUPS || []).forEach((group, groupIndex) => {
+      group.kanji.forEach(kanji => {
+        confusableFlatPool.push({
+          kanji,
+          meaning: group.meanings[kanji],
+          level: group.levels[kanji].toLowerCase(),
+          groupIndex,
+        });
+      });
+    });
+  }
+
+  function confusableCardId(kanji) {
+    return `confusable_${kanji}`;
+  }
+
+  function getConfusablePool() {
+    buildConfusableFlatPool();
+    const levels = getKanjiQuizLevels();
+    return confusableFlatPool
+      .filter(k => levels.includes(k.level))
+      .map(k => ({ ...k, id: confusableCardId(k.kanji) }));
+  }
+
+  function pickConfusableChoices(card) {
+    // shuffle() mutates its argument in place and returns nothing, so build
+    // the array first and shuffle it as a separate statement before chaining.
+    const group = window.CONFUSABLE_KANJI_GROUPS[card.groupIndex];
+    const otherGroupMembers = group.kanji.filter(k => k !== card.kanji);
+    shuffle(otherGroupMembers);
+    const choices = otherGroupMembers.map(k => group.meanings[k]).slice(0, 3);
+
+    if (choices.length < 3) {
+      const used = new Set([card.meaning, ...choices]);
+      const filler = confusableFlatPool.filter(k => !used.has(k.meaning));
+      shuffle(filler);
+      for (const f of filler) {
+        if (choices.length >= 3) break;
+        if (used.has(f.meaning)) continue;
+        choices.push(f.meaning);
+        used.add(f.meaning);
+      }
+    }
+
+    const result = [card.meaning, ...choices];
+    shuffle(result);
+    return result;
+  }
+
+  function startConfusableStudy() {
+    const pool = getConfusablePool();
+    if (pool.length === 0) return;
+
+    const due = pool.filter(k => isDue(getCardState(srsData, k.id)));
+    confusableSessionCards = prioritizeDifficult(due.length > 0 ? due : pool.slice());
+
+    if (confusableSessionCards.length > 20) {
+      confusableSessionCards = confusableSessionCards.slice(0, 20);
+    }
+
+    confusableIndex = 0;
+    confusableCorrect = 0;
+    confusableTotal = confusableSessionCards.length;
+    confusableUndoStack = [];
+
+    showScreen('confusable');
+    $('#confusable-session-complete').classList.add('hidden');
+    $('#confusable-card').classList.remove('hidden');
+    showConfusableCard();
+  }
+
+  function updateConfusableUndoButton() {
+    const btn = $('#btn-confusable-undo');
+    if (btn) btn.classList.toggle('hidden', confusableUndoStack.length === 0);
+  }
+
+  function showConfusableCard() {
+    if (confusableIndex >= confusableSessionCards.length) {
+      finishConfusableSession();
+      return;
+    }
+
+    confusableAnswered = false;
+    currentConfusableCard = confusableSessionCards[confusableIndex];
+
+    const pct = (confusableIndex / confusableTotal) * 100;
+    $('#confusable-bar-fill').style.width = pct + '%';
+    $('#confusable-progress-text').textContent = `${confusableIndex + 1} / ${confusableTotal}`;
+
+    $('#confusable-prompt').textContent = currentConfusableCard.kanji;
+    $('#confusable-level-badge').textContent = currentConfusableCard.level.toUpperCase();
+
+    currentConfusableChoices = pickConfusableChoices(currentConfusableCard);
+    $$('.confusable-choice').forEach((btn, i) => {
+      btn.textContent = currentConfusableChoices[i];
+      btn.className = 'confusable-choice';
+      btn.disabled = false;
+    });
+
+    $('#confusable-next-area').classList.add('hidden');
+
+    updateConfusableUndoButton();
+  }
+
+  function chooseConfusableAnswer(choiceIndex) {
+    if (confusableAnswered || !currentConfusableCard) return;
+    if (choiceIndex < 0 || choiceIndex >= currentConfusableChoices.length) return;
+    confusableAnswered = true;
+
+    const correct = currentConfusableChoices[choiceIndex] === currentConfusableCard.meaning;
+
+    $$('.confusable-choice').forEach((btn, i) => {
+      btn.disabled = true;
+      if (currentConfusableChoices[i] === currentConfusableCard.meaning) {
+        btn.classList.add('correct');
+      } else if (i === choiceIndex) {
+        btn.classList.add('wrong');
+      }
+    });
+
+    const id = currentConfusableCard.id;
+
+    confusableUndoStack.push({
+      cardId: id,
+      prevSrsState: srsData[id] ? { ...srsData[id] } : null,
+      prevStats: { ...statsData },
+      index: confusableIndex,
+      correct: confusableCorrect,
+    });
+
+    const state = getCardState(srsData, id);
+    srsData[id] = gradeCard(state, correct ? 4 : 1);
+    saveSRS(srsData);
+
+    updateStreak();
+    statsData.todayReviews = (statsData.todayReviews || 0) + 1;
+    if (correct) {
+      statsData.todayCorrect = (statsData.todayCorrect || 0) + 1;
+      confusableCorrect++;
+    }
+    saveStats(statsData);
+    flashSaveIndicator();
+
+    $('#confusable-next-area').classList.remove('hidden');
+    updateConfusableUndoButton();
+  }
+
+  function advanceConfusable() {
+    if (!confusableAnswered) return;
+    confusableIndex++;
+    showConfusableCard();
+  }
+
+  // "Previous" for a misclick — pops the undo stack, restoring that card's
+  // prior SRS state and stats, then re-shows it so you can answer again.
+  function undoLastConfusableGrade() {
+    if (confusableUndoStack.length === 0) return;
+
+    const undo = confusableUndoStack.pop();
+
+    if (undo.prevSrsState) {
+      srsData[undo.cardId] = undo.prevSrsState;
+    } else {
+      delete srsData[undo.cardId];
+    }
+    saveSRS(srsData);
+
+    statsData = { ...undo.prevStats };
+    saveStats(statsData);
+
+    confusableIndex = undo.index;
+    confusableCorrect = undo.correct;
+
+    $('#confusable-session-complete').classList.add('hidden');
+    $('#confusable-card').classList.remove('hidden');
+
+    showConfusableCard();
+    flashSaveIndicator();
+  }
+
+  function finishConfusableSession() {
+    confusableAnswered = false;
+    currentConfusableCard = null;
+
+    $('#confusable-card').classList.add('hidden');
+    $('#confusable-session-complete').classList.remove('hidden');
+    $('#confusable-session-total').textContent = confusableTotal;
+    $('#confusable-session-correct').textContent = confusableCorrect;
+    $('#confusable-session-accuracy').textContent = (confusableTotal > 0 ? Math.round((confusableCorrect / confusableTotal) * 100) : 0) + '%';
+  }
+
+  // ─── Confusable kanji browse page (confusable-kanji.html) ──────────────────────
+  //
+  // Static reference view of the same confusable-group data the quiz above
+  // draws from — search/filter only, no SRS state.
+
+  function getConfusableBrowseLevels() {
+    return KANJI_QUIZ_LEVELS.filter(level => {
+      const el = $(`#confusable-browse-toggle-${level}`);
+      return el && el.checked;
+    });
+  }
+
+  function renderConfusableBrowsePage() {
+    const grid = $('#confusable-group-grid');
+    if (!grid) return;
+
+    const groups = window.CONFUSABLE_KANJI_GROUPS || [];
+    const levels = getConfusableBrowseLevels();
+    const query = ($('#confusable-browse-search')?.value || '').trim().toLowerCase();
+
+    // A search narrows to groups with a matching member, but still shows the
+    // whole group (level-filtered) rather than just the matching kanji —
+    // the point of browsing is seeing what a kanji gets confused with.
+    const filtered = groups
+      .map(group => {
+        const kanji = group.kanji.filter(k => levels.includes(group.levels[k].toLowerCase()));
+        const hasMatch = !query || kanji.some(k => k === query || group.meanings[k].toLowerCase().includes(query));
+        return { group, kanji, hasMatch };
+      })
+      .filter(({ kanji, hasMatch }) => kanji.length > 1 && hasMatch);
+
+    grid.innerHTML = filtered.map(({ group, kanji }) => `
+      <div class="confusable-group-card">
+        <div class="confusable-group-meta">${kanji.length} similar kanji</div>
+        <div class="confusable-group-kanji-list">
+          ${kanji.map(k => `
+            <div class="confusable-kanji-item">
+              <div class="confusable-kanji-glyph">${k}</div>
+              <div class="confusable-kanji-meaning">${group.meanings[k]}</div>
+              <div class="confusable-kanji-level">${group.levels[k]}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `).join('');
+
+    const totalKanji = filtered.reduce((sum, { kanji }) => sum + kanji.length, 0);
+    const count = $('#confusable-browse-count');
+    if (count) count.textContent = `${filtered.length} groups · ${totalKanji} kanji`;
+
+    grid.classList.toggle('hidden', filtered.length === 0);
+    const empty = $('#confusable-empty');
+    if (empty) empty.classList.toggle('hidden', filtered.length !== 0);
   }
 
   // ─── Utilities ─────────────────────────────────────────────────────────────────
@@ -2843,6 +3137,8 @@
       // Static download links page — no SRS state to render.
     } else if (mode === 'kanji-quiz') {
       renderKanjiQuizPanel();
+    } else if (mode === 'confusable-browse') {
+      renderConfusableBrowsePage();
     } else {
       renderHub();
     }
@@ -3046,6 +3342,10 @@
       el.addEventListener('change', renderKanjiQuizPanel);
     });
 
+    $$('input[name="kanji-quiz-type"]').forEach(el => {
+      el.addEventListener('change', renderKanjiQuizPanel);
+    });
+
     function toggleKanjiQuizLevel(e) {
       const anyChecked = KANJI_QUIZ_LEVELS.some(level => $(`#kanji-quiz-toggle-${level}`).checked);
       if (!anyChecked) {
@@ -3059,7 +3359,10 @@
       on(`#kanji-quiz-toggle-${level}`, 'change', toggleKanjiQuizLevel);
     });
 
-    on('#btn-start-kanji-quiz', 'click', startKanjiQuizStudy);
+    on('#btn-start-kanji-quiz', 'click', () => {
+      if (getKanjiQuizType() === 'confusable') startConfusableStudy();
+      else startKanjiQuizStudy();
+    });
     on('#btn-kanji-quiz-reveal', 'click', revealKanjiQuizAnswer);
 
     $$('.btn-grade[data-kanji-quiz-grade]').forEach(btn => {
@@ -3084,7 +3387,11 @@
       // Setup screen: Space starts a session, same as clicking Start Quiz —
       // but only when focus isn't on a checkbox/radio that already owns Space.
       if (mode === 'kanji-quiz' && screens.chapters && screens.chapters.classList.contains('active')) {
-        if (e.key === ' ' && !focusHasOwnSpaceAction()) { consumeKey(e); startKanjiQuizStudy(); }
+        if (e.key === ' ' && !focusHasOwnSpaceAction()) {
+          consumeKey(e);
+          if (getKanjiQuizType() === 'confusable') startConfusableStudy();
+          else startKanjiQuizStudy();
+        }
         return;
       }
 
@@ -3112,6 +3419,58 @@
       if (e.key === ' ') { consumeKey(e); revealKanjiQuizAnswer(); return; }
       if (e.key === 'z' || e.key === 'Z') { consumeKey(e); undoLastKanjiQuizGrade(); return; }
     }, true);
+
+    // ─── Confusing Kanji ─────────────────────────────────────────────────────────
+
+    $$('.confusable-choice').forEach((btn, i) => {
+      btn.addEventListener('click', () => chooseConfusableAnswer(i));
+    });
+
+    on('#btn-confusable-next', 'click', advanceConfusable);
+    on('#btn-confusable-undo', 'click', undoLastConfusableGrade);
+
+    function backToConfusableChapters() {
+      showScreen('chapters');
+      renderKanjiQuizPanel();
+    }
+
+    on('#btn-confusable-back-to-chapters', 'click', backToConfusableChapters);
+
+    document.addEventListener('keydown', (e) => {
+      if (overlayOpen('settings-overlay')) return;
+      if (overlayOpen('ref-overlay')) return;
+      if (!(screens.confusable && screens.confusable.classList.contains('active'))) return;
+
+      if ((e.ctrlKey || e.metaKey) && e.key === 'z') {
+        consumeKey(e);
+        undoLastConfusableGrade();
+        return;
+      }
+
+      if (confusableAnswered) {
+        if (e.key === ' ') { consumeKey(e); advanceConfusable(); return; }
+        if (e.key === 'z' || e.key === 'Z') { consumeKey(e); undoLastConfusableGrade(); return; }
+        return;
+      }
+
+      // Session-complete screen: Space goes back, same as clicking the button.
+      if (!$('#confusable-session-complete').classList.contains('hidden')) {
+        if (e.key === ' ' && !focusHasOwnSpaceAction()) { consumeKey(e); backToConfusableChapters(); }
+        return;
+      }
+
+      if (e.key >= '1' && e.key <= '4') {
+        const i = parseInt(e.key, 10) - 1;
+        if (i < currentConfusableChoices.length) { consumeKey(e); chooseConfusableAnswer(i); }
+      }
+    }, true);
+
+    // ─── Confusable kanji browse page ───────────────────────────────────────────
+
+    on('#confusable-browse-search', 'input', renderConfusableBrowsePage);
+    KANJI_QUIZ_LEVELS.forEach(level => {
+      on(`#confusable-browse-toggle-${level}`, 'change', renderConfusableBrowsePage);
+    });
 
     // Reference tabs
     $$('.ref-tab').forEach(tab => {

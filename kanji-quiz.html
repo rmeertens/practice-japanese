@@ -42,12 +42,22 @@
         <a class="mode-tab active" href="kanji-quiz.html">Kanji Quiz</a>
       </nav>
       <div id="kanji-quiz-panel">
-        <p class="tab-intro">
+        <p class="tab-intro" id="kanji-quiz-intro">
           Self-graded kanji flashcards. Pick a direction and which JLPT levels to include,
           then start a session scheduled with spaced repetition so you review what you don't
           know most often.
         </p>
         <div class="kana-settings-row">
+          <label class="kana-script-toggle">
+            <input type="radio" name="kanji-quiz-type" id="kanji-quiz-type-flash" value="flashcards" checked>
+            Flashcards
+          </label>
+          <label class="kana-script-toggle">
+            <input type="radio" name="kanji-quiz-type" id="kanji-quiz-type-confusable" value="confusable">
+            Confusing Kanji
+          </label>
+        </div>
+        <div class="kana-settings-row" id="kanji-quiz-direction-row">
           <label class="kana-script-toggle">
             <input type="radio" name="kanji-quiz-direction" id="kanji-quiz-dir-mk" value="meaning-to-kanji" checked>
             Meaning &rarr; Kanji
@@ -71,6 +81,9 @@
           </div>
           <button id="btn-start-kanji-quiz" class="btn-primary btn-start-custom">Start Quiz</button>
         </div>
+        <p class="tab-intro" id="confusable-browse-link-row" style="margin-top:8px">
+          <a href="confusable-kanji.html">Browse all confusable kanji groups &rarr;</a>
+        </p>
       </div>
       <div class="reset-section">
         <button id="btn-reset" class="btn-danger">Reset All Progress</button>
@@ -120,12 +133,54 @@
       </div>
     </main>
 
+    <!-- Screen: Confusing Kanji (multiple-choice) -->
+    <main id="screen-confusable" class="screen">
+      <div class="study-toolbar">
+        <div class="study-progress">
+          <div class="study-progress-bar"><div id="confusable-bar-fill" class="study-bar-fill"></div></div>
+          <span id="confusable-progress-text" class="study-progress-text">0 / 0</span>
+        </div>
+        <button id="btn-confusable-undo" class="btn-undo hidden" aria-label="Undo last grade" title="Undo (Z)">↩ Undo</button>
+      </div>
+      <div id="save-indicator-confusable" class="save-indicator">Saved</div>
+
+      <div id="confusable-card" class="card kana-card">
+        <div class="kana-prompt-label">Which meaning is this?</div>
+        <div id="confusable-prompt" class="kana-answer-char"></div>
+        <div class="kana-script-badge" id="confusable-level-badge"></div>
+
+        <div class="confusable-choices" id="confusable-choices">
+          <button class="confusable-choice" data-choice-index="0"></button>
+          <button class="confusable-choice" data-choice-index="1"></button>
+          <button class="confusable-choice" data-choice-index="2"></button>
+          <button class="confusable-choice" data-choice-index="3"></button>
+        </div>
+
+        <div class="reveal-area hidden" id="confusable-next-area">
+          <button id="btn-confusable-next" class="btn-reveal">Next</button>
+          <span class="reveal-hint">Space = next</span>
+        </div>
+      </div>
+
+      <div id="confusable-session-complete" class="session-complete hidden">
+        <div class="complete-icon">🎉</div>
+        <h2>Session Complete!</h2>
+        <div class="session-stats">
+          <div class="stat"><span class="stat-num" id="confusable-session-total">0</span><span class="stat-label">Kanji</span></div>
+          <div class="stat"><span class="stat-num" id="confusable-session-correct">0</span><span class="stat-label">Correct</span></div>
+          <div class="stat"><span class="stat-num" id="confusable-session-accuracy">0%</span><span class="stat-label">Accuracy</span></div>
+        </div>
+        <button id="btn-confusable-back-to-chapters" class="btn-primary">Back to Chapters</button>
+      </div>
+    </main>
+
   </div>
 
   <script src="conjugator.js"></script>
   <script src="verbs.js"></script>
   <script src="kana.js"></script>
   <script src="kanji-quiz-data.js"></script>
+  <script src="confusable-kanji-data.js"></script>
   <script src="app.js"></script>
 
   <!-- Static content for search engines -->

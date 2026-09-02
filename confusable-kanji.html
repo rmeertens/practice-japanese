@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" id="viewport-meta" content="width=device-width, initial-scale=1.0">
+  <title>Confusable Kanji Groups | Tokidoki</title>
+  <meta name="description" content="Browse JLPT kanji that look alike, grouped by visual similarity — 222 groups covering 601 kanji from N5 to N1. Search by kanji or meaning, or filter by level.">
+  <meta property="og:title" content="Confusable Kanji Groups | Tokidoki">
+  <meta property="og:description" content="JLPT kanji that look alike, grouped by visual similarity, from N5 to N1.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tokidoki.meertens.dev/confusable-kanji.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Confusable Kanji Groups | Tokidoki">
+  <meta name="twitter:description" content="JLPT kanji that look alike, grouped by visual similarity, from N5 to N1.">
+  <link rel="canonical" href="https://tokidoki.meertens.dev/confusable-kanji.html">
+  <link rel="stylesheet" href="style.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXWYNZC7YH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXWYNZC7YH');
+  </script>
+</head>
+<body data-mode="confusable-browse">
+  <div id="app">
+
+    <!-- Header -->
+    <!-- Header (rendered by renderSharedChrome() in app.js) -->
+    <div id="header-mount"></div>
+
+    <!-- Screen: Confusable Kanji Browse -->
+    <main id="screen-chapters" class="screen active">
+      <nav class="mode-tabs">
+        <a class="mode-tab" href="verbs.html">Verbs</a>
+        <a class="mode-tab" href="adjectives.html">Adjectives</a>
+        <a class="mode-tab" href="custom.html">Build Your Own</a>
+        <a class="mode-tab" href="sentences.html">Sentences</a>
+        <a class="mode-tab" href="kana.html">Kana</a>
+        <a class="mode-tab" href="kanji.html">Practice Sheets</a>
+        <a class="mode-tab active" href="kanji-quiz.html">Kanji Quiz</a>
+      </nav>
+      <p class="tab-intro">
+        Kanji that render nearly identically at a glance, grouped by visual similarity
+        (found by comparing rendered glyph shapes, plus a handful of hand-checked pairs).
+        <span id="confusable-browse-count">222 groups · 601 kanji</span> from N5 to N1.
+        This is the same pool the <a href="kanji-quiz.html">Confusing Kanji quiz</a> draws
+        its multiple-choice distractors from.
+      </p>
+      <div class="kana-settings-row">
+        <input type="search" id="confusable-browse-search" class="answer-input" placeholder="Search by kanji or meaning…" autocomplete="off">
+      </div>
+      <div class="kana-settings-row">
+        <label class="kana-script-toggle"><input type="checkbox" id="confusable-browse-toggle-n5" checked> N5</label>
+        <label class="kana-script-toggle"><input type="checkbox" id="confusable-browse-toggle-n4" checked> N4</label>
+        <label class="kana-script-toggle"><input type="checkbox" id="confusable-browse-toggle-n3" checked> N3</label>
+        <label class="kana-script-toggle"><input type="checkbox" id="confusable-browse-toggle-n2" checked> N2</label>
+        <label class="kana-script-toggle"><input type="checkbox" id="confusable-browse-toggle-n1" checked> N1</label>
+      </div>
+
+      <div class="confusable-group-grid" id="confusable-group-grid"></div>
+      <p class="tab-intro hidden" id="confusable-empty">No confusable kanji match your search.</p>
+    </main>
+
+  </div>
+
+  <script src="conjugator.js"></script>
+  <script src="verbs.js"></script>
+  <script src="kana.js"></script>
+  <script src="kanji-quiz-data.js"></script>
+  <script src="confusable-kanji-data.js"></script>
+  <script src="app.js"></script>
+
+  <!-- Static content for search engines -->
+  <section id="seo-content" aria-hidden="true">
+    <h2>Confusable Kanji Groups</h2>
+    <p>
+      A reference list of JLPT kanji (N5 through N1) that look alike enough to mix up at a
+      glance — grouped by comparing rendered glyph shapes for visual overlap, plus a small set
+      of hand-checked pairs the automatic comparison under-scored. 222 groups covering 601 of
+      the 2,213 kanji in the practice pool, sorted by hardest JLPT level then group size. Used
+      as the distractor source for the <a href="kanji-quiz.html">Confusing Kanji multiple-choice
+      quiz</a>, where you're shown one kanji from a group and asked to pick its correct meaning
+      out of four choices drawn from that group.
+    </p>
+  </section>
+</body>
+</html>
