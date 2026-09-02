@@ -1,0 +1,58 @@
+{
+  "number": 5,
+  "title": "Ch 5: More Verbs",
+  "book": "Genki I",
+  "level": "N5",
+  "sentences": [
+    {
+      "ja": "毎日プールで泳ぎます。",
+      "jaHtml": "<ruby>毎日<rp>(</rp><rt>まいにち</rt><rp>)</rp></ruby>プールで<ruby>泳<rp>(</rp><rt>およ</rt><rp>)</rp></ruby>ぎます。",
+      "en": "I swim in the pool every day."
+    },
+    {
+      "ja": "先生に聞きました。",
+      "jaHtml": "<ruby>先生<rp>(</rp><rt>せんせい</rt><rp>)</rp></ruby>に<ruby>聞<rp>(</rp><rt>き</rt><rp>)</rp></ruby>きました。",
+      "en": "I asked the teacher."
+    },
+    {
+      "ja": "電車に乗ります。",
+      "jaHtml": "<ruby>電車<rp>(</rp><rt>でんしゃ</rt><rp>)</rp></ruby>に<ruby>乗<rp>(</rp><rt>の</rt><rp>)</rp></ruby>ります。",
+      "en": "I ride the train."
+    },
+    {
+      "ja": "週末に出かけませんでした。",
+      "jaHtml": "<ruby>週末<rp>(</rp><rt>しゅうまつ</rt><rp>)</rp></ruby>に<ruby>出<rp>(</rp><rt>で</rt><rp>)</rp></ruby>かけませんでした。",
+      "en": "I didn't go out on the weekend."
+    },
+    {
+      "ja": "スポーツをやりますか。",
+      "jaHtml": "スポーツをやりますか。",
+      "en": "Do you do sports?"
+    },
+    {
+      "ja": "昨日プールで泳ぎませんでした。",
+      "jaHtml": "<ruby>昨日<rp>(</rp><rt>きのう</rt><rp>)</rp></ruby>プールで<ruby>泳<rp>(</rp><rt>およ</rt><rp>)</rp></ruby>ぎませんでした。",
+      "en": "I didn't swim in the pool yesterday."
+    },
+    {
+      "ja": "友達と映画を見ました。",
+      "jaHtml": "<ruby>友達<rp>(</rp><rt>ともだち</rt><rp>)</rp></ruby>と<ruby>映画<rp>(</rp><rt>えいが</rt><rp>)</rp></ruby>を<ruby>見<rp>(</rp><rt>み</rt><rp>)</rp></ruby>ました。",
+      "en": "I watched a movie with a friend."
+    },
+    {
+      "ja": "先生に日本語で聞きました。",
+      "jaHtml": "<ruby>先生<rp>(</rp><rt>せんせい</rt><rp>)</rp></ruby>に<ruby>日本語<rp>(</rp><rt>にほんご</rt><rp>)</rp></ruby>で<ruby>聞<rp>(</rp><rt>き</rt><rp>)</rp></ruby>きました。",
+      "en": "I asked the teacher in Japanese."
+    },
+    {
+      "ja": "明日出かけます。",
+      "jaHtml": "<ruby>明日<rp>(</rp><rt>あした</rt><rp>)</rp></ruby><ruby>出<rp>(</rp><rt>で</rt><rp>)</rp></ruby>かけます。",
+      "en": "I will go out tomorrow."
+    },
+    {
+      "ja": "昨日電車に乗りませんでした。",
+      "jaHtml": "<ruby>昨日<rp>(</rp><rt>きのう</rt><rp>)</rp></ruby><ruby>電車<rp>(</rp><rt>でんしゃ</rt><rp>)</rp></ruby>に<ruby>乗<rp>(</rp><rt>の</rt><rp>)</rp></ruby>りませんでした。",
+      "en": "I didn't ride the train yesterday."
+    }
+  ]
+}

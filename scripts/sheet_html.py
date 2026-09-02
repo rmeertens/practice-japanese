@@ -62,6 +62,71 @@ MEANING_CELL = (
     '<div class="box-writeline"></div><div class="box-writeline"></div></div>'
 )
 
+# "Sentence worksheet": numbered example sentences (Japanese with furigana,
+# or English) with the translation left blank on ruled lines beneath. Reuses
+# the ".grid" wrapper class from PAGE_TEMPLATE as a vertical list instead of
+# a flex-wrapped grid of small boxes — same template, different CSS.
+SENTENCE_CSS = """
+  .grid { display: flex; flex-direction: column; gap: 6mm; }
+  .item { break-inside: avoid; page-break-inside: avoid; display: flex; gap: 3mm; align-items: flex-start; }
+  .item-num { font-weight: 700; font-size: 10pt; color: #666; min-width: 6mm; padding-top: 0.5mm; }
+  .item-body { flex: 1; }
+  .item-prompt { font-size: 12.5pt; line-height: 1.7; }
+  .item-prompt.jp { font-family: 'IPAGothic', 'Noto Sans CJK JP', sans-serif; }
+  .item-prompt.en { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: 11.5pt; }
+  .item-lines { margin-top: 2.5mm; }
+  .item-line { height: 6.5mm; border-bottom: 0.3mm solid #bbb; }
+"""
+
+SENTENCE_ITEM = (
+    '    <div class="item"><div class="item-num">{num}.</div>'
+    '<div class="item-body"><div class="item-prompt {lang}">{prompt}</div>'
+    '<div class="item-lines"><div class="item-line"></div><div class="item-line"></div></div>'
+    '</div></div>'
+)
+
+# Answer key: both languages together, numbered, no blank lines.
+SENTENCE_ANSWERS_CSS = """
+  .grid { display: flex; flex-direction: column; gap: 3.5mm; }
+  .item { break-inside: avoid; page-break-inside: avoid; display: flex; gap: 3mm; align-items: baseline; border-bottom: 0.2mm solid #eee; padding-bottom: 2.5mm; }
+  .item-num { font-weight: 700; font-size: 9pt; color: #666; min-width: 6mm; }
+  .item-body { flex: 1; }
+  .item-jp { font-family: 'IPAGothic', 'Noto Sans CJK JP', sans-serif; font-size: 11.5pt; line-height: 1.5; }
+  .item-en { font-size: 9.5pt; color: #444; margin-top: 0.8mm; }
+"""
+
+SENTENCE_ANSWERS_ITEM = (
+    '    <div class="item"><div class="item-num">{num}.</div>'
+    '<div class="item-body"><div class="item-jp">{jp}</div><div class="item-en">{en}</div></div></div>'
+)
+
+
+def render_sentence_worksheet_page(title, subtitle, items, prompt_key, lang):
+    """items: sentence dicts with ja/jaHtml/en. prompt_key is 'jaHtml' (write
+    the English translation) or 'en' (write the Japanese translation); lang
+    picks the prompt's font ('jp' or 'en')."""
+    cells = [
+        SENTENCE_ITEM.format(
+            num=i + 1,
+            lang=lang,
+            prompt=it[prompt_key] if prompt_key == 'jaHtml' else esc(it[prompt_key]),
+        )
+        for i, it in enumerate(items)
+    ]
+    return render_page(title, len(items), "sentences", subtitle, SENTENCE_CSS, cells)
+
+
+def render_sentence_answers_page(title, items):
+    cells = [
+        SENTENCE_ANSWERS_ITEM.format(num=i + 1, jp=it['jaHtml'], en=esc(it['en']))
+        for i, it in enumerate(items)
+    ]
+    return render_page(
+        title, len(items), "sentences",
+        "Same order as the worksheets, for checking your translations.",
+        SENTENCE_ANSWERS_CSS, cells,
+    )
+
 PAGE_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>

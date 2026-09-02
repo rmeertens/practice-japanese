@@ -1,0 +1,68 @@
+{
+  "number": 15,
+  "title": "Ch 15: Volitional",
+  "book": "Genki II",
+  "level": "N4",
+  "sentences": [
+    {
+      "ja": "車を売りました。",
+      "jaHtml": "<ruby>車<rp>(</rp><rt>くるま</rt><rp>)</rp></ruby>を<ruby>売<rp>(</rp><rt>う</rt><rp>)</rp></ruby>りました。",
+      "en": "I sold the car."
+    },
+    {
+      "ja": "銀行でお金を下ろしました。",
+      "jaHtml": "<ruby>銀行<rp>(</rp><rt>ぎんこう</rt><rp>)</rp></ruby>でお<ruby>金<rp>(</rp><rt>かね</rt><rp>)</rp></ruby>を<ruby>下<rp>(</rp><rt>お</rt><rp>)</rp></ruby>ろしました。",
+      "en": "I withdrew money at the bank."
+    },
+    {
+      "ja": "絵を描くのが好きです。",
+      "jaHtml": "<ruby>絵<rp>(</rp><rt>え</rt><rp>)</rp></ruby>を<ruby>描<rp>(</rp><rt>えが</rt><rp>)</rp></ruby>くのが<ruby>好<rp>(</rp><rt>す</rt><rp>)</rp></ruby>きです。",
+      "en": "I like drawing pictures."
+    },
+    {
+      "ja": "仕事を探しています。",
+      "jaHtml": "<ruby>仕事<rp>(</rp><rt>しごと</rt><rp>)</rp></ruby>を<ruby>探<rp>(</rp><rt>さが</rt><rp>)</rp></ruby>しています。",
+      "en": "I am looking for a job."
+    },
+    {
+      "ja": "友達を映画に誘いました。",
+      "jaHtml": "<ruby>友達<rp>(</rp><rt>ともだち</rt><rp>)</rp></ruby>を<ruby>映画<rp>(</rp><rt>えいが</rt><rp>)</rp></ruby>に<ruby>誘<rp>(</rp><rt>さそ</rt><rp>)</rp></ruby>いました。",
+      "en": "I invited a friend to a movie."
+    },
+    {
+      "ja": "電話でしゃべりました。",
+      "jaHtml": "<ruby>電話<rp>(</rp><rt>でんわ</rt><rp>)</rp></ruby>でしゃべりました。",
+      "en": "I chatted on the phone."
+    },
+    {
+      "ja": "駅に着いたら電話してください。",
+      "jaHtml": "<ruby>駅<rp>(</rp><rt>えき</rt><rp>)</rp></ruby>に<ruby>着<rp>(</rp><rt>つ</rt><rp>)</rp></ruby>いたら<ruby>電話<rp>(</rp><rt>でんわ</rt><rp>)</rp></ruby>してください。",
+      "en": "When you arrive at the station, please call."
+    },
+    {
+      "ja": "車に気をつけてください。",
+      "jaHtml": "<ruby>車<rp>(</rp><rt>くるま</rt><rp>)</rp></ruby>に<ruby>気<rp>(</rp><rt>き</rt><rp>)</rp></ruby>をつけてください。",
+      "en": "Please be careful of cars."
+    },
+    {
+      "ja": "京都を観光しましょう。",
+      "jaHtml": "<ruby>京都<rp>(</rp><rt>きょうと</rt><rp>)</rp></ruby>を<ruby>観光<rp>(</rp><rt>かんこう</rt><rp>)</rp></ruby>しましょう。",
+      "en": "Let's sightsee in Kyoto."
+    },
+    {
+      "ja": "大学を卒業しました。",
+      "jaHtml": "<ruby>大学<rp>(</rp><rt>だいがく</rt><rp>)</rp></ruby>を<ruby>卒業<rp>(</rp><rt>そつぎょう</rt><rp>)</rp></ruby>しました。",
+      "en": "I graduated from university."
+    },
+    {
+      "ja": "レストランを予約しました。",
+      "jaHtml": "レストランを<ruby>予約<rp>(</rp><rt>よやく</rt><rp>)</rp></ruby>しました。",
+      "en": "I reserved a restaurant."
+    },
+    {
+      "ja": "窓から山が見えます。",
+      "jaHtml": "<ruby>窓<rp>(</rp><rt>まど</rt><rp>)</rp></ruby>から<ruby>山<rp>(</rp><rt>やま</rt><rp>)</rp></ruby>が<ruby>見<rp>(</rp><rt>み</rt><rp>)</rp></ruby>えます。",
+      "en": "I can see the mountain from the window."
+    }
+  ]
+}

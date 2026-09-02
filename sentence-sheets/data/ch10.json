@@ -1,0 +1,58 @@
+{
+  "number": 10,
+  "title": "Ch 10: Comparison",
+  "book": "Genki I",
+  "level": "N5",
+  "sentences": [
+    {
+      "ja": "東京から大阪まで三時間かかります。",
+      "jaHtml": "<ruby>東京<rp>(</rp><rt>とうきょう</rt><rp>)</rp></ruby>から<ruby>大阪<rp>(</rp><rt>おおさか</rt><rp>)</rp></ruby>まで<ruby>三<rp>(</rp><rt>さん</rt><rp>)</rp></ruby><ruby>時間<rp>(</rp><rt>じかん</rt><rp>)</rp></ruby>かかります。",
+      "en": "It takes three hours from Tokyo to Osaka."
+    },
+    {
+      "ja": "ホテルに泊まりました。",
+      "jaHtml": "ホテルに<ruby>泊<rp>(</rp><rt>と</rt><rp>)</rp></ruby>まりました。",
+      "en": "I stayed at a hotel."
+    },
+    {
+      "ja": "先生になりたいです。",
+      "jaHtml": "<ruby>先生<rp>(</rp><rt>せんせい</rt><rp>)</rp></ruby>になりたいです。",
+      "en": "I want to become a teacher."
+    },
+    {
+      "ja": "お金を払いましたか。",
+      "jaHtml": "お<ruby>金<rp>(</rp><rt>かね</rt><rp>)</rp></ruby>を<ruby>払<rp>(</rp><rt>はら</rt><rp>)</rp></ruby>いましたか。",
+      "en": "Did you pay the money?"
+    },
+    {
+      "ja": "テニスを練習しました。",
+      "jaHtml": "テニスを<ruby>練習<rp>(</rp><rt>れんしゅう</rt><rp>)</rp></ruby>しました。",
+      "en": "I practiced tennis."
+    },
+    {
+      "ja": "予定を決めましょう。",
+      "jaHtml": "<ruby>予定<rp>(</rp><rt>よてい</rt><rp>)</rp></ruby>を<ruby>決<rp>(</rp><rt>き</rt><rp>)</rp></ruby>めましょう。",
+      "en": "Let's decide the plans."
+    },
+    {
+      "ja": "飛行機は電車より速いです。",
+      "jaHtml": "<ruby>飛行機<rp>(</rp><rt>ひこうき</rt><rp>)</rp></ruby>は<ruby>電車<rp>(</rp><rt>でんしゃ</rt><rp>)</rp></ruby>より<ruby>速<rp>(</rp><rt>はや</rt><rp>)</rp></ruby>いです。",
+      "en": "Airplanes are faster than trains."
+    },
+    {
+      "ja": "このホテルは高くなかったです。",
+      "jaHtml": "このホテルは<ruby>高<rp>(</rp><rt>たか</rt><rp>)</rp></ruby>くなかったです。",
+      "en": "This hotel was not expensive."
+    },
+    {
+      "ja": "日本に一週間泊まりました。",
+      "jaHtml": "<ruby>日本<rp>(</rp><rt>にっぽん</rt><rp>)</rp></ruby>に<ruby>一<rp>(</rp><rt>いち</rt><rp>)</rp></ruby><ruby>週間<rp>(</rp><rt>しゅうかん</rt><rp>)</rp></ruby><ruby>泊<rp>(</rp><rt>と</rt><rp>)</rp></ruby>まりました。",
+      "en": "I stayed in Japan for one week."
+    },
+    {
+      "ja": "いくらかかりましたか。",
+      "jaHtml": "いくらかかりましたか。",
+      "en": "How much did it cost?"
+    }
+  ]
+}

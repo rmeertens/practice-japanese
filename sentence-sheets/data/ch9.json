@@ -1,0 +1,58 @@
+{
+  "number": 9,
+  "title": "Ch 9: Past Short Forms",
+  "book": "Genki I",
+  "level": "N5",
+  "sentences": [
+    {
+      "ja": "ダンスを踊ったことがあります。",
+      "jaHtml": "ダンスを<ruby>踊<rp>(</rp><rt>おど</rt><rp>)</rp></ruby>ったことがあります。",
+      "en": "I have danced before."
+    },
+    {
+      "ja": "授業が終わりました。",
+      "jaHtml": "<ruby>授業<rp>(</rp><rt>じゅぎょう</rt><rp>)</rp></ruby>が<ruby>終<rp>(</rp><rt>お</rt><rp>)</rp></ruby>わりました。",
+      "en": "Class has ended."
+    },
+    {
+      "ja": "ピアノを弾いたことがありません。",
+      "jaHtml": "ピアノを<ruby>弾<rp>(</rp><rt>ひ</rt><rp>)</rp></ruby>いたことがありません。",
+      "en": "I have never played piano."
+    },
+    {
+      "ja": "プレゼントをもらいました。",
+      "jaHtml": "プレゼントをもらいました。",
+      "en": "I received a present."
+    },
+    {
+      "ja": "漢字を覚えました。",
+      "jaHtml": "<ruby>漢字<rp>(</rp><rt>かんじ</rt><rp>)</rp></ruby>を<ruby>覚<rp>(</rp><rt>おぼ</rt><rp>)</rp></ruby>えました。",
+      "en": "I memorized the kanji."
+    },
+    {
+      "ja": "映画がまだ始まっていません。",
+      "jaHtml": "<ruby>映画<rp>(</rp><rt>えいが</rt><rp>)</rp></ruby>がまだ<ruby>始<rp>(</rp><rt>はじ</rt><rp>)</rp></ruby>まっていません。",
+      "en": "The movie hasn't started yet."
+    },
+    {
+      "ja": "毎朝運動します。",
+      "jaHtml": "<ruby>毎朝<rp>(</rp><rt>まいあさ</rt><rp>)</rp></ruby><ruby>運動<rp>(</rp><rt>うんどう</rt><rp>)</rp></ruby>します。",
+      "en": "I exercise every morning."
+    },
+    {
+      "ja": "公園で散歩しました。",
+      "jaHtml": "<ruby>公園<rp>(</rp><rt>こうえん</rt><rp>)</rp></ruby>で<ruby>散歩<rp>(</rp><rt>さんぽ</rt><rp>)</rp></ruby>しました。",
+      "en": "I took a walk in the park."
+    },
+    {
+      "ja": "授業に出なかった。",
+      "jaHtml": "<ruby>授業<rp>(</rp><rt>じゅぎょう</rt><rp>)</rp></ruby>に<ruby>出<rp>(</rp><rt>で</rt><rp>)</rp></ruby>なかった。",
+      "en": "I didn't attend class."
+    },
+    {
+      "ja": "まだ漢字を覚えなかった。",
+      "jaHtml": "まだ<ruby>漢字<rp>(</rp><rt>かんじ</rt><rp>)</rp></ruby>を<ruby>覚<rp>(</rp><rt>おぼ</rt><rp>)</rp></ruby>えなかった。",
+      "en": "I still didn't memorize the kanji."
+    }
+  ]
+}

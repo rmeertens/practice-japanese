@@ -1,0 +1,58 @@
+{
+  "number": 19,
+  "title": "Ch 19: Honorific",
+  "book": "Genki II",
+  "level": "N4",
+  "sentences": [
+    {
+      "ja": "先生はもういらっしゃいますか。",
+      "jaHtml": "<ruby>先生<rp>(</rp><rt>せんせい</rt><rp>)</rp></ruby>はもういらっしゃいますか。",
+      "en": "Is the teacher here already? (honorific)"
+    },
+    {
+      "ja": "母が怒りました。",
+      "jaHtml": "<ruby>母<rp>(</rp><rt>はは</rt><rp>)</rp></ruby>が<ruby>怒<rp>(</rp><rt>おこ</rt><rp>)</rp></ruby>りました。",
+      "en": "Mom got angry."
+    },
+    {
+      "ja": "先生がおっしゃいました。",
+      "jaHtml": "<ruby>先生<rp>(</rp><rt>せんせい</rt><rp>)</rp></ruby>がおっしゃいました。",
+      "en": "The teacher said. (honorific)"
+    },
+    {
+      "ja": "予定が決まりました。",
+      "jaHtml": "<ruby>予定<rp>(</rp><rt>よてい</rt><rp>)</rp></ruby>が<ruby>決<rp>(</rp><rt>き</rt><rp>)</rp></ruby>まりました。",
+      "en": "The plans have been decided."
+    },
+    {
+      "ja": "先生がお菓子を下さいました。",
+      "jaHtml": "<ruby>先生<rp>(</rp><rt>せんせい</rt><rp>)</rp></ruby>がお<ruby>菓子<rp>(</rp><rt>かし</rt><rp>)</rp></ruby>を<ruby>下<rp>(</rp><rt>くだ</rt><rp>)</rp></ruby>さいました。",
+      "en": "The teacher gave us sweets. (honorific)"
+    },
+    {
+      "ja": "大阪に引っ越しました。",
+      "jaHtml": "<ruby>大阪<rp>(</rp><rt>おおさか</rt><rp>)</rp></ruby>に<ruby>引<rp>(</rp><rt>ひ</rt><rp>)</rp></ruby>っ<ruby>越<rp>(</rp><rt>こ</rt><rp>)</rp></ruby>しました。",
+      "en": "I moved to Osaka."
+    },
+    {
+      "ja": "タクシーを呼んでください。",
+      "jaHtml": "タクシーを<ruby>呼<rp>(</rp><rt>よ</rt><rp>)</rp></ruby>んでください。",
+      "en": "Please call a taxi."
+    },
+    {
+      "ja": "コンビニに寄りましょう。",
+      "jaHtml": "コンビニに<ruby>寄<rp>(</rp><rt>よ</rt><rp>)</rp></ruby>りましょう。",
+      "en": "Let's stop by the convenience store."
+    },
+    {
+      "ja": "電車が遅れています。",
+      "jaHtml": "<ruby>電車<rp>(</rp><rt>でんしゃ</rt><rp>)</rp></ruby>が<ruby>遅<rp>(</rp><rt>おく</rt><rp>)</rp></ruby>れています。",
+      "en": "The train is delayed."
+    },
+    {
+      "ja": "パーティーに招待されました。",
+      "jaHtml": "パーティーに<ruby>招待<rp>(</rp><rt>しょうたい</rt><rp>)</rp></ruby>されました。",
+      "en": "I was invited to a party."
+    }
+  ]
+}

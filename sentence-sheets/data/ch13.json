@@ -1,0 +1,58 @@
+{
+  "number": 13,
+  "title": "Ch 13: Potential",
+  "book": "Genki II",
+  "level": "N4",
+  "sentences": [
+    {
+      "ja": "セーターを編むことができます。",
+      "jaHtml": "セーターを<ruby>編<rp>(</rp><rt>あ</rt><rp>)</rp></ruby>むことができます。",
+      "en": "I can knit a sweater."
+    },
+    {
+      "ja": "お金を貸してください。",
+      "jaHtml": "お<ruby>金<rp>(</rp><rt>かね</rt><rp>)</rp></ruby>を<ruby>貸<rp>(</rp><rt>か</rt><rp>)</rp></ruby>してください。",
+      "en": "Please lend me money."
+    },
+    {
+      "ja": "試験のために頑張ります。",
+      "jaHtml": "<ruby>試験<rp>(</rp><rt>しけん</rt><rp>)</rp></ruby>のために<ruby>頑張<rp>(</rp><rt>がんば</rt><rp>)</rp></ruby>ります。",
+      "en": "I will do my best for the exam."
+    },
+    {
+      "ja": "映画を見て泣きました。",
+      "jaHtml": "<ruby>映画<rp>(</rp><rt>えいが</rt><rp>)</rp></ruby>を<ruby>見<rp>(</rp><rt>み</rt><rp>)</rp></ruby>て<ruby>泣<rp>(</rp><rt>な</rt><rp>)</rp></ruby>きました。",
+      "en": "I cried watching a movie."
+    },
+    {
+      "ja": "歯を磨いてください。",
+      "jaHtml": "<ruby>歯<rp>(</rp><rt>は</rt><rp>)</rp></ruby>を<ruby>磨<rp>(</rp><rt>みが</rt><rp>)</rp></ruby>いてください。",
+      "en": "Please brush your teeth."
+    },
+    {
+      "ja": "約束を守らなければなりません。",
+      "jaHtml": "<ruby>約束<rp>(</rp><rt>やくそく</rt><rp>)</rp></ruby>を<ruby>守<rp>(</rp><rt>まも</rt><rp>)</rp></ruby>らなければなりません。",
+      "en": "You must keep your promise."
+    },
+    {
+      "ja": "この映画に感動しました。",
+      "jaHtml": "この<ruby>映画<rp>(</rp><rt>えいが</rt><rp>)</rp></ruby>に<ruby>感動<rp>(</rp><rt>かんどう</rt><rp>)</rp></ruby>しました。",
+      "en": "I was moved by this movie."
+    },
+    {
+      "ja": "ピアノが弾けます。",
+      "jaHtml": "ピアノが<ruby>弾<rp>(</rp><rt>ひ</rt><rp>)</rp></ruby>けます。",
+      "en": "I can play piano."
+    },
+    {
+      "ja": "日本語が話せるようになりました。",
+      "jaHtml": "<ruby>日本語<rp>(</rp><rt>にほんご</rt><rp>)</rp></ruby>が<ruby>話<rp>(</rp><rt>はな</rt><rp>)</rp></ruby>せるようになりました。",
+      "en": "I became able to speak Japanese."
+    },
+    {
+      "ja": "漢字が読めません。",
+      "jaHtml": "<ruby>漢字<rp>(</rp><rt>かんじ</rt><rp>)</rp></ruby>が<ruby>読<rp>(</rp><rt>よ</rt><rp>)</rp></ruby>めません。",
+      "en": "I can't read kanji."
+    }
+  ]
+}

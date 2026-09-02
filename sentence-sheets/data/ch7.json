@@ -1,0 +1,58 @@
+{
+  "number": 7,
+  "title": "Ch 7: Describing People",
+  "book": "Genki I",
+  "level": "N5",
+  "sentences": [
+    {
+      "ja": "彼は東京に住んでいます。",
+      "jaHtml": "<ruby>彼<rp>(</rp><rt>かれ</rt><rp>)</rp></ruby>は<ruby>東京<rp>(</rp><rt>とうきょう</rt><rp>)</rp></ruby>に<ruby>住<rp>(</rp><rt>す</rt><rp>)</rp></ruby>んでいます。",
+      "en": "He lives in Tokyo."
+    },
+    {
+      "ja": "山田さんは帽子をかぶっています。",
+      "jaHtml": "<ruby>山田<rp>(</rp><rt>やまだ</rt><rp>)</rp></ruby>さんは<ruby>帽子<rp>(</rp><rt>ぼうし</rt><rp>)</rp></ruby>をかぶっています。",
+      "en": "Mr. Yamada is wearing a hat."
+    },
+    {
+      "ja": "私はメガネをかけています。",
+      "jaHtml": "<ruby>私<rp>(</rp><rt>わたし</rt><rp>)</rp></ruby>はメガネをかけています。",
+      "en": "I wear glasses."
+    },
+    {
+      "ja": "彼女はシャツを着ています。",
+      "jaHtml": "<ruby>彼女<rp>(</rp><rt>かのじょ</rt><rp>)</rp></ruby>はシャツを<ruby>着<rp>(</rp><rt>き</rt><rp>)</rp></ruby>ています。",
+      "en": "She is wearing a shirt."
+    },
+    {
+      "ja": "田中さんは会社に勤めています。",
+      "jaHtml": "<ruby>田中<rp>(</rp><rt>たなか</rt><rp>)</rp></ruby>さんは<ruby>会社<rp>(</rp><rt>かいしゃ</rt><rp>)</rp></ruby>に<ruby>勤<rp>(</rp><rt>つと</rt><rp>)</rp></ruby>めています。",
+      "en": "Mr. Tanaka works at a company."
+    },
+    {
+      "ja": "あの人を知っていますか。",
+      "jaHtml": "あの<ruby>人<rp>(</rp><rt>ひと</rt><rp>)</rp></ruby>を<ruby>知<rp>(</rp><rt>し</rt><rp>)</rp></ruby>っていますか。",
+      "en": "Do you know that person?"
+    },
+    {
+      "ja": "友達は来年結婚します。",
+      "jaHtml": "<ruby>友達<rp>(</rp><rt>ともだち</rt><rp>)</rp></ruby>は<ruby>来年<rp>(</rp><rt>らいねん</rt><rp>)</rp></ruby><ruby>結婚<rp>(</rp><rt>けっこん</rt><rp>)</rp></ruby>します。",
+      "en": "My friend will get married next year."
+    },
+    {
+      "ja": "最近太りました。",
+      "jaHtml": "<ruby>最近<rp>(</rp><rt>さいきん</rt><rp>)</rp></ruby><ruby>太<rp>(</rp><rt>ふと</rt><rp>)</rp></ruby>りました。",
+      "en": "I gained weight recently."
+    },
+    {
+      "ja": "歌を歌いました。",
+      "jaHtml": "<ruby>歌<rp>(</rp><rt>うた</rt><rp>)</rp></ruby>を<ruby>歌<rp>(</rp><rt>うた</rt><rp>)</rp></ruby>いました。",
+      "en": "I sang a song."
+    },
+    {
+      "ja": "彼女は痩せています。",
+      "jaHtml": "<ruby>彼女<rp>(</rp><rt>かのじょ</rt><rp>)</rp></ruby>は<ruby>痩<rp>(</rp><rt>や</rt><rp>)</rp></ruby>せています。",
+      "en": "She is thin."
+    }
+  ]
+}
