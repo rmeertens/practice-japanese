@@ -52,7 +52,7 @@ body {
 }
 
 #app {
-  max-width: 600px;
+  max-width: 880px;
   margin: 0 auto;
   padding: 0 16px 32px;
 }
@@ -419,6 +419,12 @@ body {
   display: flex;
   flex-direction: column;
   transition: background 0.3s ease, border-color 0.3s ease;
+  /* #app is wider than a flashcard should be (it needs the room for the
+     mode-tabs nav to fit without scrolling) — cap and center the card
+     itself so it stays a comfortable reading width instead of stretching. */
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .card.negative-form {
