@@ -2705,27 +2705,32 @@
       .map(k => ({ ...k, id: confusableCardId(k.kanji) }));
   }
 
+  // Each choice keeps its own kanji alongside its meaning (not just the
+  // meaning text) so that once you've answered, the quiz can reveal which
+  // kanji every wrong choice actually belongs to.
   function pickConfusableChoices(card) {
     // shuffle() mutates its argument in place and returns nothing, so build
     // the array first and shuffle it as a separate statement before chaining.
     const group = window.CONFUSABLE_KANJI_GROUPS[card.groupIndex];
     const otherGroupMembers = group.kanji.filter(k => k !== card.kanji);
     shuffle(otherGroupMembers);
-    const choices = otherGroupMembers.map(k => group.meanings[k]).slice(0, 3);
+    const choices = otherGroupMembers
+      .slice(0, 3)
+      .map(k => ({ kanji: k, meaning: group.meanings[k] }));
 
     if (choices.length < 3) {
-      const used = new Set([card.meaning, ...choices]);
+      const used = new Set([card.meaning, ...choices.map(c => c.meaning)]);
       const filler = confusableFlatPool.filter(k => !used.has(k.meaning));
       shuffle(filler);
       for (const f of filler) {
         if (choices.length >= 3) break;
         if (used.has(f.meaning)) continue;
-        choices.push(f.meaning);
+        choices.push({ kanji: f.kanji, meaning: f.meaning });
         used.add(f.meaning);
       }
     }
 
-    const result = [card.meaning, ...choices];
+    const result = [{ kanji: card.kanji, meaning: card.meaning }, ...choices];
     shuffle(result);
     return result;
   }
@@ -2775,7 +2780,11 @@
 
     currentConfusableChoices = pickConfusableChoices(currentConfusableCard);
     $$('.confusable-choice').forEach((btn, i) => {
-      btn.textContent = currentConfusableChoices[i];
+      const choice = currentConfusableChoices[i];
+      btn.innerHTML = `
+        <span class="confusable-choice-meaning">${choice.meaning}</span>
+        <span class="confusable-choice-kanji hidden">${choice.kanji}</span>
+      `;
       btn.className = 'confusable-choice';
       btn.disabled = false;
     });
@@ -2790,11 +2799,16 @@
     if (choiceIndex < 0 || choiceIndex >= currentConfusableChoices.length) return;
     confusableAnswered = true;
 
-    const correct = currentConfusableChoices[choiceIndex] === currentConfusableCard.meaning;
+    const correct = currentConfusableChoices[choiceIndex].kanji === currentConfusableCard.kanji;
 
     $$('.confusable-choice').forEach((btn, i) => {
       btn.disabled = true;
-      if (currentConfusableChoices[i] === currentConfusableCard.meaning) {
+      // Reveal which kanji every choice actually belongs to now that the
+      // question is settled — useful for the wrong choices especially,
+      // since those are the other kanji this one gets confused with.
+      const kanjiSpan = btn.querySelector('.confusable-choice-kanji');
+      if (kanjiSpan) kanjiSpan.classList.remove('hidden');
+      if (currentConfusableChoices[i].kanji === currentConfusableCard.kanji) {
         btn.classList.add('correct');
       } else if (i === choiceIndex) {
         btn.classList.add('wrong');
