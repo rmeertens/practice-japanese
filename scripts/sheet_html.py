@@ -85,19 +85,24 @@ SENTENCE_ITEM = (
     '</div></div>'
 )
 
-# Answer key: both languages together, numbered, no blank lines.
+# Answer key: the question (as it appeared on that direction's worksheet)
+# always printed first, then its answer below — one answer key per
+# direction, matching the worksheet it checks.
 SENTENCE_ANSWERS_CSS = """
   .grid { display: flex; flex-direction: column; gap: 3.5mm; }
   .item { break-inside: avoid; page-break-inside: avoid; display: flex; gap: 3mm; align-items: baseline; border-bottom: 0.2mm solid #eee; padding-bottom: 2.5mm; }
   .item-num { font-weight: 700; font-size: 9pt; color: #666; min-width: 6mm; }
   .item-body { flex: 1; }
-  .item-jp { font-family: 'IPAGothic', 'Noto Sans CJK JP', sans-serif; font-size: 11.5pt; line-height: 1.5; }
-  .item-en { font-size: 9.5pt; color: #444; margin-top: 0.8mm; }
+  .item-question { font-size: 11.5pt; line-height: 1.5; }
+  .item-question.jp { font-family: 'IPAGothic', 'Noto Sans CJK JP', sans-serif; }
+  .item-answer { font-size: 9.5pt; color: #444; margin-top: 0.8mm; }
+  .item-answer.jp { font-family: 'IPAGothic', 'Noto Sans CJK JP', sans-serif; font-size: 10.5pt; }
 """
 
 SENTENCE_ANSWERS_ITEM = (
     '    <div class="item"><div class="item-num">{num}.</div>'
-    '<div class="item-body"><div class="item-jp">{jp}</div><div class="item-en">{en}</div></div></div>'
+    '<div class="item-body"><div class="item-question {qlang}">{question}</div>'
+    '<div class="item-answer {alang}">{answer}</div></div></div>'
 )
 
 
@@ -116,14 +121,24 @@ def render_sentence_worksheet_page(title, subtitle, items, prompt_key, lang):
     return render_page(title, len(items), "sentences", subtitle, SENTENCE_CSS, cells)
 
 
-def render_sentence_answers_page(title, items):
-    cells = [
-        SENTENCE_ANSWERS_ITEM.format(num=i + 1, jp=it['jaHtml'], en=esc(it['en']))
-        for i, it in enumerate(items)
-    ]
+def render_sentence_answers_page(title, items, direction):
+    """direction: 'to-english' (question is the Japanese sentence shown on
+    that worksheet, answer is the English translation) or 'to-japanese'
+    (question is the English sentence, answer is the Japanese)."""
+    cells = []
+    for i, it in enumerate(items):
+        if direction == 'to-english':
+            question, qlang = it['jaHtml'], 'jp'
+            answer, alang = esc(it['en']), 'en'
+        else:
+            question, qlang = esc(it['en']), 'en'
+            answer, alang = it['jaHtml'], 'jp'
+        cells.append(SENTENCE_ANSWERS_ITEM.format(
+            num=i + 1, question=question, qlang=qlang, answer=answer, alang=alang,
+        ))
     return render_page(
         title, len(items), "sentences",
-        "Same order as the worksheets, for checking your translations.",
+        "Same order as the worksheet, for checking your translations.",
         SENTENCE_ANSWERS_CSS, cells,
     )
 

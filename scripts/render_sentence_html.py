@@ -2,10 +2,16 @@
 """Render the per-grammar-point translation worksheets to standalone print HTML.
 
 Reads sentence-sheets/data/ch{N}.json (see extract_sentence_data.mjs) and
-writes, per Genki chapter, three sheets:
-  - ch{N}-to-english.html  Japanese sentences shown, write the English translation
-  - ch{N}-to-japanese.html English sentences shown, write the Japanese translation
-  - ch{N}-answers.html     answer key for both directions
+writes, per Genki chapter, four sheets:
+  - ch{N}-to-english.html          Japanese sentences shown, write the English translation
+  - ch{N}-to-english-answers.html  answer key for that sheet — Japanese
+                                    question printed first, English answer below
+  - ch{N}-to-japanese.html         English sentences shown, write the Japanese translation
+  - ch{N}-to-japanese-answers.html answer key for that sheet — English
+                                    question printed first, Japanese answer below
+Each answer key mirrors its own worksheet's direction (question always
+before its answer) rather than one answer key covering both directions,
+where the fixed field order would be backwards for one of them.
 Those files are then printed to PDF (see render_sheets_pdfs.mjs).
 """
 import json
@@ -43,6 +49,11 @@ def main():
         )
         (out_dir / f"{stem}-to-english.html").write_text(to_english)
 
+        to_english_answers = render_sentence_answers_page(
+            f"{title}: Translate to English — Answer Key", items, "to-english",
+        )
+        (out_dir / f"{stem}-to-english-answers.html").write_text(to_english_answers)
+
         to_japanese = render_sentence_worksheet_page(
             f"{title}: Translate to Japanese",
             f"{data['book']} ({data['level']}) — read each English sentence and write its Japanese translation on the lines below.",
@@ -50,10 +61,12 @@ def main():
         )
         (out_dir / f"{stem}-to-japanese.html").write_text(to_japanese)
 
-        answers = render_sentence_answers_page(f"{title}: Answer Key", items)
-        (out_dir / f"{stem}-answers.html").write_text(answers)
+        to_japanese_answers = render_sentence_answers_page(
+            f"{title}: Translate to Japanese — Answer Key", items, "to-japanese",
+        )
+        (out_dir / f"{stem}-to-japanese-answers.html").write_text(to_japanese_answers)
 
-        print(f"ch{num} ({data['level']}): {len(items)} sentences → 3 sheets")
+        print(f"ch{num} ({data['level']}): {len(items)} sentences → 4 sheets")
 
 
 if __name__ == "__main__":
