@@ -53,6 +53,56 @@
       "ja": "いくらかかりましたか。",
       "jaHtml": "いくらかかりましたか。",
       "en": "How much did it cost?"
+    },
+    {
+      "ja": "この本はあの本より面白いです。",
+      "jaHtml": "この<ruby>本<rp>(</rp><rt>ほん</rt><rp>)</rp></ruby>はあの<ruby>本<rp>(</rp><rt>ほん</rt><rp>)</rp></ruby>より<ruby>面白<rp>(</rp><rt>おもしろ</rt><rp>)</rp></ruby>いです。",
+      "en": "This book is more interesting than that book."
+    },
+    {
+      "ja": "大阪から福岡まで飛行機で二時間かかります。",
+      "jaHtml": "<ruby>大阪<rp>(</rp><rt>おおさか</rt><rp>)</rp></ruby>から<ruby>福岡<rp>(</rp><rt>ふくおか</rt><rp>)</rp></ruby>まで<ruby>飛行機<rp>(</rp><rt>ひこうき</rt><rp>)</rp></ruby>で<ruby>二時間<rp>(</rp><rt>にじかん</rt><rp>)</rp></ruby>かかります。",
+      "en": "It takes two hours by plane from Osaka to Fukuoka."
+    },
+    {
+      "ja": "このホテルはあのホテルより安いです。",
+      "jaHtml": "このホテルはあのホテルより<ruby>安<rp>(</rp><rt>やす</rt><rp>)</rp></ruby>いです。",
+      "en": "This hotel is cheaper than that hotel."
+    },
+    {
+      "ja": "スープはいくらでしたか。",
+      "jaHtml": "スープはいくらでしたか。",
+      "en": "How much was the soup?"
+    },
+    {
+      "ja": "旅行の準備をしましたか。",
+      "jaHtml": "<ruby>旅行<rp>(</rp><rt>りょこう</rt><rp>)</rp></ruby>の<ruby>準備<rp>(</rp><rt>じゅんび</rt><rp>)</rp></ruby>をしましたか。",
+      "en": "Did you get ready for the trip?"
+    },
+    {
+      "ja": "犬は猫より大きいです。",
+      "jaHtml": "<ruby>犬<rp>(</rp><rt>いぬ</rt><rp>)</rp></ruby>は<ruby>猫<rp>(</rp><rt>ねこ</rt><rp>)</rp></ruby>より<ruby>大<rp>(</rp><rt>おお</rt><rp>)</rp></ruby>きいです。",
+      "en": "Dogs are bigger than cats."
+    },
+    {
+      "ja": "駅までどのぐらいかかりますか。",
+      "jaHtml": "<ruby>駅<rp>(</rp><rt>えき</rt><rp>)</rp></ruby>までどのぐらいかかりますか。",
+      "en": "About how long does it take to the station?"
+    },
+    {
+      "ja": "バスは電車より遅いです。",
+      "jaHtml": "バスは<ruby>電車<rp>(</rp><rt>でんしゃ</rt><rp>)</rp></ruby>より<ruby>遅<rp>(</rp><rt>おそ</rt><rp>)</rp></ruby>いです。",
+      "en": "Buses are slower than trains."
+    },
+    {
+      "ja": "チケットはいくらでしたか。",
+      "jaHtml": "チケットはいくらでしたか。",
+      "en": "How much was the ticket?"
+    },
+    {
+      "ja": "ホテルに三泊しました。",
+      "jaHtml": "ホテルに<ruby>三泊<rp>(</rp><rt>さんぱく</rt><rp>)</rp></ruby>しました。",
+      "en": "I stayed at the hotel for three nights."
     }
   ]
 }

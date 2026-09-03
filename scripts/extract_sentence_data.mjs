@@ -22,6 +22,9 @@ vm.createContext(sandbox);
 vm.runInContext(sentencesSrc, sandbox);
 const TRANSLATE_SENTENCES = sandbox.window.TRANSLATE_SENTENCES;
 if (!TRANSLATE_SENTENCES) throw new Error("TRANSLATE_SENTENCES not found in sentences-data.js");
+// Chapters that predate verb conjugation (currently 1-2) have no entry in
+// verbs.js's CHAPTER_INFO — sentences-data.js carries their title/book here.
+const EXTRA_CHAPTER_INFO = sandbox.window.EXTRA_CHAPTER_INFO || {};
 
 // verbs.js declares `const CHAPTER_INFO = {...}` as a bare top-level
 // script (no window assignment) — vm doesn't reflect top-level const
@@ -51,8 +54,8 @@ mkdirSync(outDir, { recursive: true });
 
 const chapters = Object.keys(TRANSLATE_SENTENCES).map(Number).sort((a, b) => a - b);
 for (const num of chapters) {
-  const info = CHAPTER_INFO[num];
-  if (!info) throw new Error(`No CHAPTER_INFO for chapter ${num}`);
+  const info = CHAPTER_INFO[num] || EXTRA_CHAPTER_INFO[num];
+  if (!info) throw new Error(`No CHAPTER_INFO/EXTRA_CHAPTER_INFO for chapter ${num}`);
   const sentences = TRANSLATE_SENTENCES[num];
   const data = {
     number: num,

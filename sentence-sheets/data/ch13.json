@@ -53,6 +53,56 @@
       "ja": "漢字が読めません。",
       "jaHtml": "<ruby>漢字<rp>(</rp><rt>かんじ</rt><rp>)</rp></ruby>が<ruby>読<rp>(</rp><rt>よ</rt><rp>)</rp></ruby>めません。",
       "en": "I can't read kanji."
+    },
+    {
+      "ja": "納豆が食べられます。",
+      "jaHtml": "<ruby>納豆<rp>(</rp><rt>なっとう</rt><rp>)</rp></ruby>が<ruby>食<rp>(</rp><rt>た</rt><rp>)</rp></ruby>べられます。",
+      "en": "I can eat natto."
+    },
+    {
+      "ja": "漢字が書けます。",
+      "jaHtml": "<ruby>漢字<rp>(</rp><rt>かんじ</rt><rp>)</rp></ruby>が<ruby>書<rp>(</rp><rt>か</rt><rp>)</rp></ruby>けます。",
+      "en": "I can write kanji."
+    },
+    {
+      "ja": "この音楽が聞けてよかったです。",
+      "jaHtml": "この<ruby>音楽<rp>(</rp><rt>おんがく</rt><rp>)</rp></ruby>が<ruby>聞<rp>(</rp><rt>き</rt><rp>)</rp></ruby>けてよかったです。",
+      "en": "I'm glad I got to hear this music."
+    },
+    {
+      "ja": "英語で説明できますか。",
+      "jaHtml": "<ruby>英語<rp>(</rp><rt>えいご</rt><rp>)</rp></ruby>で<ruby>説明<rp>(</rp><rt>せつめい</rt><rp>)</rp></ruby>できますか。",
+      "en": "Can you explain it in English?"
+    },
+    {
+      "ja": "速く走れません。",
+      "jaHtml": "<ruby>速<rp>(</rp><rt>はや</rt><rp>)</rp></ruby>く<ruby>走<rp>(</rp><rt>はし</rt><rp>)</rp></ruby>れません。",
+      "en": "I can't run fast."
+    },
+    {
+      "ja": "一人で旅行できます。",
+      "jaHtml": "<ruby>一人<rp>(</rp><rt>ひとり</rt><rp>)</rp></ruby>で<ruby>旅行<rp>(</rp><rt>りょこう</rt><rp>)</rp></ruby>できます。",
+      "en": "I can travel alone."
+    },
+    {
+      "ja": "辛い物が食べられません。",
+      "jaHtml": "<ruby>辛<rp>(</rp><rt>つら</rt><rp>)</rp></ruby>い<ruby>物<rp>(</rp><rt>もの</rt><rp>)</rp></ruby>が<ruby>食<rp>(</rp><rt>た</rt><rp>)</rp></ruby>べられません。",
+      "en": "I can't eat spicy food."
+    },
+    {
+      "ja": "この店でカードが使えます。",
+      "jaHtml": "この<ruby>店<rp>(</rp><rt>みせ</rt><rp>)</rp></ruby>でカードが<ruby>使<rp>(</rp><rt>つか</rt><rp>)</rp></ruby>えます。",
+      "en": "You can use a card at this store."
+    },
+    {
+      "ja": "車が運転できます。",
+      "jaHtml": "<ruby>車<rp>(</rp><rt>くるま</rt><rp>)</rp></ruby>が<ruby>運転<rp>(</rp><rt>うんてん</rt><rp>)</rp></ruby>できます。",
+      "en": "I can drive a car."
+    },
+    {
+      "ja": "重い荷物が持てません。",
+      "jaHtml": "<ruby>重<rp>(</rp><rt>おも</rt><rp>)</rp></ruby>い<ruby>荷物<rp>(</rp><rt>にもつ</rt><rp>)</rp></ruby>が<ruby>持<rp>(</rp><rt>も</rt><rp>)</rp></ruby>てません。",
+      "en": "I can't carry heavy luggage."
     }
   ]
 }

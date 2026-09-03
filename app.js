@@ -1855,7 +1855,9 @@
 
     Object.keys(TRANSLATE_SENTENCES).map(Number).sort((a, b) => a - b).forEach(ch => {
       const sentences = TRANSLATE_SENTENCES[ch];
-      const info = CHAPTER_INFO[ch];
+      // Chapters 1-2 predate verb conjugation, so they only exist in
+      // EXTRA_CHAPTER_INFO (sentences-data.js), not verbs.js's CHAPTER_INFO.
+      const info = CHAPTER_INFO[ch] || (typeof EXTRA_CHAPTER_INFO !== 'undefined' && EXTRA_CHAPTER_INFO[ch]);
       if (!info) return;
 
       const card = document.createElement('div');
