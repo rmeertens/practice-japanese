@@ -62,6 +62,60 @@ MEANING_CELL = (
     '<div class="box-writeline"></div><div class="box-writeline"></div></div>'
 )
 
+# "Word practice": a common hiragana/katakana word's romaji + English meaning
+# shown, with a ruled line to write the whole word (not a single-character
+# box, since these are multi-kana words).
+WORD_CSS = """
+  .grid { display: flex; flex-wrap: wrap; gap: 3mm; }
+  .box { width: 42mm; break-inside: avoid; page-break-inside: avoid; }
+  .box-romaji { font-weight: 700; font-size: 10.5pt; line-height: 1.3; }
+  .box-meaning { font-size: 7.6pt; color: #555; line-height: 1.25; margin-top: 0.5mm; height: 8mm; overflow: hidden; }
+  .box-writeline { height: 9mm; border-bottom: 0.35mm solid #999; margin-top: 1.5mm; }
+"""
+
+WORD_CELL = (
+    '    <div class="box"><div class="box-romaji">{romaji}</div>'
+    '<div class="box-meaning">{meaning}</div>'
+    '<div class="box-writeline"></div></div>'
+)
+
+# Word answer key: the question (romaji + meaning, as shown on the
+# worksheet) printed first, the kana word answer below it.
+WORD_ANSWERS_CSS = """
+  .grid { display: flex; flex-wrap: wrap; gap: 2.5mm; }
+  .cell { width: 38mm; break-inside: avoid; page-break-inside: avoid; border: 0.3mm solid #ccc; padding: 1.5mm; }
+  .cell-romaji { font-weight: 700; font-size: 8.5pt; }
+  .cell-meaning { font-size: 7pt; color: #555; margin-top: 0.3mm; height: 6mm; overflow: hidden; }
+  .cell-kana { font-family: 'IPAGothic', 'Noto Sans CJK JP', sans-serif; font-size: 11pt; margin-top: 1mm; text-align: center; white-space: nowrap; }
+"""
+
+WORD_ANSWERS_CELL = (
+    '    <div class="cell"><div class="cell-romaji">{romaji}</div>'
+    '<div class="cell-meaning">{meaning}</div>'
+    '<div class="cell-kana">{kana}</div></div>'
+)
+
+
+def render_word_practice_page(title, subtitle, items):
+    cells = [
+        WORD_CELL.format(romaji=esc(it['romaji']), meaning=esc(it['meaning']))
+        for it in items
+    ]
+    return render_page(title, len(items), "words", subtitle, WORD_CSS, cells)
+
+
+def render_word_answers_page(title, items):
+    cells = [
+        WORD_ANSWERS_CELL.format(romaji=esc(it['romaji']), meaning=esc(it['meaning']), kana=esc(it['kana']))
+        for it in items
+    ]
+    return render_page(
+        title, len(items), "words",
+        "Same order as the worksheet, for checking your writing.",
+        WORD_ANSWERS_CSS, cells,
+    )
+
+
 # "Sentence worksheet": numbered example sentences (Japanese with furigana,
 # or English) with the translation left blank on ruled lines beneath. Reuses
 # the ".grid" wrapper class from PAGE_TEMPLATE as a vertical list instead of
