@@ -967,6 +967,74 @@ body {
   .confusable-choices { grid-template-columns: 1fr; }
 }
 
+/* Particle quiz: fill-in-the-blank sentence + multiple-choice particles */
+.particle-sentence {
+  font-family: var(--font-jp);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.particle-blank {
+  display: inline-block;
+  color: var(--accent);
+  letter-spacing: -2px;
+}
+
+.particle-en {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+.particle-choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 24px;
+  width: 100%;
+}
+
+.particle-choice {
+  padding: 14px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  font-family: var(--font-jp);
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition);
+  color: var(--text);
+}
+
+.particle-choice:hover:not(:disabled) {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.particle-choice:disabled {
+  cursor: default;
+}
+
+.particle-choice.correct {
+  background: #27ae60;
+  border-color: #27ae60;
+  color: #fff;
+}
+
+.particle-choice.wrong {
+  background: #e74c3c;
+  border-color: #e74c3c;
+  color: #fff;
+}
+
+@media (max-width: 480px) {
+  .particle-choices { grid-template-columns: 1fr; }
+}
+
 /* Confusable kanji browse page */
 .confusable-group-grid {
   display: grid;

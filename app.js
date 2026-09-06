@@ -124,6 +124,7 @@
     kana: $('#screen-kana'),
     'kanji-quiz': $('#screen-kanji-quiz'),
     confusable: $('#screen-confusable'),
+    particles: $('#screen-particles'),
   };
 
   // ─── Theme ─────────────────────────────────────────────────────────────────────
@@ -195,6 +196,9 @@
     } else if (name === 'confusable') {
       backBtn.classList.remove('hidden');
       title.textContent = 'Confusing Kanji';
+    } else if (name === 'particles') {
+      backBtn.classList.remove('hidden');
+      title.textContent = 'Particle Quiz';
     }
   }
 
@@ -2621,6 +2625,212 @@
     $('#confusable-session-accuracy').textContent = (confusableTotal > 0 ? Math.round((confusableCorrect / confusableTotal) * 100) : 0) + '%';
   }
 
+  // ─── Particle quiz (multiple-choice fill-in-the-blank) ─────────────────────────
+  //
+  // Sentences and distractor groups come from particles-data.js. Each
+  // question shows a sentence with one particle blanked out (plus its
+  // English translation) and asks which of 4 particles fits — graded
+  // automatically like the Confusing Kanji quiz above, since there's only
+  // one right answer per question.
+
+  let particlesSessionCards = [];
+  let particlesIndex = 0;
+  let particlesTotal = 0;
+  let particlesCorrect = 0;
+  let currentParticleCard = null;
+  let currentParticleChoices = [];
+  let particlesAnswered = false;
+  let particlesUndoStack = [];
+
+  function particleCardId(item) {
+    return `particle_${item.id}`;
+  }
+
+  function getSelectedParticles() {
+    return (window.PARTICLE_LIST || []).filter(p => {
+      const el = $(`#particles-toggle-${window.PARTICLE_ROMAJI[p]}`);
+      return el && el.checked;
+    });
+  }
+
+  function getParticlesPool() {
+    const selected = getSelectedParticles();
+    return (window.PARTICLE_QUIZ_ITEMS || [])
+      .filter(item => selected.includes(item.particle))
+      .map(item => ({ ...item, id: particleCardId(item) }));
+  }
+
+  // Builds the particle toggle checkboxes once from PARTICLE_LIST — the
+  // page itself only carries an empty container, since the particle set
+  // lives in particles-data.js rather than being hand-written per particle.
+  function renderParticleToggles() {
+    const row = $('#particles-toggle-row');
+    if (!row || row.children.length > 0) return;
+    (window.PARTICLE_LIST || []).forEach(p => {
+      const romaji = window.PARTICLE_ROMAJI[p];
+      const label = document.createElement('label');
+      label.className = 'kana-script-toggle';
+      label.innerHTML = `<input type="checkbox" id="particles-toggle-${romaji}" checked> ${p} (${romaji})`;
+      row.appendChild(label);
+    });
+  }
+
+  function renderParticlesPanel() {
+    renderParticleToggles();
+    const pool = getParticlesPool();
+    const due = pool.filter(item => isDue(getCardState(srsData, item.id))).length;
+    const el = $('#particles-due-count');
+    if (el) el.textContent = due;
+  }
+
+  function pickParticleChoices(item) {
+    const distractors = (window.PARTICLE_DISTRACTOR_GROUPS[item.particle] || []).slice();
+    shuffle(distractors);
+    const result = [item.particle, ...distractors.slice(0, 3)];
+    shuffle(result);
+    return result;
+  }
+
+  function startParticlesStudy() {
+    const pool = getParticlesPool();
+    if (pool.length === 0) return;
+
+    const due = pool.filter(item => isDue(getCardState(srsData, item.id)));
+    particlesSessionCards = prioritizeDifficult(due.length > 0 ? due : pool.slice());
+
+    if (particlesSessionCards.length > 20) {
+      particlesSessionCards = particlesSessionCards.slice(0, 20);
+    }
+
+    particlesIndex = 0;
+    particlesCorrect = 0;
+    particlesTotal = particlesSessionCards.length;
+    particlesUndoStack = [];
+
+    showScreen('particles');
+    $('#particles-session-complete').classList.add('hidden');
+    $('#particles-card').classList.remove('hidden');
+    showParticleCard();
+  }
+
+  function updateParticlesUndoButton() {
+    const btn = $('#btn-particles-undo');
+    if (btn) btn.classList.toggle('hidden', particlesUndoStack.length === 0);
+  }
+
+  function showParticleCard() {
+    if (particlesIndex >= particlesSessionCards.length) {
+      finishParticlesSession();
+      return;
+    }
+
+    particlesAnswered = false;
+    currentParticleCard = particlesSessionCards[particlesIndex];
+
+    const pct = (particlesIndex / particlesTotal) * 100;
+    $('#particles-bar-fill').style.width = pct + '%';
+    $('#particles-progress-text').textContent = `${particlesIndex + 1} / ${particlesTotal}`;
+
+    $('#particles-before').innerHTML = settings.showFurigana ? currentParticleCard.beforeHtml : currentParticleCard.beforePlain;
+    $('#particles-after').innerHTML = settings.showFurigana ? currentParticleCard.afterHtml : currentParticleCard.afterPlain;
+    $('#particles-en').textContent = currentParticleCard.en;
+
+    currentParticleChoices = pickParticleChoices(currentParticleCard);
+    $$('.particle-choice').forEach((btn, i) => {
+      btn.textContent = currentParticleChoices[i];
+      btn.className = 'particle-choice';
+      btn.disabled = false;
+    });
+
+    $('#particles-next-area').classList.add('hidden');
+    updateParticlesUndoButton();
+  }
+
+  function chooseParticleAnswer(choiceIndex) {
+    if (particlesAnswered || !currentParticleCard) return;
+    if (choiceIndex < 0 || choiceIndex >= currentParticleChoices.length) return;
+    particlesAnswered = true;
+
+    const correct = currentParticleChoices[choiceIndex] === currentParticleCard.particle;
+
+    $$('.particle-choice').forEach((btn, i) => {
+      btn.disabled = true;
+      if (currentParticleChoices[i] === currentParticleCard.particle) {
+        btn.classList.add('correct');
+      } else if (i === choiceIndex) {
+        btn.classList.add('wrong');
+      }
+    });
+
+    const id = currentParticleCard.id;
+
+    particlesUndoStack.push({
+      cardId: id,
+      prevSrsState: srsData[id] ? { ...srsData[id] } : null,
+      prevStats: { ...statsData },
+      index: particlesIndex,
+      correct: particlesCorrect,
+    });
+
+    const state = getCardState(srsData, id);
+    srsData[id] = gradeCard(state, correct ? 4 : 1);
+    saveSRS(srsData);
+
+    updateStreak();
+    statsData.todayReviews = (statsData.todayReviews || 0) + 1;
+    if (correct) {
+      statsData.todayCorrect = (statsData.todayCorrect || 0) + 1;
+      particlesCorrect++;
+    }
+    saveStats(statsData);
+    flashSaveIndicator();
+
+    $('#particles-next-area').classList.remove('hidden');
+    updateParticlesUndoButton();
+  }
+
+  function advanceParticles() {
+    if (!particlesAnswered) return;
+    particlesIndex++;
+    showParticleCard();
+  }
+
+  function undoLastParticleGrade() {
+    if (particlesUndoStack.length === 0) return;
+
+    const undo = particlesUndoStack.pop();
+
+    if (undo.prevSrsState) {
+      srsData[undo.cardId] = undo.prevSrsState;
+    } else {
+      delete srsData[undo.cardId];
+    }
+    saveSRS(srsData);
+
+    statsData = { ...undo.prevStats };
+    saveStats(statsData);
+
+    particlesIndex = undo.index;
+    particlesCorrect = undo.correct;
+
+    $('#particles-session-complete').classList.add('hidden');
+    $('#particles-card').classList.remove('hidden');
+
+    showParticleCard();
+    flashSaveIndicator();
+  }
+
+  function finishParticlesSession() {
+    particlesAnswered = false;
+    currentParticleCard = null;
+
+    $('#particles-card').classList.add('hidden');
+    $('#particles-session-complete').classList.remove('hidden');
+    $('#particles-session-total').textContent = particlesTotal;
+    $('#particles-session-correct').textContent = particlesCorrect;
+    $('#particles-session-accuracy').textContent = (particlesTotal > 0 ? Math.round((particlesCorrect / particlesTotal) * 100) : 0) + '%';
+  }
+
   // ─── Confusable kanji browse page (confusable-kanji.html) ──────────────────────
   //
   // Static reference view of the same confusable-group data the quiz above
@@ -2888,6 +3098,8 @@
       renderKanjiQuizPanel();
     } else if (mode === 'confusable-browse') {
       renderConfusableBrowsePage();
+    } else if (mode === 'particles') {
+      renderParticlesPanel();
     } else {
       renderHub();
     }
@@ -2902,6 +3114,7 @@
       else if (mode === 'adjectives') renderAdjChapters();
       else if (mode === 'kana') renderKanaPanel();
       else if (mode === 'kanji-quiz') renderKanjiQuizPanel();
+      else if (mode === 'particles') renderParticlesPanel();
     });
 
     // Reference overlay
@@ -3214,6 +3427,72 @@
       }
     }, true);
 
+    // ─── Particle quiz ───────────────────────────────────────────────────────────
+
+    function toggleParticlesLevel(e) {
+      const anyChecked = (window.PARTICLE_LIST || []).some(p => $(`#particles-toggle-${window.PARTICLE_ROMAJI[p]}`).checked);
+      if (!anyChecked) {
+        e.target.checked = true;
+        return;
+      }
+      renderParticlesPanel();
+    }
+
+    (window.PARTICLE_LIST || []).forEach(p => {
+      on(`#particles-toggle-${window.PARTICLE_ROMAJI[p]}`, 'change', toggleParticlesLevel);
+    });
+
+    on('#btn-start-particles', 'click', startParticlesStudy);
+
+    $$('.particle-choice').forEach((btn, i) => {
+      btn.addEventListener('click', () => chooseParticleAnswer(i));
+    });
+
+    on('#btn-particles-next', 'click', advanceParticles);
+    on('#btn-particles-undo', 'click', undoLastParticleGrade);
+
+    function backToParticlesChapters() {
+      showScreen('chapters');
+      renderParticlesPanel();
+    }
+
+    on('#btn-particles-back-to-chapters', 'click', backToParticlesChapters);
+
+    document.addEventListener('keydown', (e) => {
+      if (overlayOpen('settings-overlay')) return;
+      if (overlayOpen('ref-overlay')) return;
+
+      if (mode === 'particles' && screens.chapters && screens.chapters.classList.contains('active')) {
+        if (e.key === ' ' && !focusHasOwnSpaceAction()) { consumeKey(e); startParticlesStudy(); }
+        return;
+      }
+
+      if (!(screens.particles && screens.particles.classList.contains('active'))) return;
+
+      if ((e.ctrlKey || e.metaKey) && e.key === 'z') {
+        consumeKey(e);
+        undoLastParticleGrade();
+        return;
+      }
+
+      if (particlesAnswered) {
+        if (e.key === ' ') { consumeKey(e); advanceParticles(); return; }
+        if (e.key === 'z' || e.key === 'Z') { consumeKey(e); undoLastParticleGrade(); return; }
+        return;
+      }
+
+      // Session-complete screen: Space goes back, same as clicking the button.
+      if (!$('#particles-session-complete').classList.contains('hidden')) {
+        if (e.key === ' ' && !focusHasOwnSpaceAction()) { consumeKey(e); backToParticlesChapters(); }
+        return;
+      }
+
+      if (e.key >= '1' && e.key <= '4') {
+        const i = parseInt(e.key, 10) - 1;
+        if (i < currentParticleChoices.length) { consumeKey(e); chooseParticleAnswer(i); }
+      }
+    }, true);
+
     // ─── Confusable kanji browse page ───────────────────────────────────────────
 
     on('#confusable-browse-search', 'input', renderConfusableBrowsePage);
@@ -3242,6 +3521,7 @@
         else if (mode === 'adjectives') renderAdjChapters();
         else if (mode === 'kana') renderKanaPanel();
         else if (mode === 'kanji-quiz') renderKanjiQuizPanel();
+        else if (mode === 'particles') renderParticlesPanel();
         else if (mode === 'hub') renderHub();
       }
     });
