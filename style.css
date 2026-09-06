@@ -1035,6 +1035,18 @@ body {
   .particle-choices { grid-template-columns: 1fr; }
 }
 
+.particle-explanation {
+  margin-top: 16px;
+  padding: 12px 14px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+
 /* Confusable kanji browse page */
 .confusable-group-grid {
   display: grid;

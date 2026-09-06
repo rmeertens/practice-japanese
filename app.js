@@ -2743,6 +2743,7 @@
     });
 
     $('#particles-next-area').classList.add('hidden');
+    $('#particles-explanation').classList.add('hidden');
     updateParticlesUndoButton();
   }
 
@@ -2761,6 +2762,18 @@
         btn.classList.add('wrong');
       }
     });
+
+    // Only explain wrong answers — a right answer doesn't need justifying.
+    const explanationEl = $('#particles-explanation');
+    if (explanationEl) {
+      if (!correct) {
+        const explanation = (window.PARTICLE_EXPLANATIONS || {})[currentParticleCard.particle] || '';
+        explanationEl.textContent = `The correct answer is ${currentParticleCard.particle}. ${explanation}`;
+        explanationEl.classList.remove('hidden');
+      } else {
+        explanationEl.classList.add('hidden');
+      }
+    }
 
     const id = currentParticleCard.id;
 
